@@ -12,15 +12,12 @@ import { CreateInvetoryDto } from './dto/create-inventory.dto';
 import { UpdateInvetoryDto } from './dto/update-inventory.dto';
 import { Inventory } from './entities/inventory.entity';
 import { User } from '../auth/entities/user.entity';
-import { VehicleService } from 'src/vehicle/vehicle.service';
 import { Question } from './entities/question.entity';
 import { DataInventoryAnswersDto } from './dto/data-inventory-answers.dto';
 import { InventoryChecklistItem } from './entities/inventory-checklist-item.entity';
 import { GeneralInventory } from './entities/general-inventory.entity';
 import { GeneralInventoryDto } from './interfaces/general-inventory.interface';
 import { CreateGeneralInventoryDto } from './dto/create-general-inventory.dto';
-import { CreateVehicleDto } from 'src/vehicle/dto/create-vehicle.dto';
-import { Vehicle } from 'src/vehicle/entities/vehicle.entity';
 import { UpdateGeneralInventory } from './dto/update-general-inventory.dto';
 
 @Injectable()
@@ -36,21 +33,17 @@ export class InventoryService {
     private readonly inventoryChecklistItemRepository: Repository<InventoryChecklistItem>,
     @InjectRepository(GeneralInventory)
     private readonly generalInventoryRepository: Repository<GeneralInventory>,
-    @InjectRepository(Vehicle)
-    private readonly vehicleRepository: Repository<Vehicle>,
-
-    private readonly vehicleService: VehicleService,
     private readonly dataSource: DataSource,
   ) {}
 
   async create(createInventoryDto: CreateInvetoryDto, user: User) {
     try {
       const { vehicle, ...restInventory } = createInventoryDto;
-      const newVehicle = await this.vehicleService.create(vehicle, user); //TODO: no es necesario poner el usuario en el vehiculo por que va en el inventario
+      // const newVehicle = await this.vehicleService.create(vehicle, user); //TODO: no es necesario poner el usuario en el vehiculo por que va en el inventario
 
       const savedInventory = await this.inventoryRepository.insert({
         creatorUser: user,
-        vehicle: newVehicle,
+        // vehicle: newVehicle,
         ...restInventory,
       });
       return { newInventory: savedInventory };
@@ -224,94 +217,6 @@ export class InventoryService {
       return generalInventoryDto;
     } catch (error) {
       throw error;
-    }
-  }
-
-  async findGeneralInventoryById(id: string) {
-    try {
-      const generalInventory = await this.generalInventoryRepository.findOne({
-        relations: {
-          beforeChange: {
-            vehicle: true,
-            creatorUser: true,
-            lastUserEdited: true,
-          },
-          afterChange: {
-            vehicle: true,
-            creatorUser: true,
-            lastUserEdited: true,
-          },
-        },
-        where: {
-          id,
-        },
-      });
-
-      return generalInventory;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async createBeforeGeneralInventory(
-    data: CreateGeneralInventoryDto,
-    user: User,
-  ) {
-    const queryRunner = this.dataSource.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-
-    try {
-      const { inventory, inventory_checklist_items } = data;
-      const { vehicle } = inventory;
-
-      const vehicleDto = this.vehicleRepository.create({
-        brand: vehicle.brand,
-        chassis: vehicle.chassis,
-        color: vehicle.color,
-        model: vehicle.model, //TODO: ojo el user en la entity de vehicle en los demas lugares, solo debe ir en inventory
-        images: [],
-      });
-      const newVehicles = await queryRunner.manager.save(vehicleDto);
-
-      const inventoryDto = this.inventoryRepository.create({
-        status: inventory.status,
-        observation: inventory.observation,
-        kilometers: inventory.kilometers,
-        creatorUser: user,
-        vehicle: newVehicles,
-      });
-      const newInventory = await queryRunner.manager.save(inventoryDto);
-
-      const generalInventoryDto = this.generalInventoryRepository.create({
-        beforeChange: newInventory,
-      });
-      const newGeneralInventory =
-        await queryRunner.manager.save(generalInventoryDto);
-
-      const inventoryChecklistItems: InventoryChecklistItem[] = [];
-      for (const key in inventory_checklist_items) {
-        inventoryChecklistItems.push(
-          this.inventoryChecklistItemRepository.create({
-            inventory: newInventory,
-            response: inventory_checklist_items[key],
-            question: {
-              id: key,
-            },
-          }),
-        );
-      }
-      const newInventoryChecklistItems = await queryRunner.manager.save(
-        inventoryChecklistItems,
-      );
-
-      await queryRunner.commitTransaction();
-      await queryRunner.release();
-
-      return true;
-    } catch (error) {
-      await queryRunner.rollbackTransaction();
-      await queryRunner.release();
     }
   }
 

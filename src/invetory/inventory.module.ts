@@ -8,8 +8,6 @@ import { InventoryChecklistItem } from './entities/inventory-checklist-item.enti
 import { Question } from './entities/question.entity';
 import { GeneralInventory } from './entities/general-inventory.entity';
 import { AuthModule } from 'src/auth/auth.module';
-import { VehicleService } from 'src/vehicle/vehicle.service';
-import { VehicleModule } from 'src/vehicle/vehicle.module';
 
 @Module({
   controllers: [InventoryController],
@@ -19,14 +17,10 @@ import { VehicleModule } from 'src/vehicle/vehicle.module';
       Inventory,
       InventoryChecklistItem,
       Question,
-      GeneralInventory
+      GeneralInventory,
     ]),
     AuthModule,
-    VehicleModule
   ],
-  exports: [
-    InventoryService,
-    TypeOrmModule,
-  ]
+  exports: [InventoryService, TypeOrmModule],
 })
-export class InventoryModule { }
+export class InventoryModule {}

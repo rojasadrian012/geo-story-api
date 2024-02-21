@@ -73,7 +73,7 @@ export class InventoryController {
     @Body() data: CreateGeneralInventoryDto,
     @GetUser() user: User,
   ) {
-    return this.invetoryService.createBeforeGeneralInventory(data, user);
+    // return this.invetoryService.createBeforeGeneralInventory(data, user);
   }
 
   @Get('general-inventory/beforechange')
@@ -88,7 +88,7 @@ export class InventoryController {
 
   @Get('general-inventory/find/:id')
   findGeneralInventoryById(@Param('id', ParseUUIDPipe) id: string) {
-    return this.invetoryService.findGeneralInventoryById(id);
+    // return this.invetoryService.findGeneralInventoryById(id);
   }
 
   @Put('general-inventory/update/:id')
