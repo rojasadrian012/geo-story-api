@@ -17,7 +17,7 @@ export class User {
     type: 'text',
     unique: true,
   })
-  email: string;
+  nickname: string;
 
   @Column({
     type: 'text',
@@ -46,7 +46,7 @@ export class User {
 
   @BeforeInsert()
   toLowerCaseAndRemoveSpaceBefore() {
-    this.email = this.email.toLowerCase().trim();
+    this.nickname = this.nickname.toLowerCase().trim();
   }
 
   @AfterUpdate()

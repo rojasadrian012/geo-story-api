@@ -43,10 +43,10 @@ export class AuthService {
   }
 
   async login(loginUserDto: LoginUserDto) {
-    const { password, email } = loginUserDto
+    const { password, nickname: nickname } = loginUserDto
 
     const user = await this.userRepository.findOne({
-      where: { email },
+      where: { nickname: nickname },
       select: {
         id: true,
         password: true,
@@ -57,10 +57,10 @@ export class AuthService {
     })
 
     if (!user)
-      throw new UnauthorizedException('Email no registrado.')
+      throw new UnauthorizedException('Invalid User.')
 
     if (!bcrypt.compareSync(password, user.password))
-      throw new UnauthorizedException('Credenciales invalidas.')
+      throw new UnauthorizedException('Error Password.')
 
 
     const { password: omitPassword, ...userNoPassword } = user
