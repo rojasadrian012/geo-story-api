@@ -32,13 +32,5 @@ export class AuthController {
     return this.authService.checkAuthStatus(user)
   }
 
-  @Get('private3')
-  @Auth()
-  testPrivateRute3(
-    @GetUser() user: User,
-  ) {
-
-    return { user }
-  }
 
 }

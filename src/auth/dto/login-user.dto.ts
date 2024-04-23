@@ -11,7 +11,7 @@ export class LoginUserDto {
     @MaxLength(50)
     @Matches(
         /(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-z]).*$/, {
-        message: 'The password must have lowercase letter and a number'
+        message: 'La contraseña debe tener al menos una letra y un numero.'
     })
     password: string;
 
