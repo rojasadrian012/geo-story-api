@@ -11,6 +11,7 @@ import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
 import { FilesModule } from './files/files.module';
 import { AuthModule } from './auth/auth.module';
+import { QuizModule } from './quiz/quiz.module';
 
 @Module({
   imports: [
@@ -38,6 +39,8 @@ import { AuthModule } from './auth/auth.module';
     FilesModule,
 
     AuthModule,
+
+    QuizModule,
   ],
   controllers: [AppController],
   providers: [AppService],
