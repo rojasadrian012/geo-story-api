@@ -4,6 +4,7 @@ import { CreateQuizDto } from './dto/create-quiz.dto';
 import { UpdateQuizDto } from './dto/update-quiz.dto';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { ValidRoles } from 'src/auth/interface/valid-roles';
+import { CreateQuestionDto } from './dto/create-question.dto';
 
 @Controller('quiz')
 export class QuizController {
@@ -40,4 +41,18 @@ export class QuizController {
   remove(@Param('id') id: string) {
     return this.quizService.remove(id);
   }
+
+  @Post('create-question')
+  @Auth()
+  createQuestion(@Body() createQuestionDto: CreateQuestionDto) {
+    // return this.quizService.create(createQuestionDto);
+  }
+
+  @Get('questions/:id')
+  @Auth()
+  findByIdQuestion(@Param('id') id: string) {
+    return this.quizService.findByIdQuestion(id);
+  }
+
+   
 }

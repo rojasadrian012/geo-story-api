@@ -4,13 +4,17 @@ import { UpdateQuizDto } from './dto/update-quiz.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Quiz } from './entities/quiz.entity';
 import { Repository } from 'typeorm';
+import { Question } from './entities/question.entity';
+import { Answer } from './entities/answer.entity';
 
 @Injectable()
 export class QuizService {
 
   constructor(
     @InjectRepository(Quiz)
-    private readonly quizRepository: Repository<Quiz>
+    private readonly quizRepository: Repository<Quiz>,
+    @InjectRepository(Question)
+    private readonly questionRepository: Repository<Question>,
   ) { }
 
   private handleDataBaseExceptions(error: any) {
@@ -52,4 +56,16 @@ export class QuizService {
   async remove(id: string) {
     return this.quizRepository.delete(id);
   }
+
+  async findByIdQuestion(id: string) {
+    return this.questionRepository.find({
+      where: { quiz: { id } },
+      relations: {
+        // quiz: true,
+        answers: true
+      }
+    });
+  }
+
 }
+
