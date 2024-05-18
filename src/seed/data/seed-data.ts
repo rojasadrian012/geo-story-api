@@ -7,13 +7,13 @@ interface SeedUser {
   roles: string[];
 }
 
-interface SeedQuestion {
-  questionText: string;
+interface Quizz {
+  title: string;
 }
 
 interface SeedData {
   users: SeedUser[];
-  questions: SeedQuestion[];
+  quizzes: Quizz[]
 }
 
 export const initialData: SeedData = {
@@ -43,96 +43,24 @@ export const initialData: SeedData = {
       roles: [ValidRoles.user],
     },
   ],
-  questions: [
+  quizzes: [
     {
-      questionText: '¿MARCA CHEQUIN?',
+      title: 'Curiosidades',
     },
     {
-      questionText: 'RADIO/TV',
-    },
+      title: 'Historia',
+    }, 
     {
-      questionText: 'INSIGNIA TRASERA',
-    },
+      title: 'Geografia',
+    }, 
     {
-      questionText: 'INSIGNIA DELANTERA',
-    },
+      title: 'Economia',
+    }, 
     {
-      questionText: 'CABECERAS',
-    },
+      title: 'Cultura',
+    }, 
     {
-      questionText: 'BOCINA',
-    },
-    {
-      questionText: 'AIRE',
-    },
-    {
-      questionText: 'BLOQUEO DE PUERTA',
-    },
-    {
-      questionText: 'TAPIZADOS',
-    },
-    {
-      questionText: 'CUENTA CON SUFICIENTE ACEITE?',
-    },
-    {
-      questionText: 'MOTOR FUNCIONA BIEN?',
-    },
-    {
-      questionText: 'CAJA FUNCIONA BIEN?',
-    },
-    {
-      questionText: '¿TIENE TAPA LLANTA?',
-    },
-    {
-      questionText: '¿FUNCIONA SENSOR DE LUZ AL QUITAR LA LLAVE?',
-    },
-    {
-      questionText: '¿FUNCIONA LUZ DE GUANTERA?',
-    },
-    {
-      questionText: '¿TIENE GOMA CANO DE VOLANTE?',
-    },
-    {
-      questionText: '¿TIENE TAPA TABLERO ABAJO?',
-    },
-    {
-      questionText: '¿TIENE FILTRO DE AIRE?',
-    },
-    {
-      questionText: '¿FALTA ANTENA?',
-    },
-    {
-      questionText: '¿FUNCIONAN ESPEJOS?',
-    },
-    {
-      questionText: '¿PARABRISA ROTO?',
-    },
-    {
-      questionText: '¿FARO ROTO?',
-    },
-    {
-      questionText: '¿TIENE BATERIA?',
-    },
-    {
-      questionText: '¿TIENE SOPORTE BATERIA?',
-    },
-    {
-      questionText: '¿TIENE LIMPIA PARABRISA DEI-ANTERO?',
-    },
-    {
-      questionText: '¿TIENE I-IMPIA PARABRISA TRASERO?',
-    },
-    {
-      questionText: '¿TIENE CUBRE BARRO LH?',
-    },
-    {
-      questionText: '¿TIENE CUBRE BARRO RH?',
-    },
-    {
-      questionText: '¿TIENE CATALIZADOR?',
-    },
-    {
-      questionText: 'OBSERVACION',
+      title: 'Turismo',
     },
   ],
 };

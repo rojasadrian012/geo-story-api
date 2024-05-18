@@ -21,6 +21,9 @@ import { Answer } from './entities/answer.entity';
     ]),
 
     AuthModule,
+  ],
+  exports: [
+    TypeOrmModule
   ]
 })
 export class QuizModule { }
