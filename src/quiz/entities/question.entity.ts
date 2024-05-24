@@ -6,7 +6,7 @@ import { Answer } from "./answer.entity";
 export class Question {
     @PrimaryGeneratedColumn('uuid')
     id: string;
-        
+
     @Column({
         type: 'text',
         nullable: false
@@ -22,6 +22,10 @@ export class Question {
     @ManyToOne(() => Quiz, quiz => quiz.questions)
     quiz: Quiz
 
-    @OneToMany(() => Answer, answer => answer.question)
+    @OneToMany(
+        () => Answer,
+        answer => answer.question,
+        // { onDelete: 'CASCADE' }
+    )
     answers: Answer[]
 }

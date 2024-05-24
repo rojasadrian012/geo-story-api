@@ -7,23 +7,27 @@ export class Quiz {
     id: string;
 
     @Column({
-        type:'text',
+        type: 'text',
         nullable: false,
     })
     title: string;
 
     @Column({
-        type:'text',
+        type: 'text',
         nullable: true,
     })
     description: string;
 
     @Column({
-        type:'text',
+        type: 'text',
         nullable: true,
     })
     difficulty: string;
 
-    @OneToMany(() => Question, (question) => question.quiz)
+    @OneToMany(
+        () => Question,
+        (question) => question.quiz,
+        // { onDelete: 'CASCADE' }
+    )
     questions: Question[]
 }
