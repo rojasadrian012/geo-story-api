@@ -7,6 +7,7 @@ import { Quiz } from './entities/quiz.entity';
 import { AuthModule } from 'src/auth/auth.module';
 import { Question } from './entities/question.entity';
 import { Answer } from './entities/answer.entity';
+import { UserQuiz } from './entities/userQuiz.entity';
 
 @Module({
   controllers: [QuizController],
@@ -18,6 +19,7 @@ import { Answer } from './entities/answer.entity';
       Quiz,
       Question,
       Answer,
+      UserQuiz
     ]),
 
     AuthModule,

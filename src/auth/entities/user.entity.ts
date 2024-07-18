@@ -1,3 +1,4 @@
+import { UserQuiz } from 'src/quiz/entities/userQuiz.entity';
 import {
   AfterUpdate,
   BeforeInsert,
@@ -43,6 +44,12 @@ export class User {
     // select:false
   })
   roles: string[];
+
+  @OneToMany(
+    () => UserQuiz,
+    (userQuiz) => userQuiz.userId,
+  )
+  userQuiz: UserQuiz[];
 
   @BeforeInsert()
   toLowerCaseAndRemoveSpaceBefore() {
