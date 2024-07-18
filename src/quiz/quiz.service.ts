@@ -83,19 +83,14 @@ export class QuizService {
           },
         },
       },
-      // order: {
-      //   quizId: {
-      //     difficulty: 'ASC',
-      //   },
-      // },
     });
+    console.log({ userQuiz });
 
-    //TODO: Ordenar por la dificultad.
     return userQuiz;
   }
 
   async levelsByUser(user: User) {
-    const value = await this.userQuizRepository.find({
+    return this.userQuizRepository.find({
       where: {
         userId: {
           id: user.id,
@@ -110,10 +105,6 @@ export class QuizService {
         },
       },
     });
-
-    console.log({ value });
-
-    return value;
   }
 
   async savePointsWinned(user: User, data: { points: number; title: string }) {

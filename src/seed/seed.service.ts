@@ -9,6 +9,7 @@ import { User } from 'src/auth/entities/user.entity';
 import { Quiz } from 'src/quiz/entities/quiz.entity';
 import { Question } from 'src/quiz/entities/question.entity';
 import { Answer } from 'src/quiz/entities/answer.entity';
+import { UserQuiz } from 'src/quiz/entities/userQuiz.entity';
 
 @Injectable()
 export class SeedService {
@@ -21,18 +22,22 @@ export class SeedService {
     private readonly questionRepository: Repository<Question>,
     @InjectRepository(Answer)
     private readonly answerRepository: Repository<Answer>,
-
-  ) { }
+    @InjectRepository(UserQuiz)
+    private readonly userQuizRepository: Repository<UserQuiz>,
+  ) {}
 
   async runSedd() {
     await this.deleteTables();
     await this.insertUsers();
     await this.insertQuizzes();
+    await this.instertUserQuizzes();
     return 'SEED EXECUTED.';
   }
 
   private async deleteTables() {
     //!DELETE TABLES
+    const queryBuilderUserQuiz = this.userQuizRepository.createQueryBuilder();
+    queryBuilderUserQuiz.delete().where({}).execute();
     const queryBuilderAnswer = this.answerRepository.createQueryBuilder();
     queryBuilderAnswer.delete().where({}).execute();
     const queryBuilderQuestion = this.questionRepository.createQueryBuilder();
@@ -68,7 +73,7 @@ export class SeedService {
     for (const quizData of seedQuizzes) {
       const quiz = this.quizRepository.create({
         title: quizData.title,
-        difficulty: quizData.difficulty
+        difficulty: quizData.difficulty,
       });
       const dbQuiz = await this.quizRepository.save(quiz);
 
@@ -76,7 +81,7 @@ export class SeedService {
         const question = this.questionRepository.create({
           title: questionData.title,
           hint: questionData.hint,
-          quiz: dbQuiz,  // associate question with the quiz
+          quiz: dbQuiz, // associate question with the quiz
         });
         const dbQuestion = await this.questionRepository.save(question);
 
@@ -84,7 +89,7 @@ export class SeedService {
           const answer = this.answerRepository.create({
             text: answerData.text,
             isCorrect: answerData.isCorrect,
-            question: dbQuestion,  // associate answer with the question
+            question: dbQuestion, // associate answer with the question
           });
           await this.answerRepository.save(answer);
         }
@@ -92,4 +97,25 @@ export class SeedService {
     }
   }
 
+  private async instertUserQuizzes() {
+    const users = await this.userRepository.find({});
+    const quizzes = await this.quizRepository.find({});
+
+    const userQuizzes = [];
+
+    users.forEach((user) => {
+      quizzes.forEach((quiz) => {
+        let unlockLevel = false;
+        if (quiz.title === 'Curiosidades') unlockLevel = true;
+        userQuizzes.push({
+          score: 0,
+          quizId: quiz,
+          userId: user,
+          unlockLevel,
+        });
+      });
+    });
+
+    await this.userQuizRepository.insert(userQuizzes);
+  }
 }
