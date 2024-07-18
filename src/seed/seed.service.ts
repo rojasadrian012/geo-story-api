@@ -68,6 +68,7 @@ export class SeedService {
     for (const quizData of seedQuizzes) {
       const quiz = this.quizRepository.create({
         title: quizData.title,
+        difficulty: quizData.difficulty
       });
       const dbQuiz = await this.quizRepository.save(quiz);
 

@@ -19,10 +19,10 @@ export class Quiz {
     description: string;
 
     @Column({
-        type: 'text',
+        type: 'numeric',
         nullable: true,
     })
-    difficulty: string;
+    difficulty: number;
 
     @OneToMany(
         () => Question,

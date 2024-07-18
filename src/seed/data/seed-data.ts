@@ -1,5 +1,14 @@
 import { ValidRoles } from 'src/auth/interface/valid-roles';
 
+export enum levels {
+  'l1' = 1,
+  'l2' = 2,
+  'l3' = 3,
+  'l4' = 4,
+  'l5' = 5,
+  'l6' = 6,
+}
+
 interface SeedUser {
   nickname: string;
   password: string;
@@ -8,6 +17,7 @@ interface SeedUser {
 }
 
 interface Quizz {
+  difficulty: levels;
   title: string;
   questions: Question[];
 }
@@ -57,50 +67,54 @@ export const initialData: SeedData = {
   ],
   quizzes: [
     {
+      difficulty: levels.l1,
       title: 'Curiosidades',
       questions: [
         {
-          title: '¿Cuál es la principal actividad económica en el distrito de Lima?',
+          title:
+            '¿Cuál es la principal actividad económica en el distrito de Lima?',
           hint: ' La actividad se centra en la elaboración de un producto tradicional paraguayo.',
           answers: [
             {
               text: 'Agricultura',
-              isCorrect: true
+              isCorrect: true,
             },
             {
               text: 'Ganadería',
-              isCorrect: false
+              isCorrect: false,
             },
             {
               text: 'Minería',
-              isCorrect: false
+              isCorrect: false,
             },
             {
               text: 'Avicultura',
-              isCorrect: false
+              isCorrect: false,
             },
-          ]
+          ],
         },
         {
-          title: '¿Cuál de las siguientes lagunas es conocida por sus playas de arena blanca en San Pedro?',
+          title:
+            '¿Cuál de las siguientes lagunas es conocida por sus playas de arena blanca en San Pedro?',
           hint: 'Esta laguna es un importante destino turístico nacional, declarada por la Secretaría Nacional de Turismo.',
           answers: [
             {
               text: 'Laguna Blanca',
-              isCorrect: true
-            }, {
+              isCorrect: true,
+            },
+            {
               text: 'Lago Ypacaraí',
-              isCorrect: false
+              isCorrect: false,
             },
             {
               text: 'Laguna Verde',
-              isCorrect: false
+              isCorrect: false,
             },
             {
               text: 'Laguna Azul',
-              isCorrect: false
+              isCorrect: false,
             },
-          ]
+          ],
         },
         {
           title: '¿Cuántos distritos conforman el Departamento de San Pedro?',
@@ -108,91 +122,94 @@ export const initialData: SeedData = {
           answers: [
             {
               text: '21',
-              isCorrect: true
+              isCorrect: true,
             },
             {
               text: '18',
-              isCorrect: false
+              isCorrect: false,
             },
             {
               text: '27',
-              isCorrect: false
+              isCorrect: false,
             },
             {
               text: '24',
-              isCorrect: false
+              isCorrect: false,
             },
-          ]
+          ],
         },
         {
-          title: '¿Cuál de los siguientes es un importante recurso hídrico del Departamento de San Pedro?',
+          title:
+            '¿Cuál de los siguientes es un importante recurso hídrico del Departamento de San Pedro?',
           hint: 'Este río bordea toda la zona oeste del Departamento y lo separa de la Región Occidental.',
           answers: [
             {
               text: 'Río Paraguay',
-              isCorrect: true
+              isCorrect: true,
             },
             {
               text: 'Río Pilcomayo',
-              isCorrect: false
+              isCorrect: false,
             },
             {
               text: 'Río Paraná',
-              isCorrect: false
+              isCorrect: false,
             },
             {
               text: 'Río Apa',
-              isCorrect: false
+              isCorrect: false,
             },
-          ]
+          ],
         },
         {
-          title: '¿En qué año fue fundada la ciudad de San Pedro de Ycuamandiyú?',
+          title:
+            '¿En qué año fue fundada la ciudad de San Pedro de Ycuamandiyú?',
           hint: 'Fue fundada en el siglo XVIII, durante el gobierno de Pedro Melo de Portugal.',
           answers: [
             {
               text: '1800',
-              isCorrect: false
+              isCorrect: false,
             },
             {
               text: '1786',
-              isCorrect: true
+              isCorrect: true,
             },
             {
               text: '1811',
-              isCorrect: false
+              isCorrect: false,
             },
             {
               text: '1700',
-              isCorrect: false
+              isCorrect: false,
             },
-          ]
+          ],
         },
-      ]
+      ],
     },
     {
+      difficulty: levels.l2,
       title: 'Historia',
-      questions: []
+      questions: [],
     },
     {
+      difficulty: levels.l3,
       title: 'Geografia',
-      questions: []
-
+      questions: [],
     },
     {
+      difficulty: levels.l4,
       title: 'Economia',
-      questions: []
-
+      questions: [],
     },
     {
+      difficulty: levels.l5,
       title: 'Cultura',
-      questions: []
-
+      questions: [],
     },
     {
+      difficulty: levels.l6,
       title: 'Turismo',
-      questions: []
-
+      questions: [],
     },
   ],
 };

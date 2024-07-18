@@ -8,5 +8,5 @@ export class CreateQuizDto {
     description: string;
 
     @IsString()
-    difficulty: string;
+    difficulty: number;
 }

@@ -83,9 +83,14 @@ export class QuizService {
           },
         },
       },
+      order: {
+        quizId: {
+          difficulty: 'ASC',
+        },
+      },
     });
 
-    // return userQuiz.quizId.questions;
+    //TODO: Ordenar por la dificultad.
     return userQuiz;
   }
 
@@ -103,7 +108,7 @@ export class QuizService {
   }
 
   async savePointsWinned(user: User, data: { points: number; title: string }) {
-    let value = await this.userQuizRepository.findOne({
+    let currentUserQuiz = await this.userQuizRepository.findOne({
       where: {
         userId: {
           id: user.id,
@@ -112,15 +117,35 @@ export class QuizService {
           title: data.title,
         },
       },
+      relations: {
+        quizId: true,
+      },
     });
 
-    value = {
-      ...value,
+    currentUserQuiz = {
+      ...currentUserQuiz,
       score: data.points,
     };
 
-    console.log({ value });
+    let nextUserQuiz = await this.userQuizRepository.findOne({
+      where: {
+        userId: {
+          id: user.id,
+        },
+        quizId: {
+          difficulty: +currentUserQuiz.quizId.difficulty + 1,
+        },
+      },
+      relations: {
+        quizId: true,
+      },
+    });
 
-    return this.userQuizRepository.save(value);
+    nextUserQuiz = {
+      ...nextUserQuiz,
+      unlockLevel: true,
+    };
+
+    return this.userQuizRepository.save([currentUserQuiz, nextUserQuiz]);
   }
 }
