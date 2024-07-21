@@ -25,7 +25,7 @@ export class QuizService {
     private readonly questionRepository: Repository<Question>,
     @InjectRepository(UserQuiz)
     private readonly userQuizRepository: Repository<UserQuiz>,
-  ) {}
+  ) { }
 
   private handleDataBaseExceptions(error: any) {
     if (error.code === '23505')
@@ -84,7 +84,6 @@ export class QuizService {
         },
       },
     });
-    console.log({ userQuiz });
 
     return userQuiz;
   }
@@ -107,27 +106,23 @@ export class QuizService {
     });
   }
 
-  async savePointsWinned(user: User, data: { points: number; title: string }) {
-    let currentUserQuiz = await this.userQuizRepository.findOne({
+  async savePointsWinned(user: User, data: { points: number; title: string, userQuizId: string }) {
+    const currentUserQuiz = await this.userQuizRepository.findOne({
       where: {
-        userId: {
-          id: user.id,
-        },
-        quizId: {
-          title: data.title,
-        },
+        id: data.userQuizId
       },
       relations: {
         quizId: true,
       },
     });
 
-    currentUserQuiz = {
-      ...currentUserQuiz,
-      score: data.points,
-    };
+    if (!currentUserQuiz) {
+      throw new Error('Current user quiz not found');
+    }
 
-    let nextUserQuiz = await this.userQuizRepository.findOne({
+    currentUserQuiz.score = data.points
+
+    const nextUserQuiz = await this.userQuizRepository.findOne({
       where: {
         userId: {
           id: user.id,
@@ -141,10 +136,11 @@ export class QuizService {
       },
     });
 
-    nextUserQuiz = {
-      ...nextUserQuiz,
-      unlockLevel: true,
-    };
+    if (!nextUserQuiz) {
+      throw new Error('Next user quiz not found');
+    }
+
+    nextUserQuiz.unlockLevel = true
 
     return this.userQuizRepository.save([currentUserQuiz, nextUserQuiz]);
   }

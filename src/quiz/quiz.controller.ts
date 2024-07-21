@@ -19,7 +19,7 @@ import { User } from 'src/auth/entities/user.entity';
 
 @Controller('quiz')
 export class QuizController {
-  constructor(private readonly quizService: QuizService) {}
+  constructor(private readonly quizService: QuizService) { }
 
   @Post()
   @Auth()
@@ -75,7 +75,7 @@ export class QuizController {
   @Auth()
   savePointsWinned(
     @GetUser() user: User,
-    @Body() body: { points: number; title: string },
+    @Body() body: { points: number; title: string; userQuizId: string },
   ) {
     return this.quizService.savePointsWinned(user, body);
   }
