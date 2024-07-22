@@ -47,7 +47,7 @@ export class User {
 
   @OneToMany(
     () => UserQuiz,
-    (userQuiz) => userQuiz.userId,
+    (userQuiz) => userQuiz.user,
   )
   userQuiz: UserQuiz[];
 

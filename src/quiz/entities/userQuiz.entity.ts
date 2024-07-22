@@ -34,8 +34,8 @@ export class UserQuiz {
   unlockLevel: boolean;
 
   @ManyToOne(() => Quiz, (quiz) => quiz.questions)
-  quizId: Quiz;
+  quiz: Quiz;
 
   @ManyToOne(() => User, (user) => user.userQuiz)
-  userId: User;
+  user: User;
 }

@@ -39,6 +39,12 @@ export class QuizController {
     return this.quizService.levelsByUser(user);
   }
 
+  @Get('ranking')
+  @Auth()
+  getTopUsers(@GetUser() user: User) {
+    return this.quizService.rankingUsers(user);
+  }
+
   @Get(':id')
   @Auth()
   findOne(@Param('id') id: string) {

@@ -25,7 +25,7 @@ export class QuizService {
     private readonly questionRepository: Repository<Question>,
     @InjectRepository(UserQuiz)
     private readonly userQuizRepository: Repository<UserQuiz>,
-  ) { }
+  ) {}
 
   private handleDataBaseExceptions(error: any) {
     if (error.code === '23505')
@@ -77,7 +77,7 @@ export class QuizService {
         id,
       },
       relations: {
-        quizId: {
+        quiz: {
           questions: {
             answers: true,
           },
@@ -91,28 +91,31 @@ export class QuizService {
   async levelsByUser(user: User) {
     return this.userQuizRepository.find({
       where: {
-        userId: {
+        user: {
           id: user.id,
         },
       },
       relations: {
-        quizId: true,
+        quiz: true,
       },
       order: {
-        quizId: {
+        quiz: {
           difficulty: 'ASC',
         },
       },
     });
   }
 
-  async savePointsWinned(user: User, data: { points: number; title: string, userQuizId: string }) {
+  async savePointsWinned(
+    user: User,
+    data: { points: number; title: string; userQuizId: string },
+  ) {
     const currentUserQuiz = await this.userQuizRepository.findOne({
       where: {
-        id: data.userQuizId
+        id: data.userQuizId,
       },
       relations: {
-        quizId: true,
+        quiz: true,
       },
     });
 
@@ -120,19 +123,19 @@ export class QuizService {
       throw new Error('Current user quiz not found');
     }
 
-    currentUserQuiz.score = data.points
+    currentUserQuiz.score = data.points;
 
     const nextUserQuiz = await this.userQuizRepository.findOne({
       where: {
-        userId: {
+        user: {
           id: user.id,
         },
-        quizId: {
-          difficulty: +currentUserQuiz.quizId.difficulty + 1,
+        quiz: {
+          difficulty: +currentUserQuiz.quiz.difficulty + 1,
         },
       },
       relations: {
-        quizId: true,
+        quiz: true,
       },
     });
 
@@ -140,8 +143,42 @@ export class QuizService {
       throw new Error('Next user quiz not found');
     }
 
-    nextUserQuiz.unlockLevel = true
+    nextUserQuiz.unlockLevel = true;
 
     return this.userQuizRepository.save([currentUserQuiz, nextUserQuiz]);
+  }
+
+  async rankingUsers(user: User) {
+    const usersTop = await this.userQuizRepository
+      .createQueryBuilder('userQuiz')
+      .leftJoinAndSelect('userQuiz.user', 'user')
+      .select(['user.id', 'user.nickname', 'user.fullName']) // Selecciona los campos necesarios del usuario
+      .addSelect('SUM(userQuiz.score)', 'score')
+      .groupBy('user.id')
+      .addGroupBy('user.nickname')
+      .addGroupBy('user.fullName')
+      .orderBy('score', 'DESC')
+      .getRawMany();
+
+    const usersTopWithPosition = usersTop.map((user, index) => ({
+      ...user,
+      position: index + 1,
+    }));
+
+    const currentUserRanking = usersTopWithPosition.find(
+      (u) => u.user_id === user.id,
+    );
+
+    const currentUserWithPosition = {
+      ...user,
+      position: currentUserRanking ? currentUserRanking.position : 0,
+    };
+
+    const usersRankingAndCurrentUser = {
+      currentUser: currentUserWithPosition,
+      rankingUsers: usersTopWithPosition,
+    };
+
+    return usersRankingAndCurrentUser;
   }
 }
