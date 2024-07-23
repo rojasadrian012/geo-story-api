@@ -109,8 +109,8 @@ export class SeedService {
         if (quiz.title === 'Curiosidades') unlockLevel = true;
         userQuizzes.push({
           score: 0,
-          quizId: quiz,
-          userId: user,
+          quiz: quiz,
+          user: user,
           unlockLevel,
         });
       });
