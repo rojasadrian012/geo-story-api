@@ -32,5 +32,11 @@ export class AuthController {
     return this.authService.checkAuthStatus(user)
   }
 
+  @Auth()
+  @Get('user/list')
+  getUsers( ) {
+    return this.authService.getUsers()
+  }
+
 
 }

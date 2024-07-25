@@ -90,4 +90,8 @@ export class AuthService {
     console.log(error);
     throw new InternalServerErrorException('Revisar logs del servidor.');
   }
+
+  getUsers() {
+    return this.userRepository.find({});
+  }
 }
