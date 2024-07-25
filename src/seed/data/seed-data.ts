@@ -44,7 +44,7 @@ export const initialData: SeedData = {
       nickname: 'admin',
       fullName: 'Adrian Rojas',
       password: 'admin123',
-      roles: [ValidRoles.superUser],
+      roles: [ValidRoles.admin],
     },
     {
       nickname: 'luis',

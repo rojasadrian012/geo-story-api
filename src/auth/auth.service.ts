@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -14,6 +15,7 @@ import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { JwtPayload } from './interface/jwt-payload.interface';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -91,7 +93,18 @@ export class AuthService {
     throw new InternalServerErrorException('Revisar logs del servidor.');
   }
 
-  getUsers() {
+  async getUsers() {
     return this.userRepository.find({});
+  }
+
+  async updateUser(userUpdate: UpdateUserDto, id: string) {
+    const user = await this.userRepository.preload({
+      id,
+      ...userUpdate,
+    });
+
+    if (!user) throw new NotFoundException(`User with id: ${id} not found.`);
+
+    return this.userRepository.save(user);
   }
 }

@@ -25,10 +25,8 @@ export class SeedController {
   }
 
   @Get('by-client')
-  @Auth(ValidRoles.superUser)
+  @Auth(ValidRoles.admin)
   executeSeedByClient() {
-    console.log('by-client');
-
     return this.seedService.runSedd();
   }
 }
