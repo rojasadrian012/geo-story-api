@@ -3,18 +3,17 @@ import {
   Injectable,
   InternalServerErrorException,
   NotFoundException,
-  Param,
-  ParseUUIDPipe,
 } from '@nestjs/common';
+
 import { CreateQuizDto } from './dto/create-quiz.dto';
 import { UpdateQuizDto } from './dto/update-quiz.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Quiz } from './entities/quiz.entity';
 import { Repository } from 'typeorm';
 import { Question } from './entities/question.entity';
-import { Answer } from './entities/answer.entity';
 import { User } from 'src/auth/entities/user.entity';
 import { UserQuiz } from './entities/userQuiz.entity';
+import { MinPointsUnlock } from './interfaces/min-points-unlock';
 
 @Injectable()
 export class QuizService {
@@ -143,9 +142,11 @@ export class QuizService {
       throw new Error('Next user quiz not found');
     }
 
-    nextUserQuiz.unlockLevel = true;
+    if (data.points >= MinPointsUnlock.poinst) nextUserQuiz.unlockLevel = true;
 
-    return this.userQuizRepository.save([currentUserQuiz, nextUserQuiz]);
+    await this.userQuizRepository.save([currentUserQuiz, nextUserQuiz]);
+
+    return { nextUserQuiz };
   }
 
   async rankingUsers(user: User) {

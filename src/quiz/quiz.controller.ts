@@ -8,11 +8,11 @@ import {
   Delete,
   ParseUUIDPipe,
 } from '@nestjs/common';
+
 import { QuizService } from './quiz.service';
 import { CreateQuizDto } from './dto/create-quiz.dto';
 import { UpdateQuizDto } from './dto/update-quiz.dto';
 import { Auth } from 'src/auth/decorators/auth.decorator';
-import { ValidRoles } from 'src/auth/interface/valid-roles';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
 import { User } from 'src/auth/entities/user.entity';
