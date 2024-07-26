@@ -16,12 +16,19 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { JwtPayload } from './interface/jwt-payload.interface';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserQuiz } from 'src/quiz/entities/userQuiz.entity';
+import { Quiz } from 'src/quiz/entities/quiz.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @InjectRepository(Quiz)
+    private readonly quizRepository: Repository<Quiz>,
+    @InjectRepository(UserQuiz)
+    private readonly userQuizRepository: Repository<UserQuiz>,
+
     private readonly jwtServie: JwtService,
   ) {}
 
@@ -35,6 +42,25 @@ export class AuthService {
 
       await this.userRepository.save(user);
       delete user.password;
+
+      const quizzes = await this.quizRepository.find({
+        select: {
+          id: true,
+        },
+      });
+
+      const userQuizzes = [];
+
+      quizzes.forEach((quiz) => {
+        userQuizzes.push(
+          this.userQuizRepository.create({
+            quiz,
+            user,
+          }),
+        );
+      });
+
+      await this.userQuizRepository.save(userQuizzes);
 
       return {
         ...user,

@@ -8,6 +8,8 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { User } from './entities/user.entity';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { Quiz } from 'src/quiz/entities/quiz.entity';
+import { UserQuiz } from 'src/quiz/entities/userQuiz.entity';
 
 @Module({
   controllers: [AuthController],
@@ -19,7 +21,9 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     ConfigModule,
 
     TypeOrmModule.forFeature([
-      User
+      User,
+      Quiz,
+      UserQuiz,
     ]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
 
