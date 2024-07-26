@@ -37,15 +37,15 @@ export class SeedService {
   private async deleteTables() {
     //!DELETE TABLES
     const queryBuilderUserQuiz = this.userQuizRepository.createQueryBuilder();
-    queryBuilderUserQuiz.delete().where({}).execute();
-    const queryBuilderAnswer = this.answerRepository.createQueryBuilder();
-    queryBuilderAnswer.delete().where({}).execute();
-    const queryBuilderQuestion = this.questionRepository.createQueryBuilder();
-    queryBuilderQuestion.delete().where({}).execute();
-    const queryBuilderQuiz = this.quizRepository.createQueryBuilder();
-    queryBuilderQuiz.delete().where({}).execute();
+    await queryBuilderUserQuiz.delete().where({}).execute();
     const queryBuilderUser = this.userRepository.createQueryBuilder();
-    queryBuilderUser.delete().where({}).execute();
+    await queryBuilderUser.delete().where({}).execute();
+    const queryBuilderAnswer = this.answerRepository.createQueryBuilder();
+    await queryBuilderAnswer.delete().where({}).execute();
+    const queryBuilderQuestion = this.questionRepository.createQueryBuilder();
+    await queryBuilderQuestion.delete().where({}).execute();
+    const queryBuilderQuiz = this.quizRepository.createQueryBuilder();
+    await queryBuilderQuiz.delete().where({}).execute();
   }
 
   private async insertUsers() {

@@ -25,8 +25,9 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  //TODO: Cuando se crea usuarios por este endpoint solo se debe poder crear con privilegios de 'user', actualmente perdime 'admin'
   @Post('register')
-  createUser(@Body() createUserDto: CreateUserDto) {
+  createUserForSeed(@Body() createUserDto: CreateUserDto) {
     return this.authService.create(createUserDto);
   }
 
@@ -54,5 +55,13 @@ export class AuthController {
     @Body() userToEdit: UpdateUserDto,
   ) {
     return this.authService.updateUser(userToEdit, userId);
+  }
+
+  @Auth(ValidRoles.admin)
+  @Post('user/new')
+  createUser(
+    @Body() createUserDto: CreateUserDto
+  ){
+    return this.authService.create(createUserDto);
   }
 }
