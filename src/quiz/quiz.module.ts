@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { QuizService } from './quiz.service';
 import { QuizController } from './quiz.controller';
-import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Quiz } from './entities/quiz.entity';
 import { AuthModule } from 'src/auth/auth.module';
 import { Question } from './entities/question.entity';
 import { Answer } from './entities/answer.entity';
 import { UserQuiz } from './entities/userQuiz.entity';
+import { Achievement } from './entities/achievement.entity';
 
 @Module({
   controllers: [QuizController],
@@ -19,7 +19,8 @@ import { UserQuiz } from './entities/userQuiz.entity';
       Quiz,
       Question,
       Answer,
-      UserQuiz
+      UserQuiz,
+      Achievement
     ]),
 
     AuthModule,

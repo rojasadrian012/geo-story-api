@@ -17,9 +17,9 @@ export class Achievement {
     })
     description: string
 
-    @Column({
-        type: 'text',
-        nullable: true
-    })
-    icon: string //TODO: implementar path de la imagen    
+    // @Column({
+    //     type: 'text',
+    //     nullable: true
+    // })
+    // icon: string //TODO: implementar path de la imagen    
 }
