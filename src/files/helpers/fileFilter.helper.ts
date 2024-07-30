@@ -1,7 +1,7 @@
 import { error } from "console"
 
 export const fileFilterRef = (
-    res: Express.Request,
+    req: Express.Request,
     file: Express.Multer.File,
     callback: Function
 ) => {
@@ -9,7 +9,9 @@ export const fileFilterRef = (
     if (!file) return callback(new Error('No hay imagenes.'), false)
 
     const fileExtension = file.mimetype.split('/')[1]
-    const validFormatImage = ['jpg', 'jpeg', 'png']
+    console.log({ fileExtension });
+
+    const validFormatImage = ['jpg', 'jpeg', 'png', 'svg', 'svg+xml']
 
     if (validFormatImage.includes(fileExtension)) {
         return callback(null, true)

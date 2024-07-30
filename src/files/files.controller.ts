@@ -19,9 +19,10 @@ export class FilesController {
     private readonly configService: ConfigService
   ) { }
 
+  //se puede poner un type, ':type/:id'
   @Get('vehicle/:imageName')
   findVehicleImageByID(
-    @Res() res: Response,
+    @Res() res: Response, //Al usar @Res nosotros tenemos el control absoluto de la respuesta, se salta ciertos interceptores definidos de manera global, pasos de ciclo de vida. By: Fernando Herrera.
     @Param('imageName') imageName: string
   ) {
 
@@ -31,16 +32,16 @@ export class FilesController {
   }
 
   @Post('vehicle')
-  @UseInterceptors(FileInterceptor(
-    'vehicleImg',
-    {
-      fileFilter: fileFilterRef,
-      // limits: { fileSize: 1000 } //tamaño de la imagen
-      storage: diskStorage({
-        destination: './static/vehicles',
-        filename: fileNamer,
-      })
-    }))
+  @UseInterceptors(
+    FileInterceptor('vehicleImg',
+      {
+        fileFilter: fileFilterRef, //Se pasa la referencia de la funcion.
+        // limits: { fileSize: 1000 } //tamaño de la imagen
+        storage: diskStorage({
+          destination: './static/vehicles',
+          filename: fileNamer,
+        })
+      }))
   uploadImageVehicle(
     @UploadedFile() file: Express.Multer.File
   ) {

@@ -24,6 +24,12 @@ export class Quiz {
     })
     difficulty: number;
 
+    @Column({
+        type: 'text',
+        nullable: true,
+    })
+    image: string;
+
     @OneToMany(
         () => Question,
         (question) => question.quiz,
