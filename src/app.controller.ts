@@ -1,7 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
 import { AppService } from './app.service';
-import { Auth } from './auth/decorators/auth.decorator';
 
 // @Auth()//TODO: ver como hacer autenticacion en todos los modulos
 @Controller()
