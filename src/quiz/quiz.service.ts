@@ -24,7 +24,7 @@ export class QuizService {
     private readonly questionRepository: Repository<Question>,
     @InjectRepository(UserQuiz)
     private readonly userQuizRepository: Repository<UserQuiz>,
-  ) {}
+  ) { }
 
   private handleDataBaseExceptions(error: any) {
     if (error.code === '23505')
@@ -151,16 +151,16 @@ export class QuizService {
 
   async rankingUsers(user: User) {
     const usersTop = await this.userQuizRepository
-    .createQueryBuilder('userQuiz')
-    .leftJoinAndSelect('userQuiz.user', 'user')
-    .select(['user.id', 'user.nickname', 'user.fullName']) // Selecciona los campos necesarios del usuario
-    .addSelect('SUM(userQuiz.score)', 'score')
-    .groupBy('user.id')
-    .addGroupBy('user.nickname')
-    .addGroupBy('user.fullName')
-    .having('SUM(userQuiz.score) > 0')
-    .orderBy('score', 'DESC')
-    .getRawMany();  
+      .createQueryBuilder('userQuiz')
+      .leftJoinAndSelect('userQuiz.user', 'user')
+      .select(['user.id', 'user.nickname', 'user.fullName']) // Selecciona los campos necesarios del usuario
+      .addSelect('SUM(userQuiz.score)', 'score')
+      .groupBy('user.id')
+      .addGroupBy('user.nickname')
+      .addGroupBy('user.fullName')
+      .having('SUM(userQuiz.score) > 0')
+      .orderBy('score', 'DESC')
+      .getRawMany();
 
     const usersTopWithPosition = usersTop.map((user, index) => ({
       ...user,
