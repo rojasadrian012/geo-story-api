@@ -20,6 +20,7 @@ interface Quizz {
   difficulty: levels;
   title: string;
   questions: Question[];
+  image: string;
 }
 
 interface Question {
@@ -71,8 +72,7 @@ export const initialData: SeedData = {
       title: 'Curiosidades',
       questions: [
         {
-          title:
-            '¿Cuál es la principal actividad económica en el distrito de Lima?',
+          title: '¿Cuál es la principal actividad económica en el distrito de Lima?',
           hint: 'La actividad se centra en la elaboración de un producto tradicional paraguayo.',
           answers: [
             { text: 'Agricultura', isCorrect: true },
@@ -82,8 +82,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Qué río bordea toda la zona oeste del Departamento de San Pedro?',
+          title: '¿Qué río bordea toda la zona oeste del Departamento de San Pedro?',
           hint: 'Este río lo separa de la Región Occidental.',
           answers: [
             { text: 'Río Paraguay', isCorrect: true },
@@ -103,8 +102,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Qué planta le dio el nombre a la ciudad de San Pedro de Ycuamandiyú?',
+          title: '¿Qué planta le dio el nombre a la ciudad de San Pedro de Ycuamandiyú?',
           hint: 'La planta está relacionada con un pozo.',
           answers: [
             { text: 'Algodón', isCorrect: true },
@@ -114,8 +112,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Cuál es un recurso hídrico importante del Departamento de San Pedro?',
+          title: '¿Cuál es un recurso hídrico importante del Departamento de San Pedro?',
           hint: 'Es un afluente del río Paraguay.',
           answers: [
             { text: 'Río Jejuí', isCorrect: true },
@@ -125,6 +122,7 @@ export const initialData: SeedData = {
           ],
         },
       ],
+      image: 'assets/images/options-images/curiosidades.svg',
     },
     {
       difficulty: levels.l2,
@@ -161,8 +159,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Quién fundó la ciudad de Lima en el Departamento de San Pedro?',
+          title: '¿Quién fundó la ciudad de Lima en el Departamento de San Pedro?',
           hint: 'La fundación se atribuye a un franciscano.',
           answers: [
             { text: 'Fray Pedro Bartolomé', isCorrect: true },
@@ -172,8 +169,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Cuál es una de las ciudades fundadas en 1786 en el Departamento de San Pedro?',
+          title: '¿Cuál es una de las ciudades fundadas en 1786 en el Departamento de San Pedro?',
           hint: 'Es conocida por su nombre en guaraní.',
           answers: [
             { text: 'Villa del Rosario', isCorrect: true },
@@ -183,14 +179,14 @@ export const initialData: SeedData = {
           ],
         },
       ],
+      image: 'assets/images/options-images/historia.svg'
     },
     {
       difficulty: levels.l3,
       title: 'Geografía',
       questions: [
         {
-          title:
-            '¿Qué río desemboca en el río Paraguay a 12 km de Puerto Antequera?',
+          title: '¿Qué río desemboca en el río Paraguay a 12 km de Puerto Antequera?',
           hint: 'Es un importante recurso hídrico de la zona.',
           answers: [
             { text: 'Río Jejuí', isCorrect: true },
@@ -200,8 +196,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Cuál es la elevación importante en el distrito de Capiibary?',
+          title: '¿Cuál es la elevación importante en el distrito de Capiibary?',
           hint: 'Es conocido como Cerro Dos de Oro.',
           answers: [
             { text: 'Cerro Dos de Oro', isCorrect: true },
@@ -211,8 +206,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Qué río riega una considerable extensión del territorio de San Pedro?',
+          title: '¿Qué río riega una considerable extensión del territorio de San Pedro?',
           hint: 'Es uno de los ríos más importantes del Paraguay.',
           answers: [
             { text: 'Río Paraguay', isCorrect: true },
@@ -222,8 +216,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Cuál es el afluente del río Paraguay que desemboca a la altura de Puerto Rosario?',
+          title: '¿Cuál es el afluente del río Paraguay que desemboca a la altura de Puerto Rosario?',
           hint: 'Es conocido localmente.',
           answers: [
             { text: 'Río Cuarepotí', isCorrect: true },
@@ -243,14 +236,14 @@ export const initialData: SeedData = {
           ],
         },
       ],
+      image: 'assets/images/options-images/geografia.svg'
     },
     {
       difficulty: levels.l4,
       title: 'Economía',
       questions: [
         {
-          title:
-            '¿Cuál es uno de los sectores industriales presentes en San Pedro?',
+          title: '¿Cuál es uno de los sectores industriales presentes en San Pedro?',
           hint: 'Es un sector relacionado con productos lácteos.',
           answers: [
             { text: 'Industrias lácteas', isCorrect: true },
@@ -260,8 +253,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Qué producto es común en la producción agrícola de Colonia Volendam?',
+          title: '¿Qué producto es común en la producción agrícola de Colonia Volendam?',
           hint: 'Es un cultivo importante para la región.',
           answers: [
             { text: 'Trigo', isCorrect: true },
@@ -271,8 +263,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Qué industria es notable en el distrito de Itacurubí del Rosario?',
+          title: '¿Qué industria es notable en el distrito de Itacurubí del Rosario?',
           hint: 'Es un vehículo tradicional y antiguo.',
           answers: [
             { text: 'Fabricación de cachapé', isCorrect: true },
@@ -282,8 +273,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Cuál es una de las fuentes principales de ingreso en San Pedro?',
+          title: '¿Cuál es una de las fuentes principales de ingreso en San Pedro?',
           hint: 'Está relacionado con productos agrícolas.',
           answers: [
             { text: 'Agricultura y ganadería', isCorrect: true },
@@ -293,8 +283,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Qué industria se destaca en el procesamiento de alimentos en San Pedro?',
+          title: '¿Qué industria se destaca en el procesamiento de alimentos en San Pedro?',
           hint: 'Se enfoca en un subproducto del coco.',
           answers: [
             { text: 'Procesamiento de aceite de coco', isCorrect: true },
@@ -304,6 +293,7 @@ export const initialData: SeedData = {
           ],
         },
       ],
+      image: 'assets/images/options-images/economia.svg'
     },
     {
       difficulty: levels.l5,
@@ -320,8 +310,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Qué patrimonio de imágenes se encuentra en la Catedral de San Pedro?',
+          title: '¿Qué patrimonio de imágenes se encuentra en la Catedral de San Pedro?',
           hint: 'Son imágenes del siglo XVIII.',
           answers: [
             { text: 'Imágenes barrocas', isCorrect: true },
@@ -331,8 +320,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Qué festival se celebra anualmente en Itacurubí del Rosario?',
+          title: '¿Qué festival se celebra anualmente en Itacurubí del Rosario?',
           hint: 'Reúne a artistas de música y danza.',
           answers: [
             { text: 'Festival Ycuá Salas', isCorrect: true },
@@ -362,6 +350,7 @@ export const initialData: SeedData = {
           ],
         },
       ],
+      image: 'assets/images/options-images/cultura.svg'
     },
     {
       difficulty: levels.l6,
@@ -388,8 +377,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Qué lugar en San Estanislao es conocido como un sitio histórico?',
+          title: '¿Qué lugar en San Estanislao es conocido como un sitio histórico?',
           hint: 'Es el lugar donde murió el explorador Alejo García.',
           answers: [
             { text: 'Kurusu García', isCorrect: true },
@@ -399,8 +387,7 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Qué sierra marca los límites con el departamento de Caaguazú?',
+          title: '¿Qué sierra marca los límites con el departamento de Caaguazú?',
           hint: 'Es una elevación importante en el horizonte.',
           answers: [
             { text: 'Sierra de San Joaquín', isCorrect: true },
@@ -420,6 +407,7 @@ export const initialData: SeedData = {
           ],
         },
       ],
+      image: 'assets/images/options-images/turismo.svg'
     },
   ],
 };
