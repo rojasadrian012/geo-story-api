@@ -115,7 +115,7 @@ export class AuthService {
       throw new BadRequestException(error.detail);
     }
 
-    console.log(error);
+    console.error(error);
     throw new InternalServerErrorException('Revisar logs del servidor.');
   }
 
