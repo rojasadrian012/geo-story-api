@@ -8,6 +8,7 @@ import { Question } from './entities/question.entity';
 import { Answer } from './entities/answer.entity';
 import { UserQuiz } from './entities/userQuiz.entity';
 import { Achievement } from './entities/achievement.entity';
+import { UserAchievement } from './entities/userAchievement';
 
 @Module({
   controllers: [QuizController],
@@ -20,7 +21,8 @@ import { Achievement } from './entities/achievement.entity';
       Question,
       Answer,
       UserQuiz,
-      Achievement
+      Achievement,
+      UserAchievement
     ]),
 
     AuthModule,

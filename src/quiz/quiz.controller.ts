@@ -45,6 +45,12 @@ export class QuizController {
     return this.quizService.rankingUsers(user);
   }
 
+  @Get('achievements')
+  @Auth()
+  getAchievements(@GetUser() user: User) {
+    return this.quizService.achievementsByUser(user);
+  }
+
   @Get(':id')
   @Auth()
   findOne(@Param('id') id: string) {
@@ -85,4 +91,5 @@ export class QuizController {
   ) {
     return this.quizService.savePointsWinned(user, body);
   }
+
 }

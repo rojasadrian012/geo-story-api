@@ -1,3 +1,4 @@
+import { UserAchievement } from 'src/quiz/entities/userAchievement';
 import { UserQuiz } from 'src/quiz/entities/userQuiz.entity';
 import {
   AfterUpdate,
@@ -50,6 +51,12 @@ export class User {
     (userQuiz) => userQuiz.user,
   )
   userQuiz: UserQuiz[];
+
+  @OneToMany(
+    () => UserAchievement,
+    (userAchievement) => userAchievement.user,
+  )
+  userAchievements: UserAchievement[];
 
   @BeforeInsert()
   toLowerCaseAndRemoveSpaceBefore() {
