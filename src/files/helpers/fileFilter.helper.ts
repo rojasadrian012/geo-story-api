@@ -9,8 +9,7 @@ export const fileFilterRef = (
     if (!file) return callback(new Error('No hay imagenes.'), false)
 
     const fileExtension = file.mimetype.split('/')[1]
-    console.log({ fileExtension });
-
+    
     const validFormatImage = ['jpg', 'jpeg', 'png', 'svg', 'svg+xml']
 
     if (validFormatImage.includes(fileExtension)) {

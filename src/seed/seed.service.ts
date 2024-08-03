@@ -63,7 +63,6 @@ export class SeedService {
     });
 
     const dbUsers = await this.userRepository.save(users);
-    // console.log({ dbUsers, zero: dbUsers[0] });
     return dbUsers[0];
   }
 
