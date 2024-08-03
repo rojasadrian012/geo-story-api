@@ -34,9 +34,16 @@ interface Answer {
   isCorrect: boolean;
 }
 
+interface Achievement {
+  name: string;
+  description: string;
+  image: string;
+}
+
 interface SeedData {
   users: SeedUser[];
   quizzes: Quizz[];
+  achievements: Achievement[]
 }
 
 export const initialData: SeedData = {
@@ -410,4 +417,56 @@ export const initialData: SeedData = {
       image: 'assets/images/options-images/turismo.svg'
     },
   ],
+  achievements: [
+    {
+      name: 'Primer Paso',
+      description: 'Has respondido tu primera pregunta.',
+      image: 'assets/images/achievement/primer-paso.png', // Imagen de un pie dando el primer paso en una escalera
+    },
+    {
+      name: 'Curioso',
+      description: 'Has respondido 5 preguntas.',
+      image: 'assets/images/achievement/curioso.svg', // Imagen de una lupa sobre un libro
+    },
+    {
+      name: 'Aprendiz',
+      description: 'Has acertado 5 preguntas consecutivas.',
+      image: 'assets/images/achievement/aprendizaje-automatico.svg', // Imagen de un estudiante con un birrete
+    },
+    {
+      name: 'Persistente',
+      description: 'Has respondido 20 preguntas.',
+      image: 'assets/images/achievement/meta.svg', // Imagen de un maratonista cruzando la meta
+    },
+    {
+      name: 'Leyenda',
+      description: 'Has respondido correctamente 15 preguntas.',
+      image: 'assets/images/achievement/corona.svg', // Imagen de una corona dorada
+    },
+    {
+      name: 'Sabelotodo',
+      description: 'Has respondido correctamente 25 preguntas.',
+      image: 'assets/images/achievement/cerebro.svg', // Imagen de un cerebro con gafas
+    },
+    {
+      name: 'Perfeccionista',
+      description: 'Has obtenido el 100% de aciertos en una categoría usando al menos una pista.',
+      image: 'assets/images/achievement/copa-de-plata.svg', // Imagen de un trofeo dorado
+    },
+    {
+      name: 'Dios Terrenal',
+      description: 'Has obtenido el 100% de aciertos en una categoría.',
+      image: 'assets/images/achievement/trofeo.svg', // Imagen de un trofeo dorado
+    },
+    {
+      name: 'Explorador',
+      description: 'Has respondido preguntas en 5 categorías diferentes.',
+      image: 'assets/images/achievement/brujula.svg', // Imagen de un mapa con una brújula
+    },
+    {
+      name: 'Coleccionista',
+      description: 'Has desbloqueado todos los logros.',
+      image: 'assets/images/achievement/linea-de-meta.svg', // Imagen de una vitrina con trofeos
+    }
+  ]
 };

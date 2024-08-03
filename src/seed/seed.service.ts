@@ -10,43 +10,73 @@ import { Quiz } from 'src/quiz/entities/quiz.entity';
 import { Question } from 'src/quiz/entities/question.entity';
 import { Answer } from 'src/quiz/entities/answer.entity';
 import { UserQuiz } from 'src/quiz/entities/userQuiz.entity';
+import { Achievement } from 'src/quiz/entities/achievement.entity';
+import { UserAchievement } from 'src/quiz/entities/userAchievement';
 
 @Injectable()
 export class SeedService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+
     @InjectRepository(Quiz)
     private readonly quizRepository: Repository<Quiz>,
+
     @InjectRepository(Question)
     private readonly questionRepository: Repository<Question>,
+
     @InjectRepository(Answer)
     private readonly answerRepository: Repository<Answer>,
+
     @InjectRepository(UserQuiz)
     private readonly userQuizRepository: Repository<UserQuiz>,
-  ) {}
+
+    @InjectRepository(Achievement)
+    private readonly achievementRepository: Repository<Achievement>,
+
+    @InjectRepository(UserAchievement)
+    private readonly userAchievementRepository: Repository<UserAchievement>,
+  ) { }
 
   async runSedd() {
     await this.deleteTables();
     await this.insertUsers();
     await this.insertQuizzes();
     await this.instertUserQuizzes();
+    await this.inserAchievements();
     return 'SEED EXECUTED.';
   }
 
   private async deleteTables() {
-    //!DELETE TABLES
+    //!UserAchievement
+    const queryBuilderUserAchievement = this.userAchievementRepository.createQueryBuilder();
+    await queryBuilderUserAchievement.delete().where({}).execute();
+
+    //!UserQuiz
     const queryBuilderUserQuiz = this.userQuizRepository.createQueryBuilder();
     await queryBuilderUserQuiz.delete().where({}).execute();
-    const queryBuilderUser = this.userRepository.createQueryBuilder();
-    await queryBuilderUser.delete().where({}).execute();
+
+    //!Achievement
+    const queryBuilderAchievement = this.achievementRepository.createQueryBuilder();
+    await queryBuilderAchievement.delete().where({}).execute();
+
+    //!Answer
     const queryBuilderAnswer = this.answerRepository.createQueryBuilder();
     await queryBuilderAnswer.delete().where({}).execute();
+
+    //!Question
     const queryBuilderQuestion = this.questionRepository.createQueryBuilder();
     await queryBuilderQuestion.delete().where({}).execute();
+
+    //!Quiz
     const queryBuilderQuiz = this.quizRepository.createQueryBuilder();
     await queryBuilderQuiz.delete().where({}).execute();
+
+    //!User
+    const queryBuilderUser = this.userRepository.createQueryBuilder();
+    await queryBuilderUser.delete().where({}).execute();
   }
+
 
   private async insertUsers() {
     const seedUsers = initialData.users;
@@ -118,4 +148,22 @@ export class SeedService {
 
     await this.userQuizRepository.insert(userQuizzes);
   }
+
+  private async inserAchievements() {
+    const achievements = [];
+
+    initialData.achievements.forEach((achievement) => {
+
+      const newAchievement = this.achievementRepository.create({
+        name: achievement.name,
+        description: achievement.description,
+        image: achievement.image,
+      });
+
+      achievements.push(newAchievement);
+    });
+
+    await this.achievementRepository.save(achievements);
+  }
+
 }
