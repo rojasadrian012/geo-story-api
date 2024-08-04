@@ -15,6 +15,7 @@ import { User } from 'src/auth/entities/user.entity';
 import { UserQuiz } from './entities/userQuiz.entity';
 import { MinPointsUnlock } from './interfaces/min-points-unlock';
 import { UserAchievement } from './entities/userAchievement';
+import { Achievement } from './entities/achievement.entity';
 
 @Injectable()
 export class QuizService {
@@ -27,7 +28,8 @@ export class QuizService {
     private readonly userQuizRepository: Repository<UserQuiz>,
     @InjectRepository(UserAchievement)
     private readonly userAchievementRepository: Repository<UserAchievement>,
-
+    @InjectRepository(Achievement)
+    private readonly achievementRepository: Repository<Achievement>,
   ) { }
 
   private handleDataBaseExceptions(error: any) {
@@ -190,7 +192,9 @@ export class QuizService {
 
 
   async achievementsByUser(user: User) {
-    const data = await this.userAchievementRepository.find({
+    const allAchievements = await this.achievementRepository.find({})
+   
+    const achievemtsCurrentUser = await this.userAchievementRepository.find({
       where: {
         user: {
           id: user.id
@@ -201,6 +205,6 @@ export class QuizService {
       }
     })
 
-    return data
+    return { achievemtsCurrentUser, allAchievements }
   }
 }
