@@ -192,8 +192,6 @@ export class QuizService {
 
 
   async achievementsByUser(user: User) {
-    const allAchievements = await this.achievementRepository.find({})
-   
     const achievemtsCurrentUser = await this.userAchievementRepository.find({
       where: {
         user: {
@@ -205,6 +203,11 @@ export class QuizService {
       }
     })
 
-    return { achievemtsCurrentUser, allAchievements }
+    // Obtener logros no desbloqueados por el usuario usando una subconsulta
+    const achievementsNoUnlocked = await this.achievementRepository.createQueryBuilder('achievement')
+      .where('achievement.id NOT IN (SELECT ua."achievementId" FROM "user-achievements" ua WHERE ua."userId" = :userId)', { userId: user.id })
+      .getMany();
+
+    return { achievemtsCurrentUser, achievementsNoUnlocked }
   }
 }
