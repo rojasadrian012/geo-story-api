@@ -421,7 +421,7 @@ export const initialData: SeedData = {
     {
       name: 'Primer Paso',
       description: 'Has respondido tu primera pregunta.',
-      image: 'assets/images/achievement/primer-paso.png', // Imagen de un pie dando el primer paso en una escalera
+      image: 'assets/images/achievement/primer-paso.svg', // Imagen de un pie dando el primer paso en una escalera
     },
     {
       name: 'Curioso',
