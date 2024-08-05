@@ -192,7 +192,7 @@ export class QuizService {
 
 
   async achievementsByUser(user: User) {
-    const achievemtsCurrentUser = await this.userAchievementRepository.find({
+    const achievementsCurrentUser = await this.userAchievementRepository.find({
       where: {
         user: {
           id: user.id
@@ -208,6 +208,6 @@ export class QuizService {
       .where('achievement.id NOT IN (SELECT ua."achievementId" FROM "user-achievements" ua WHERE ua."userId" = :userId)', { userId: user.id })
       .getMany();
 
-    return { achievemtsCurrentUser, achievementsNoUnlocked }
+    return { achievementsCurrentUser, achievementsNoUnlocked }
   }
 }
