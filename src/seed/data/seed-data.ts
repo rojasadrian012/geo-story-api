@@ -43,7 +43,7 @@ interface Achievement {
 interface SeedData {
   users: SeedUser[];
   quizzes: Quizz[];
-  achievements: Achievement[]
+  achievements: Achievement[];
 }
 
 export const initialData: SeedData = {
@@ -79,7 +79,8 @@ export const initialData: SeedData = {
       title: 'Curiosidades',
       questions: [
         {
-          title: '¿Cuál es la principal actividad económica en el distrito de Lima?',
+          title:
+            '¿Cuál es la principal actividad económica en el distrito de Lima?',
           hint: 'La actividad se centra en la elaboración de un producto tradicional paraguayo.',
           answers: [
             { text: 'Agricultura', isCorrect: true },
@@ -89,7 +90,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Qué río bordea toda la zona oeste del Departamento de San Pedro?',
+          title:
+            '¿Qué río bordea toda la zona oeste del Departamento de San Pedro?',
           hint: 'Este río lo separa de la Región Occidental.',
           answers: [
             { text: 'Río Paraguay', isCorrect: true },
@@ -109,7 +111,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Qué planta le dio el nombre a la ciudad de San Pedro de Ycuamandiyú?',
+          title:
+            '¿Qué planta le dio el nombre a la ciudad de San Pedro de Ycuamandiyú?',
           hint: 'La planta está relacionada con un pozo.',
           answers: [
             { text: 'Algodón', isCorrect: true },
@@ -119,7 +122,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Cuál es un recurso hídrico importante del Departamento de San Pedro?',
+          title:
+            '¿Cuál es un recurso hídrico importante del Departamento de San Pedro?',
           hint: 'Es un afluente del río Paraguay.',
           answers: [
             { text: 'Río Jejuí', isCorrect: true },
@@ -166,7 +170,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Quién fundó la ciudad de Lima en el Departamento de San Pedro?',
+          title:
+            '¿Quién fundó la ciudad de Lima en el Departamento de San Pedro?',
           hint: 'La fundación se atribuye a un franciscano.',
           answers: [
             { text: 'Fray Pedro Bartolomé', isCorrect: true },
@@ -176,7 +181,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Cuál es una de las ciudades fundadas en 1786 en el Departamento de San Pedro?',
+          title:
+            '¿Cuál es una de las ciudades fundadas en 1786 en el Departamento de San Pedro?',
           hint: 'Es conocida por su nombre en guaraní.',
           answers: [
             { text: 'Villa del Rosario', isCorrect: true },
@@ -186,14 +192,15 @@ export const initialData: SeedData = {
           ],
         },
       ],
-      image: 'assets/images/options-images/historia.svg'
+      image: 'assets/images/options-images/historia.svg',
     },
     {
       difficulty: levels.l3,
       title: 'Geografía',
       questions: [
         {
-          title: '¿Qué río desemboca en el río Paraguay a 12 km de Puerto Antequera?',
+          title:
+            '¿Qué río desemboca en el río Paraguay a 12 km de Puerto Antequera?',
           hint: 'Es un importante recurso hídrico de la zona.',
           answers: [
             { text: 'Río Jejuí', isCorrect: true },
@@ -203,7 +210,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Cuál es la elevación importante en el distrito de Capiibary?',
+          title:
+            '¿Cuál es la elevación importante en el distrito de Capiibary?',
           hint: 'Es conocido como Cerro Dos de Oro.',
           answers: [
             { text: 'Cerro Dos de Oro', isCorrect: true },
@@ -213,7 +221,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Qué río riega una considerable extensión del territorio de San Pedro?',
+          title:
+            '¿Qué río riega una considerable extensión del territorio de San Pedro?',
           hint: 'Es uno de los ríos más importantes del Paraguay.',
           answers: [
             { text: 'Río Paraguay', isCorrect: true },
@@ -223,7 +232,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Cuál es el afluente del río Paraguay que desemboca a la altura de Puerto Rosario?',
+          title:
+            '¿Cuál es el afluente del río Paraguay que desemboca a la altura de Puerto Rosario?',
           hint: 'Es conocido localmente.',
           answers: [
             { text: 'Río Cuarepotí', isCorrect: true },
@@ -243,14 +253,15 @@ export const initialData: SeedData = {
           ],
         },
       ],
-      image: 'assets/images/options-images/geografia.svg'
+      image: 'assets/images/options-images/geografia.svg',
     },
     {
       difficulty: levels.l4,
       title: 'Economía',
       questions: [
         {
-          title: '¿Cuál es uno de los sectores industriales presentes en San Pedro?',
+          title:
+            '¿Cuál es uno de los sectores industriales presentes en San Pedro?',
           hint: 'Es un sector relacionado con productos lácteos.',
           answers: [
             { text: 'Industrias lácteas', isCorrect: true },
@@ -260,7 +271,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Qué producto es común en la producción agrícola de Colonia Volendam?',
+          title:
+            '¿Qué producto es común en la producción agrícola de Colonia Volendam?',
           hint: 'Es un cultivo importante para la región.',
           answers: [
             { text: 'Trigo', isCorrect: true },
@@ -270,7 +282,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Qué industria es notable en el distrito de Itacurubí del Rosario?',
+          title:
+            '¿Qué industria es notable en el distrito de Itacurubí del Rosario?',
           hint: 'Es un vehículo tradicional y antiguo.',
           answers: [
             { text: 'Fabricación de cachapé', isCorrect: true },
@@ -280,7 +293,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Cuál es una de las fuentes principales de ingreso en San Pedro?',
+          title:
+            '¿Cuál es una de las fuentes principales de ingreso en San Pedro?',
           hint: 'Está relacionado con productos agrícolas.',
           answers: [
             { text: 'Agricultura y ganadería', isCorrect: true },
@@ -290,7 +304,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Qué industria se destaca en el procesamiento de alimentos en San Pedro?',
+          title:
+            '¿Qué industria se destaca en el procesamiento de alimentos en San Pedro?',
           hint: 'Se enfoca en un subproducto del coco.',
           answers: [
             { text: 'Procesamiento de aceite de coco', isCorrect: true },
@@ -300,7 +315,7 @@ export const initialData: SeedData = {
           ],
         },
       ],
-      image: 'assets/images/options-images/economia.svg'
+      image: 'assets/images/options-images/economia.svg',
     },
     {
       difficulty: levels.l5,
@@ -317,7 +332,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Qué patrimonio de imágenes se encuentra en la Catedral de San Pedro?',
+          title:
+            '¿Qué patrimonio de imágenes se encuentra en la Catedral de San Pedro?',
           hint: 'Son imágenes del siglo XVIII.',
           answers: [
             { text: 'Imágenes barrocas', isCorrect: true },
@@ -327,7 +343,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Qué festival se celebra anualmente en Itacurubí del Rosario?',
+          title:
+            '¿Qué festival se celebra anualmente en Itacurubí del Rosario?',
           hint: 'Reúne a artistas de música y danza.',
           answers: [
             { text: 'Festival Ycuá Salas', isCorrect: true },
@@ -357,7 +374,7 @@ export const initialData: SeedData = {
           ],
         },
       ],
-      image: 'assets/images/options-images/cultura.svg'
+      image: 'assets/images/options-images/cultura.svg',
     },
     {
       difficulty: levels.l6,
@@ -384,7 +401,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Qué lugar en San Estanislao es conocido como un sitio histórico?',
+          title:
+            '¿Qué lugar en San Estanislao es conocido como un sitio histórico?',
           hint: 'Es el lugar donde murió el explorador Alejo García.',
           answers: [
             { text: 'Kurusu García', isCorrect: true },
@@ -394,7 +412,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Qué sierra marca los límites con el departamento de Caaguazú?',
+          title:
+            '¿Qué sierra marca los límites con el departamento de Caaguazú?',
           hint: 'Es una elevación importante en el horizonte.',
           answers: [
             { text: 'Sierra de San Joaquín', isCorrect: true },
@@ -414,81 +433,82 @@ export const initialData: SeedData = {
           ],
         },
       ],
-      image: 'assets/images/options-images/turismo.svg'
+      image: 'assets/images/options-images/turismo.svg',
     },
   ],
   achievements: [
     {
       name: 'Curioso',
-      description: 'Has respondido 10 preguntas.',
-      image: 'assets/images/achievement/curioso.svg', // Imagen de una lupa sobre un libro
-      // category: 'Cantidad de Respuestas'
+      description:
+        '¡Felicidades! Has respondido 10 preguntas. Sigue explorando y aprendiendo.',
+      image: 'assets/images/achievement/respuestas-10.svg', // Imagen de una lupa sobre un libro
     },
     {
       name: 'Persistente',
-      description: 'Has respondido 15 preguntas.',
-      image: 'assets/images/achievement/casi-meta.svg', // Imagen de un maratonista cruzando la meta
-      // category: 'Cantidad de Respuestas'
+      description:
+        '¡Increíble! Has respondido 15 preguntas. Tu dedicación está dando frutos.',
+      image: 'assets/images/achievement/respuestas-15.svg', // Imagen de un maratonista cruzando la meta
     },
     {
       name: 'Dedicado',
-      description: 'Has respondido 20 preguntas.',
-      image: 'assets/images/achievement/meta.svg', // Ejemplo: Una persona completando un registro largo de preguntas
-      // category: 'Cantidad de Respuestas'
+      description:
+        '¡Asombroso! Has respondido 20 preguntas. Tu esfuerzo es admirable.',
+      image: 'assets/images/achievement/respuestas-20.svg', // Ejemplo: Una persona completando un registro largo de preguntas
     },
     {
       name: 'Constante',
-      description: 'Has acertado 5 preguntas consecutivas.',
-      image: 'assets/images/achievement/lista-de-verificacion.svg', // Ejemplo: Una fila de cinco checkmarks en verde
-      // category: 'Preguntas Consecutivas'
+      description:
+        '¡Genial! Has acertado 5 preguntas consecutivas. Mantén el ritmo.',
+      image: 'assets/images/achievement/premio-del-campeonato-racha-5.svg', // Ejemplo: Una fila de cinco checkmarks en verde
     },
     {
       name: 'Imparable',
-      description: 'Has acertado 10 preguntas consecutivas.',
-      image: 'assets/images/achievement/verificacion.svg', // Ejemplo: Un rayo o una línea continua de checkmarks
-      // category: 'Preguntas Consecutivas'
+      description:
+        '¡Estás en racha! Has acertado 10 preguntas consecutivas. No te detengas.',
+      image: 'assets/images/achievement/icono-de-trofeo-racha-10.svg', // Ejemplo: Un rayo o una línea continua de checkmarks
     },
     {
       name: 'Preciso',
-      description: 'Has respondido correctamente 5 preguntas.',
-      image: 'assets/images/achievement/objetivo.svg', // Ejemplo: Un objetivo con una flecha en el centro
-      // category: 'Cantidad de Respuestas Correctas'
+      description:
+        '¡Bien hecho! Has respondido correctamente 5 preguntas. Tu precisión es impresionante.',
+      image: 'assets/images/achievement/icono-de-exito-5-preguntas.svg', // Ejemplo: Un objetivo con una flecha en el centro
     },
     {
       name: 'Experto',
-      description: 'Has respondido correctamente 10 preguntas.',
-      image: 'assets/images/achievement/experto.svg', // Ejemplo: Una medalla o insignia de experto
-      // category: 'Cantidad de Respuestas Correctas'
+      description:
+        '¡Excelente! Has respondido correctamente 10 preguntas. Eres un verdadero experto.',
+      image: 'assets/images/achievement/estrella-del-trofeo-10-preguntas.svg', // Ejemplo: Una medalla o insignia de experto
     },
     {
       name: 'Maestro',
-      description: 'Has respondido correctamente 15 preguntas.',
-      image: 'assets/images/achievement/icono-de-trofeo-correcto.svg', // Ejemplo: Un trofeo con un cerebro en la parte superior
-      // category: 'Cantidad de Respuestas Correctas'
+      description:
+        '¡Impresionante! Has respondido correctamente 15 preguntas. Tu conocimiento es profundo.',
+      image:
+        'assets/images/achievement/icono-de-trofeo-correcto-15-preguntas.svg', // Ejemplo: Un trofeo con un cerebro en la parte superior
     },
     {
       name: 'Perfeccionista',
-      description: 'Has obtenido el 100% de aciertos en una categoría usando al menos una pista.',
+      description:
+        '¡Perfecto! Has obtenido el 100% de aciertos en una categoría usando al menos una pista. Tu atención al detalle es excepcional.',
       image: 'assets/images/achievement/copa-de-plata.svg', // Imagen de un trofeo dorado
-      // category: 'Uso de Pista'
     },
     {
       name: 'Dios Terrenal',
-      description: 'Has obtenido el 100% de aciertos en una categoría.',
+      description:
+        '¡Sobresaliente! Has obtenido el 100% de aciertos en una categoría. Eres un verdadero maestro.',
       image: 'assets/images/achievement/trofeo.svg', // Imagen de un trofeo dorado
-      // category: 'Uso de Pista'
     },
     {
       name: 'Explorador',
-      description: 'Has respondido preguntas en 5 categorías diferentes.',
+      description:
+        '¡Aventurero! Has respondido preguntas en 5 categorías diferentes. Tu curiosidad no tiene límites.',
       image: 'assets/images/achievement/brujula.svg', // Imagen de un mapa con una brújula
-      // category: 'Diversidad de Categorías'
     },
     {
       name: 'Coleccionista',
-      description: 'Has desbloqueado todos los logros.',
+      description:
+        '¡Felicidades! Has desbloqueado todos los logros. Eres un verdadero coleccionista de conocimientos.',
       image: 'assets/images/achievement/linea-de-meta.svg', // Imagen de una vitrina con trofeos
-      // category: 'Metas Generales'
-    }
-  ]
+    },
+  ],
 };
