@@ -419,54 +419,76 @@ export const initialData: SeedData = {
   ],
   achievements: [
     {
-      name: 'Primer Paso',
-      description: 'Has respondido tu primera pregunta.',
-      image: 'assets/images/achievement/primer-paso.svg', // Imagen de un pie dando el primer paso en una escalera
-    },
-    {
       name: 'Curioso',
-      description: 'Has respondido 5 preguntas.',
+      description: 'Has respondido 10 preguntas.',
       image: 'assets/images/achievement/curioso.svg', // Imagen de una lupa sobre un libro
-    },
-    {
-      name: 'Aprendiz',
-      description: 'Has acertado 5 preguntas consecutivas.',
-      image: 'assets/images/achievement/aprendizaje-automatico.svg', // Imagen de un estudiante con un birrete
+      // category: 'Cantidad de Respuestas'
     },
     {
       name: 'Persistente',
+      description: 'Has respondido 15 preguntas.',
+      image: 'assets/images/achievement/casi-meta.svg', // Imagen de un maratonista cruzando la meta
+      // category: 'Cantidad de Respuestas'
+    },
+    {
+      name: 'Dedicado',
       description: 'Has respondido 20 preguntas.',
-      image: 'assets/images/achievement/meta.svg', // Imagen de un maratonista cruzando la meta
+      image: 'assets/images/achievement/meta.svg', // Ejemplo: Una persona completando un registro largo de preguntas
+      // category: 'Cantidad de Respuestas'
     },
     {
-      name: 'Leyenda',
+      name: 'Constante',
+      description: 'Has acertado 5 preguntas consecutivas.',
+      image: 'assets/images/achievement/lista-de-verificacion.svg', // Ejemplo: Una fila de cinco checkmarks en verde
+      // category: 'Preguntas Consecutivas'
+    },
+    {
+      name: 'Imparable',
+      description: 'Has acertado 10 preguntas consecutivas.',
+      image: 'assets/images/achievement/verificacion.svg', // Ejemplo: Un rayo o una línea continua de checkmarks
+      // category: 'Preguntas Consecutivas'
+    },
+    {
+      name: 'Preciso',
+      description: 'Has respondido correctamente 5 preguntas.',
+      image: 'assets/images/achievement/objetivo.svg', // Ejemplo: Un objetivo con una flecha en el centro
+      // category: 'Cantidad de Respuestas Correctas'
+    },
+    {
+      name: 'Experto',
+      description: 'Has respondido correctamente 10 preguntas.',
+      image: 'assets/images/achievement/experto.svg', // Ejemplo: Una medalla o insignia de experto
+      // category: 'Cantidad de Respuestas Correctas'
+    },
+    {
+      name: 'Maestro',
       description: 'Has respondido correctamente 15 preguntas.',
-      image: 'assets/images/achievement/corona.svg', // Imagen de una corona dorada
-    },
-    {
-      name: 'Sabelotodo',
-      description: 'Has respondido correctamente 25 preguntas.',
-      image: 'assets/images/achievement/cerebro.svg', // Imagen de un cerebro con gafas
+      image: 'assets/images/achievement/icono-de-trofeo-correcto.svg', // Ejemplo: Un trofeo con un cerebro en la parte superior
+      // category: 'Cantidad de Respuestas Correctas'
     },
     {
       name: 'Perfeccionista',
       description: 'Has obtenido el 100% de aciertos en una categoría usando al menos una pista.',
       image: 'assets/images/achievement/copa-de-plata.svg', // Imagen de un trofeo dorado
+      // category: 'Uso de Pista'
     },
     {
       name: 'Dios Terrenal',
       description: 'Has obtenido el 100% de aciertos en una categoría.',
       image: 'assets/images/achievement/trofeo.svg', // Imagen de un trofeo dorado
+      // category: 'Uso de Pista'
     },
     {
       name: 'Explorador',
       description: 'Has respondido preguntas en 5 categorías diferentes.',
       image: 'assets/images/achievement/brujula.svg', // Imagen de un mapa con una brújula
+      // category: 'Diversidad de Categorías'
     },
     {
       name: 'Coleccionista',
       description: 'Has desbloqueado todos los logros.',
       image: 'assets/images/achievement/linea-de-meta.svg', // Imagen de una vitrina con trofeos
+      // category: 'Metas Generales'
     }
   ]
 };
