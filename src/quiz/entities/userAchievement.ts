@@ -1,10 +1,9 @@
 import {
-  Column,
   Entity,
-  Generated,
-  ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+  BeforeInsert,
 } from 'typeorm';
 
 import { User } from 'src/auth/entities/user.entity';
@@ -15,15 +14,14 @@ export class UserAchievement {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({
-    type: 'text',
-    nullable: true
+  @CreateDateColumn({
+    type: 'timestamp',
   })
-  date: string;
+  date: Date;
 
   @ManyToOne(() => User, (user) => user.userAchievements)
   user: User;
 
-  @ManyToOne(()=> Achievement, (achievement)=> achievement.userAchievements)
+  @ManyToOne(() => Achievement, (achievement) => achievement.userAchievements)
   achievement: Achievement;
 }
