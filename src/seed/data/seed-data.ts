@@ -440,74 +440,74 @@ export const initialData: SeedData = {
     {
       name: 'Curioso',
       description:
-        '¡Felicidades! Has respondido 10 preguntas. Sigue explorando y aprendiendo.',
+        'Has respondido 10 preguntas. Sigue explorando y aprendiendo.',
       image: 'assets/images/achievement/respuestas-10.svg', // Imagen de una lupa sobre un libro
     },
     {
       name: 'Persistente',
       description:
-        '¡Increíble! Has respondido 15 preguntas. Tu dedicación está dando frutos.',
+        'Has respondido 15 preguntas. Tu dedicación está dando frutos.',
       image: 'assets/images/achievement/respuestas-15.svg', // Imagen de un maratonista cruzando la meta
     },
     {
       name: 'Dedicado',
       description:
-        '¡Asombroso! Has respondido 20 preguntas. Tu esfuerzo es admirable.',
+        'Has respondido 20 preguntas. Tu esfuerzo es admirable.',
       image: 'assets/images/achievement/respuestas-20.svg', // Ejemplo: Una persona completando un registro largo de preguntas
     },
     {
       name: 'Constante',
       description:
-        '¡Genial! Has acertado 5 preguntas consecutivas. Mantén el ritmo.',
+        'Has acertado 5 preguntas consecutivas. Mantén el ritmo.',
       image: 'assets/images/achievement/premio-del-campeonato-racha-5.svg', // Ejemplo: Una fila de cinco checkmarks en verde
     },
     {
       name: 'Imparable',
       description:
-        '¡Estás en racha! Has acertado 10 preguntas consecutivas. No te detengas.',
+        'Has acertado 10 preguntas consecutivas. No te detengas.',
       image: 'assets/images/achievement/icono-de-trofeo-racha-10.svg', // Ejemplo: Un rayo o una línea continua de checkmarks
     },
     {
       name: 'Preciso',
       description:
-        '¡Bien hecho! Has respondido correctamente 5 preguntas. Tu precisión es impresionante.',
+        'Has respondido correctamente 5 preguntas. Tu precisión es impresionante.',
       image: 'assets/images/achievement/icono-de-exito-5-preguntas.svg', // Ejemplo: Un objetivo con una flecha en el centro
     },
     {
       name: 'Experto',
       description:
-        '¡Excelente! Has respondido correctamente 10 preguntas. Eres un verdadero experto.',
+        'Has respondido correctamente 10 preguntas. Eres un verdadero experto.',
       image: 'assets/images/achievement/estrella-del-trofeo-10-preguntas.svg', // Ejemplo: Una medalla o insignia de experto
     },
     {
       name: 'Maestro',
       description:
-        '¡Impresionante! Has respondido correctamente 15 preguntas. Tu conocimiento es profundo.',
+        'Has respondido correctamente 15 preguntas. Tu conocimiento es profundo.',
       image:
         'assets/images/achievement/icono-de-trofeo-correcto-15-preguntas.svg', // Ejemplo: Un trofeo con un cerebro en la parte superior
     },
     {
       name: 'Perfeccionista',
       description:
-        '¡Perfecto! Has obtenido el 100% de aciertos en una categoría usando al menos una pista. Tu atención al detalle es excepcional.',
+        'Has obtenido el 100% de aciertos en una categoría usando al menos una pista. Tu atención al detalle es excepcional.',
       image: 'assets/images/achievement/copa-de-plata.svg', // Imagen de un trofeo dorado
     },
     {
       name: 'Dios Terrenal',
       description:
-        '¡Sobresaliente! Has obtenido el 100% de aciertos en una categoría. Eres un verdadero maestro.',
+        'Has obtenido el 100% de aciertos en una categoría. Eres un verdadero maestro.',
       image: 'assets/images/achievement/trofeo.svg', // Imagen de un trofeo dorado
     },
     {
       name: 'Explorador',
       description:
-        '¡Aventurero! Has respondido preguntas en 5 categorías diferentes. Tu curiosidad no tiene límites.',
+        'Has respondido preguntas en 5 categorías diferentes. Tu curiosidad no tiene límites.',
       image: 'assets/images/achievement/brujula.svg', // Imagen de un mapa con una brújula
     },
     {
       name: 'Coleccionista',
       description:
-        '¡Felicidades! Has desbloqueado todos los logros. Eres un verdadero coleccionista de conocimientos.',
+        'Has desbloqueado todos los logros. Eres un verdadero coleccionista de conocimientos.',
       image: 'assets/images/achievement/linea-de-meta.svg', // Imagen de una vitrina con trofeos
     },
   ],
