@@ -99,6 +99,9 @@ export class AuthService {
 
     if (!user) throw new UnauthorizedException('Invalid User.');
 
+    if (!user.isActive) throw new UnauthorizedException('User inactive.');
+
+
     if (!bcrypt.compareSync(password, user.password))
       throw new UnauthorizedException('Error Password.');
 
@@ -139,6 +142,17 @@ export class AuthService {
     const user = await this.userRepository.preload({
       id,
       ...userUpdate,
+    });
+
+    if (!user) throw new NotFoundException(`User with id: ${id} not found.`);
+
+    return this.userRepository.save(user);
+  }
+
+  async deleteUser(id: string) {
+    const user = await this.userRepository.preload({
+      id,
+      isActive: false,
     });
 
     if (!user) throw new NotFoundException(`User with id: ${id} not found.`);
