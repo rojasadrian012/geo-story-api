@@ -30,7 +30,7 @@ export class AuthService {
     private readonly userQuizRepository: Repository<UserQuiz>,
 
     private readonly jwtServie: JwtService,
-  ) {}
+  ) { }
 
   async create(createUserDto: CreateUserDto) {
     try {
@@ -46,18 +46,30 @@ export class AuthService {
       const quizzes = await this.quizRepository.find({
         select: {
           id: true,
+          difficulty: true,
         },
       });
 
       const userQuizzes = [];
 
       quizzes.forEach((quiz) => {
-        userQuizzes.push(
-          this.userQuizRepository.create({
-            quiz,
-            user,
-          }),
-        );
+
+        if (quiz.difficulty != 1) {
+          userQuizzes.push(
+            this.userQuizRepository.create({
+              quiz,
+              user,
+            }),
+          );
+        } else {
+          userQuizzes.push(
+            this.userQuizRepository.create({
+              quiz,
+              user,
+              unlockLevel: true,
+            }),
+          );
+        }
       });
 
       await this.userQuizRepository.save(userQuizzes);
