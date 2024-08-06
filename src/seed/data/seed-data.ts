@@ -446,13 +446,13 @@ export const initialData: SeedData = {
     {
       name: 'Persistente',
       description:
-        'Has respondido 15 preguntas. Tu dedicación está dando frutos.',
+        'Has respondido 15 preguntas. Tú dedicación está dando frutos.',
       image: 'assets/images/achievement/respuestas-15.svg', // Imagen de un maratonista cruzando la meta
     },
     {
       name: 'Dedicado',
       description:
-        'Has respondido 20 preguntas. Tu esfuerzo es admirable.',
+        'Has respondido 20 preguntas. Tú esfuerzo es admirable.',
       image: 'assets/images/achievement/respuestas-20.svg', // Ejemplo: Una persona completando un registro largo de preguntas
     },
     {
@@ -470,7 +470,7 @@ export const initialData: SeedData = {
     {
       name: 'Preciso',
       description:
-        'Has respondido correctamente 5 preguntas. Tu precisión es impresionante.',
+        'Has respondido correctamente 5 preguntas. Tú precisión es impresionante.',
       image: 'assets/images/achievement/icono-de-exito-5-preguntas.svg', // Ejemplo: Un objetivo con una flecha en el centro
     },
     {
@@ -482,14 +482,14 @@ export const initialData: SeedData = {
     {
       name: 'Maestro',
       description:
-        'Has respondido correctamente 15 preguntas. Tu conocimiento es profundo.',
+        'Has respondido correctamente 15 preguntas. Tú conocimiento es profundo.',
       image:
         'assets/images/achievement/icono-de-trofeo-correcto-15-preguntas.svg', // Ejemplo: Un trofeo con un cerebro en la parte superior
     },
     {
       name: 'Perfeccionista',
       description:
-        'Has obtenido el 100% de aciertos en una categoría usando al menos una pista. Tu atención al detalle es excepcional.',
+        'Has obtenido el 100% de aciertos en una categoría usando al menos una pista. Tú atención al detalle es excepcional.',
       image: 'assets/images/achievement/copa-de-plata.svg', // Imagen de un trofeo dorado
     },
     {
@@ -501,7 +501,7 @@ export const initialData: SeedData = {
     {
       name: 'Explorador',
       description:
-        'Has respondido preguntas en 5 categorías diferentes. Tu curiosidad no tiene límites.',
+        'Has respondido preguntas en 5 categorías diferentes. Tú curiosidad no tiene límites.',
       image: 'assets/images/achievement/brujula.svg', // Imagen de un mapa con una brújula
     },
     {
