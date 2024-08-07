@@ -158,6 +158,7 @@ export class SeedService {
         name: achievement.name,
         description: achievement.description,
         image: achievement.image,
+        code: achievement.code,
       });
 
       achievements.push(newAchievement);

@@ -22,6 +22,12 @@ export class Achievement {
         type: 'text',
         nullable: true
     })
+    code: string
+
+    @Column({
+        type: 'text',
+        nullable: true
+    })
     image: string
 
     @OneToMany(() => UserAchievement, (userAchievement) => userAchievement.achievement)
