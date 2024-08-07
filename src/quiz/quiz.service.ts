@@ -30,7 +30,7 @@ export class QuizService {
     private readonly userAchievementRepository: Repository<UserAchievement>,
     @InjectRepository(Achievement)
     private readonly achievementRepository: Repository<Achievement>,
-  ) { }
+  ) {}
 
   private handleDataBaseExceptions(error: any) {
     if (error.code === '23505')
@@ -145,14 +145,12 @@ export class QuizService {
     });
 
     if (!nextUserQuiz) {
-      throw new Error('Next user quiz not found');
+      return this.userQuizRepository.save(currentUserQuiz);
     }
 
     if (data.points >= MinPointsUnlock.poinst) nextUserQuiz.unlockLevel = true;
 
-    await this.userQuizRepository.save([currentUserQuiz, nextUserQuiz]);
-
-    return { nextUserQuiz };
+    return this.userQuizRepository.save([currentUserQuiz, nextUserQuiz]);
   }
 
   async rankingUsers(user: User) {
@@ -190,24 +188,27 @@ export class QuizService {
     return usersRankingAndCurrentUser;
   }
 
-
   async achievementsByUser(user: User) {
     const achievementsCurrentUser = await this.userAchievementRepository.find({
       where: {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       },
       relations: {
         achievement: true,
-      }
-    })
+      },
+    });
 
     // Obtener logros no desbloqueados por el usuario usando una subconsulta
-    const achievementsNoUnlocked = await this.achievementRepository.createQueryBuilder('achievement')
-      .where('achievement.id NOT IN (SELECT ua."achievementId" FROM "user-achievements" ua WHERE ua."userId" = :userId)', { userId: user.id })
+    const achievementsNoUnlocked = await this.achievementRepository
+      .createQueryBuilder('achievement')
+      .where(
+        'achievement.id NOT IN (SELECT ua."achievementId" FROM "user-achievements" ua WHERE ua."userId" = :userId)',
+        { userId: user.id },
+      )
       .getMany();
 
-    return { achievementsCurrentUser, achievementsNoUnlocked }
+    return { achievementsCurrentUser, achievementsNoUnlocked };
   }
 }
