@@ -9,20 +9,28 @@ export enum levels {
   'l6' = 6,
 }
 
-enum AchievementCode {
-  CURIOUS_10 = 'CURIOUS_10',
-  PERSISTENT_15 = 'PERSISTENT_15',
-  DEDICATED_20 = 'DEDICATED_20',
-  CONSTANT_5 = 'CONSTANT_5',
-  UNSTOPPABLE_10 = 'UNSTOPPABLE_10',
-  PRECISE_5 = 'PRECISE_5',
-  EXPERT_10 = 'EXPERT_10',
-  MASTER_15 = 'MASTER_15',
-  PERFECTIONIST = 'PERFECTIONIST',
-  EARTHLY_GOD = 'EARTHLY_GOD',
-  EXPLORER = 'EXPLORER',
-  COLLECTOR = 'COLLECTOR'
+export enum AchievementCode {
+  // Respuestas
+  RESPONDER_10 = 'RESPONDER_10',
+  RESPONDER_15 = 'RESPONDER_15',
+  RESPONDER_20 = 'RESPONDER_20',
+
+  // Racha
+  RACHA_5 = 'RACHA_5',
+  RACHA_10 = 'RACHA_10',
+
+  // Precisión
+  PRECISION_5 = 'PRECISION_5',
+  PRECISION_10 = 'PRECISION_10',
+  PRECISION_15 = 'PRECISION_15',
+
+  // Otros
+  PERFECCIONISTA = 'PERFECCIONISTA',
+  MAESTRO = 'MAESTRO',
+  EXPLORADOR = 'EXPLORADOR',
+  COLECCIONISTA = 'COLECCIONISTA',
 }
+
 
 interface SeedUser {
   nickname: string;
@@ -455,87 +463,75 @@ export const initialData: SeedData = {
   achievements: [
     {
       name: 'Curioso',
-      description:
-        'Has respondido 10 preguntas. Sigue explorando y aprendiendo.',
+      description: 'Has respondido 10 preguntas. Sigue explorando y aprendiendo.',
       image: 'assets/images/achievement/respuestas-10.svg',
-      code: AchievementCode.CURIOUS_10, // Usa el enum
+      code: AchievementCode.RESPONDER_10, // Usa el enum
     },
     {
       name: 'Persistente',
-      description:
-        'Has respondido 15 preguntas. Tú dedicación está dando frutos.',
+      description: 'Has respondido 15 preguntas. Tú dedicación está dando frutos.',
       image: 'assets/images/achievement/respuestas-15.svg',
-      code: AchievementCode.PERSISTENT_15, // Usa el enum
+      code: AchievementCode.RESPONDER_15, // Usa el enum
     },
     {
       name: 'Dedicado',
-      description:
-        'Has respondido 20 preguntas. Tú esfuerzo es admirable.',
+      description: 'Has respondido 20 preguntas. Tú esfuerzo es admirable.',
       image: 'assets/images/achievement/respuestas-20.svg',
-      code: AchievementCode.DEDICATED_20, // Usa el enum
+      code: AchievementCode.RESPONDER_20, // Usa el enum
     },
     {
       name: 'Constante',
-      description:
-        'Has acertado 5 preguntas consecutivas. Mantén el ritmo.',
+      description: 'Has acertado 5 preguntas consecutivas. Mantén el ritmo.',
       image: 'assets/images/achievement/premio-del-campeonato-racha-5.svg',
-      code: AchievementCode.CONSTANT_5, // Usa el enum
+      code: AchievementCode.RACHA_5, // Usa el enum
     },
     {
       name: 'Imparable',
-      description:
-        'Has acertado 10 preguntas consecutivas. No te detengas.',
+      description: 'Has acertado 10 preguntas consecutivas. No te detengas.',
       image: 'assets/images/achievement/icono-de-trofeo-racha-10.svg',
-      code: AchievementCode.UNSTOPPABLE_10, // Usa el enum
+      code: AchievementCode.RACHA_10, // Usa el enum
     },
     {
       name: 'Preciso',
-      description:
-        'Has respondido correctamente 5 preguntas. Tú precisión es impresionante.',
+      description: 'Has respondido correctamente 5 preguntas. Tú precisión es impresionante.',
       image: 'assets/images/achievement/icono-de-exito-5-preguntas.svg',
-      code: AchievementCode.PRECISE_5, // Usa el enum
+      code: AchievementCode.PRECISION_5, // Usa el enum
     },
     {
       name: 'Experto',
-      description:
-        'Has respondido correctamente 10 preguntas. Eres un verdadero experto.',
+      description: 'Has respondido correctamente 10 preguntas. Eres un verdadero experto.',
       image: 'assets/images/achievement/estrella-del-trofeo-10-preguntas.svg',
-      code: AchievementCode.EXPERT_10, // Usa el enum
+      code: AchievementCode.PRECISION_10, // Usa el enum
     },
     {
       name: 'Maestro',
-      description:
-        'Has respondido correctamente 15 preguntas. Tú conocimiento es profundo.',
+      description: 'Has respondido correctamente 15 preguntas. Tú conocimiento es profundo.',
       image: 'assets/images/achievement/icono-de-trofeo-correcto-15-preguntas.svg',
-      code: AchievementCode.MASTER_15, // Usa el enum
+      code: AchievementCode.PRECISION_15, // Usa el enum
     },
     {
       name: 'Perfeccionista',
-      description:
-        'Has obtenido el 100% de aciertos en una categoría usando al menos una pista. Tú atención al detalle es excepcional.',
+      description: 'Has obtenido el 100% de aciertos en una categoría usando al menos una pista. Tú atención al detalle es excepcional.',
       image: 'assets/images/achievement/copa-de-plata.svg',
-      code: AchievementCode.PERFECTIONIST, // Usa el enum
+      code: AchievementCode.PERFECCIONISTA, // Usa el enum
     },
     {
       name: 'Dios Terrenal',
-      description:
-        'Has obtenido el 100% de aciertos en una categoría. Eres un verdadero maestro.',
+      description: 'Has obtenido el 100% de aciertos en una categoría. Eres un verdadero maestro.',
       image: 'assets/images/achievement/trofeo.svg',
-      code: AchievementCode.EARTHLY_GOD, // Usa el enum
+      code: AchievementCode.MAESTRO, // Usa el enum
     },
     {
       name: 'Explorador',
-      description:
-        'Has respondido preguntas en 5 categorías diferentes. Tú curiosidad no tiene límites.',
+      description: 'Has respondido preguntas en 5 categorías diferentes. Tú curiosidad no tiene límites.',
       image: 'assets/images/achievement/brujula.svg',
-      code: AchievementCode.EXPLORER, // Usa el enum
+      code: AchievementCode.EXPLORADOR, // Usa el enum
     },
     {
       name: 'Coleccionista',
-      description:
-        'Has desbloqueado todos los logros. Eres un verdadero coleccionista de conocimientos.',
+      description: 'Has desbloqueado todos los logros. Eres un verdadero coleccionista de conocimientos.',
       image: 'assets/images/achievement/linea-de-meta.svg',
-      code: AchievementCode.COLLECTOR, // Usa el enum
+      code: AchievementCode.COLECCIONISTA, // Usa el enum
     },
   ]
 };
