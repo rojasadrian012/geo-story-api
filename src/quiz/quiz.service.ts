@@ -198,6 +198,9 @@ export class QuizService {
       relations: {
         achievement: true,
       },
+      order:{
+        date: 'DESC'
+      }
     });
 
     // Obtener logros no desbloqueados por el usuario usando una subconsulta
@@ -216,19 +219,30 @@ export class QuizService {
     user: User,
     data: { code: string },
   ) {
-
     const achievement = await this.achievementRepository.findOne({ where: { code: data.code } });
-
+  
     if (!achievement) {
       throw new Error('Achievement not found');
     }
-
+  
+    const existingUserAchievement = await this.userAchievementRepository.findOne({
+      where: {
+        user: { id: user.id },
+        achievement: { id: achievement.id },
+      },
+    });
+  
+    if (existingUserAchievement) {
+      throw new Error('User already has this achievement');
+    }
+  
     const userAchievement = this.userAchievementRepository.create({
       user: { id: user.id },
       achievement: { id: achievement.id },
     });
-
+  
     return this.userAchievementRepository.save(userAchievement);
   }
+  
 
 }
