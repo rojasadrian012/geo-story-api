@@ -92,4 +92,13 @@ export class QuizController {
     return this.quizService.savePointsWinned(user, body);
   }
 
+  @Post('save-user-achievement')
+  @Auth()
+  savedAchievement(
+    @GetUser() user: User,
+    @Body() body: { code: string },
+  ) {
+    return this.quizService.saveAchievementsUser(user, body);
+  }
+
 }

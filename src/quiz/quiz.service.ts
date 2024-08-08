@@ -30,7 +30,7 @@ export class QuizService {
     private readonly userAchievementRepository: Repository<UserAchievement>,
     @InjectRepository(Achievement)
     private readonly achievementRepository: Repository<Achievement>,
-  ) {}
+  ) { }
 
   private handleDataBaseExceptions(error: any) {
     if (error.code === '23505')
@@ -211,4 +211,24 @@ export class QuizService {
 
     return { achievementsCurrentUser, achievementsNoUnlocked };
   }
+
+  async saveAchievementsUser(
+    user: User,
+    data: { code: string },
+  ) {
+
+    const achievement = await this.achievementRepository.findOne({ where: { code: data.code } });
+
+    if (!achievement) {
+      throw new Error('Achievement not found');
+    }
+
+    const userAchievement = this.userAchievementRepository.create({
+      user: { id: user.id },
+      achievement: { id: achievement.id },
+    });
+
+    await this.userAchievementRepository.save(userAchievement);
+  }
+
 }
