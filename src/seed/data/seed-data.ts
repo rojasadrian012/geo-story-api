@@ -522,12 +522,6 @@ export const initialData: SeedData = {
       code: AchievementCode.MAESTRO, // Usa el enum
     },
     {
-      name: 'Explorador',
-      description: 'Has respondido preguntas en 5 categorías diferentes. Tú curiosidad no tiene límites.',
-      image: 'assets/images/achievement/brujula.svg',
-      code: AchievementCode.EXPLORADOR, // Usa el enum
-    },
-    {
       name: 'Coleccionista',
       description: 'Has desbloqueado todos los logros. Eres un verdadero coleccionista de conocimientos.',
       image: 'assets/images/achievement/linea-de-meta.svg',
