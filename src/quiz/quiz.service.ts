@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ConflictException,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
@@ -198,7 +199,7 @@ export class QuizService {
       relations: {
         achievement: true,
       },
-      order:{
+      order: {
         date: 'DESC'
       }
     });
@@ -220,31 +221,31 @@ export class QuizService {
     data: { code: string },
   ) {
     const achievement = await this.achievementRepository.findOne({ where: { code: data.code } });
-  
+
     if (!achievement) {
       throw new Error('Achievement not found');
     }
-  
+
     const existingUserAchievement = await this.userAchievementRepository.findOne({
       where: {
         user: { id: user.id },
         achievement: { id: achievement.id },
       },
     });
-  
+
     if (existingUserAchievement) {
-      throw new Error('User already has this achievement');
+      throw new ConflictException('User already has this achievement ' + achievement.name);
     }
-  
+
     const userAchievement = this.userAchievementRepository.create({
       user: { id: user.id },
       achievement: { id: achievement.id },
     });
-  
+
     await this.userAchievementRepository.save(userAchievement);
 
     return achievement;
   }
-  
+
 
 }
