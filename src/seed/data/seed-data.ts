@@ -16,8 +16,9 @@ export enum AchievementCode {
   RESPONDER_20 = 'RESPONDER_20',
 
   // Racha
-  RACHA_5 = 'RACHA_5',
-  RACHA_10 = 'RACHA_10',
+  RACHA_3 = 'RACHA_3',
+  RACHA_6 = 'RACHA_6',
+  RACHA_9 = 'RACHA_9',
 
   // Precisión
   PRECISION_5 = 'PRECISION_5',
@@ -27,7 +28,6 @@ export enum AchievementCode {
   // Otros
   PERFECCIONISTA = 'PERFECCIONISTA',
   MAESTRO = 'MAESTRO',
-  EXPLORADOR = 'EXPLORADOR',
   COLECCIONISTA = 'COLECCIONISTA',
 }
 
@@ -481,15 +481,21 @@ export const initialData: SeedData = {
     },
     {
       name: 'Constante',
-      description: 'Has acertado 5 preguntas consecutivas. Mantén el ritmo.',
-      image: 'assets/images/achievement/premio-del-campeonato-racha-5.svg',
-      code: AchievementCode.RACHA_5, // Usa el enum
+      description: 'Has acertado 3 preguntas consecutivas. Mantén el ritmo.',
+      image: 'assets/images/achievement/trofeo-racha-3.svg',
+      code: AchievementCode.RACHA_3, // Usa el enum
     },
     {
       name: 'Imparable',
-      description: 'Has acertado 10 preguntas consecutivas. No te detengas.',
+      description: 'Has acertado 6 preguntas consecutivas. No te detengas.',
+      image: 'assets/images/achievement/premio-del-campeonato-racha-5.svg',
+      code: AchievementCode.RACHA_6, // Usa el enum
+    },
+    {
+      name: 'Leyenda',
+      description: 'Has acertado 9 preguntas consecutivas. ¡Eres imparable!',
       image: 'assets/images/achievement/icono-de-trofeo-racha-10.svg',
-      code: AchievementCode.RACHA_10, // Usa el enum
+      code: AchievementCode.RACHA_9, // Usa el enum
     },
     {
       name: 'Preciso',
