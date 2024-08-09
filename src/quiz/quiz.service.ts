@@ -241,7 +241,9 @@ export class QuizService {
       achievement: { id: achievement.id },
     });
   
-    return this.userAchievementRepository.save(userAchievement);
+    await this.userAchievementRepository.save(userAchievement);
+
+    return achievement;
   }
   
 
