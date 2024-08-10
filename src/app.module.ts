@@ -18,6 +18,12 @@ import { QuizModule } from './quiz/quiz.module';
     ConfigModule.forRoot(),
 
     TypeOrmModule.forRoot({
+      ssl: process.env.STAGE === 'prod' ? true : false,
+      extra: {
+        ssl: process.env.STAGE === 'prod'
+          ? { rejectUnauthorized: false }
+          : null,
+      },
       type: 'postgres',
       host: process.env.DB_HOST,
       port: +process.env.DB_PORT,
@@ -45,4 +51,4 @@ import { QuizModule } from './quiz/quiz.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
