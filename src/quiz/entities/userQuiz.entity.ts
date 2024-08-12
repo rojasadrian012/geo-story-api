@@ -33,6 +33,12 @@ export class UserQuiz {
   })
   unlockLevel: boolean;
 
+  @Column({
+    type: 'boolean',
+    default: false,
+  })
+  completed: boolean;
+
   @ManyToOne(() => Quiz, (quiz) => quiz.questions)
   quiz: Quiz;
 
