@@ -109,7 +109,7 @@ export class QuizService {
           difficulty: 'ASC',
         },
       },
-      select:{
+      select: {
         id: true,
         score: true,
         unlockLevel: true,
@@ -122,7 +122,7 @@ export class QuizService {
         },
       }
     });
-    
+
   }
 
   async savePointsWinned(
@@ -159,6 +159,9 @@ export class QuizService {
     });
 
     if (!nextUserQuiz) {
+      if (data.points >= MinPointsUnlock.poinst)
+        currentUserQuiz.completed = true;
+
       return this.userQuizRepository.save(currentUserQuiz);
     }
 
