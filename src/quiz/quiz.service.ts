@@ -109,7 +109,20 @@ export class QuizService {
           difficulty: 'ASC',
         },
       },
+      select:{
+        id: true,
+        score: true,
+        unlockLevel: true,
+        completed: true,
+        quiz: {
+          id: true,
+          title: true,
+          image: true,
+          difficulty: true,
+        },
+      }
     });
+    
   }
 
   async savePointsWinned(
@@ -149,7 +162,10 @@ export class QuizService {
       return this.userQuizRepository.save(currentUserQuiz);
     }
 
-    if (data.points >= MinPointsUnlock.poinst) nextUserQuiz.unlockLevel = true;
+    if (data.points >= MinPointsUnlock.poinst) {
+      currentUserQuiz.completed = true;
+      nextUserQuiz.unlockLevel = true;
+    }
 
     return this.userQuizRepository.save([currentUserQuiz, nextUserQuiz]);
   }
