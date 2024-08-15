@@ -94,6 +94,7 @@ export class AuthService {
         isActive: true,
         fullName: true,
         roles: true,
+        nickname: true,
       },
     });
 
