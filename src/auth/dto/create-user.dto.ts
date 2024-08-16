@@ -23,4 +23,7 @@ export class CreateUserDto {
     @IsArray()
     @IsString({ each: true })
     roles?: string[];
+    
+    @IsOptional()
+    isActive: boolean
 }
