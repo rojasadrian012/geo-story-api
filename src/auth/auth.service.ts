@@ -8,7 +8,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 import { User } from './entities/user.entity';
@@ -18,6 +18,7 @@ import { JwtPayload } from './interface/jwt-payload.interface';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserQuiz } from 'src/quiz/entities/userQuiz.entity';
 import { Quiz } from 'src/quiz/entities/quiz.entity';
+import { SearchUserDto } from './dto/search-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -30,7 +31,7 @@ export class AuthService {
     private readonly userQuizRepository: Repository<UserQuiz>,
 
     private readonly jwtServie: JwtService,
-  ) { }
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     try {
@@ -53,7 +54,6 @@ export class AuthService {
       const userQuizzes = [];
 
       quizzes.forEach((quiz) => {
-
         if (quiz.difficulty != 1) {
           userQuizzes.push(
             this.userQuizRepository.create({
@@ -102,7 +102,6 @@ export class AuthService {
 
     if (!user.isActive) throw new UnauthorizedException('User inactive.');
 
-
     if (!bcrypt.compareSync(password, user.password))
       throw new UnauthorizedException('Error Password.');
 
@@ -136,7 +135,11 @@ export class AuthService {
   }
 
   async getUsers() {
-    return this.userRepository.find({});
+    return this.userRepository.find({
+      where: {
+        isActive: true,
+      },
+    });
   }
 
   async updateUser(userUpdate: UpdateUserDto, id: string) {
@@ -159,5 +162,20 @@ export class AuthService {
     if (!user) throw new NotFoundException(`User with id: ${id} not found.`);
 
     return this.userRepository.save(user);
+  }
+
+  async searchUser(parameters: SearchUserDto) {
+    const searchPattern = `%${parameters.parameters}%`; // Crea un patrón de búsqueda para LIKE
+
+    const data = await this.userRepository.find({
+      where: [
+        { isActive: true, nickname: ILike(searchPattern) },
+        { isActive: true, nickname: ILike(searchPattern) },
+      ],
+    });
+
+    console.log(data);
+
+    return data;
   }
 }

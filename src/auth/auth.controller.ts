@@ -20,11 +20,12 @@ import { User } from './entities/user.entity';
 import { Auth } from './decorators/auth.decorator';
 import { ValidRoles } from './interface/valid-roles';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { SearchUserDto } from './dto/search-user.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
   //TODO: Cuando se crea usuarios por este endpoint solo se debe poder crear con privilegios de 'user', actualmente perdime 'admin'
   @Post('register')
@@ -60,17 +61,19 @@ export class AuthController {
 
   @Auth(ValidRoles.admin)
   @Post('user/new')
-  createUser(
-    @Body() createUserDto: CreateUserDto
-  ) {
+  createUser(@Body() createUserDto: CreateUserDto) {
     return this.authService.create(createUserDto);
   }
 
   @Auth(ValidRoles.admin)
   @Delete('user/delete/:userId')
-  deleteUser(
-    @Param('userId') userId: string,
-  ) {
+  deleteUser(@Param('userId') userId: string) {
     return this.authService.deleteUser(userId);
+  }
+
+  @Auth(ValidRoles.admin)
+  @Post('user/search')
+  searchUsers(@Body() parametersSearch: SearchUserDto) {
+    return this.authService.searchUser(parametersSearch);
   }
 }
