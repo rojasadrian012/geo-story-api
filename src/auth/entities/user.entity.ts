@@ -3,7 +3,6 @@ import { UserQuiz } from 'src/quiz/entities/userQuiz.entity';
 import {
   AfterUpdate,
   BeforeInsert,
-  Collection,
   Column,
   Entity,
   OneToMany,
