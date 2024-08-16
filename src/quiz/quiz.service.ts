@@ -23,15 +23,13 @@ export class QuizService {
   constructor(
     @InjectRepository(Quiz)
     private readonly quizRepository: Repository<Quiz>,
-    @InjectRepository(Question)
-    private readonly questionRepository: Repository<Question>,
     @InjectRepository(UserQuiz)
     private readonly userQuizRepository: Repository<UserQuiz>,
     @InjectRepository(UserAchievement)
     private readonly userAchievementRepository: Repository<UserAchievement>,
     @InjectRepository(Achievement)
     private readonly achievementRepository: Repository<Achievement>,
-  ) { }
+  ) {}
 
   private handleDataBaseExceptions(error: any) {
     if (error.code === '23505')
@@ -78,20 +76,25 @@ export class QuizService {
   }
 
   async findByIdUserQuiz(id: string) {
-    const userQuiz = await this.userQuizRepository.findOne({
-      where: {
-        id,
-      },
-      relations: {
-        quiz: {
-          questions: {
-            answers: true,
-          },
-        },
-      },
-    });
-
-    return userQuiz;
+    return this.userQuizRepository
+      .createQueryBuilder('userQuiz')
+      .leftJoinAndSelect('userQuiz.quiz', 'quiz')
+      .leftJoinAndSelect('quiz.questions', 'question')
+      .leftJoinAndSelect('question.answers', 'answer')
+      .where('userQuiz.id = :id', { id })
+      .andWhere((qb) => {
+        const subQuery = qb
+          .subQuery()
+          .select('question.id')
+          .from('questions', 'question')
+          .where('question.quizId = quiz.id')
+          .orderBy('RANDOM()')
+          .limit(5)
+          .getQuery();
+        return 'question.id IN ' + subQuery;
+      })
+      .addOrderBy('RANDOM()') // Desordenar las respuestas dentro de cada pregunta
+      .getOne();
   }
 
   async levelsByUser(user: User) {
@@ -120,9 +123,8 @@ export class QuizService {
           image: true,
           difficulty: true,
         },
-      }
+      },
     });
-
   }
 
   async savePointsWinned(
@@ -219,8 +221,8 @@ export class QuizService {
         achievement: true,
       },
       order: {
-        date: 'DESC'
-      }
+        date: 'DESC',
+      },
     });
 
     // Obtener logros no desbloqueados por el usuario usando una subconsulta
@@ -235,25 +237,27 @@ export class QuizService {
     return { achievementsCurrentUser, achievementsNoUnlocked };
   }
 
-  async saveAchievementsUser(
-    user: User,
-    data: { code: string },
-  ) {
-    const achievement = await this.achievementRepository.findOne({ where: { code: data.code } });
+  async saveAchievementsUser(user: User, data: { code: string }) {
+    const achievement = await this.achievementRepository.findOne({
+      where: { code: data.code },
+    });
 
     if (!achievement) {
       throw new Error('Achievement not found');
     }
 
-    const existingUserAchievement = await this.userAchievementRepository.findOne({
-      where: {
-        user: { id: user.id },
-        achievement: { id: achievement.id },
-      },
-    });
+    const existingUserAchievement =
+      await this.userAchievementRepository.findOne({
+        where: {
+          user: { id: user.id },
+          achievement: { id: achievement.id },
+        },
+      });
 
     if (existingUserAchievement) {
-      throw new ConflictException('User already has this achievement ' + achievement.name);
+      throw new ConflictException(
+        'User already has this achievement ' + achievement.name,
+      );
     }
 
     const userAchievement = this.userAchievementRepository.create({
@@ -265,6 +269,4 @@ export class QuizService {
 
     return achievement;
   }
-
-
 }
