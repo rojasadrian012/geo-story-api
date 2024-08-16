@@ -1,12 +1,9 @@
 import {
   Column,
   Entity,
-  Generated,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Question } from './question.entity';
 import { Quiz } from './quiz.entity';
 import { User } from 'src/auth/entities/user.entity';
 
