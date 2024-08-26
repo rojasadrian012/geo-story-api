@@ -11,24 +11,41 @@ import { UpdateQuizDto } from './dto/update-quiz.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Quiz } from './entities/quiz.entity';
 import { Repository } from 'typeorm';
-import { Question } from './entities/question.entity';
 import { User } from 'src/auth/entities/user.entity';
 import { UserQuiz } from './entities/userQuiz.entity';
 import { MinPointsUnlock } from './interfaces/min-points-unlock';
 import { UserAchievement } from './entities/userAchievement';
 import { Achievement } from './entities/achievement.entity';
+import { CreateSurveyDto } from './dto/create-survey.dto';
+import { Survey } from './entities/survey.entity';
+import { SurveyOption } from './entities/surveyOption.entity';
+import { CreateUserSurveyDto } from './dto/create-user-survey.dto';
+import { UserSurvey } from './entities/userSurvey.entity';
+import { Config } from './entities/config.entity';
 
 @Injectable()
 export class QuizService {
   constructor(
     @InjectRepository(Quiz)
     private readonly quizRepository: Repository<Quiz>,
+
     @InjectRepository(UserQuiz)
     private readonly userQuizRepository: Repository<UserQuiz>,
+
     @InjectRepository(UserAchievement)
     private readonly userAchievementRepository: Repository<UserAchievement>,
+
     @InjectRepository(Achievement)
     private readonly achievementRepository: Repository<Achievement>,
+
+    @InjectRepository(Survey)
+    private readonly surveyRepositoty: Repository<Survey>,
+
+    @InjectRepository(UserSurvey)
+    private readonly userSurveyRepository: Repository<UserSurvey>,
+
+    @InjectRepository(Config)
+    private readonly configRepository: Repository<Config>,
   ) {}
 
   private handleDataBaseExceptions(error: any) {
@@ -268,5 +285,42 @@ export class QuizService {
     await this.userAchievementRepository.save(userAchievement);
 
     return achievement;
+  }
+
+  async createSurvey(user: User, surveys: CreateSurveyDto[]) {}
+
+  async getSurveyList(firstSurvey: boolean) {
+    return this.surveyRepositoty.find({
+      where: {
+        isFirstSurvey: firstSurvey,
+      },
+      relations: {
+        surveyOptions: true,
+      },
+    });
+  }
+
+  async createUserSurvey(user: User, createUserSurveys: CreateUserSurveyDto[]) {
+    console.log({ user, createUserSurveys });
+
+    const surveys = [];
+
+    createUserSurveys.forEach((createUserSurvey) => {
+      surveys.push(
+        this.userSurveyRepository.create({
+          response: createUserSurvey.response,
+          user,
+          survey: {
+            id: createUserSurvey.surveyId,
+          },
+        }),
+      );
+    });
+
+    return this.userSurveyRepository.save(surveys);
+  }
+
+  async getConfigs() {
+    return this.configRepository.find({});
   }
 }

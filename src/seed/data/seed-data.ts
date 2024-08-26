@@ -31,7 +31,6 @@ export enum AchievementCode {
   COLECCIONISTA = 'COLECCIONISTA',
 }
 
-
 interface SeedUser {
   nickname: string;
   password: string;
@@ -68,6 +67,18 @@ interface SeedData {
   users: SeedUser[];
   quizzes: Quizz[];
   achievements: Achievement[];
+  surveys: Survey[];
+}
+
+interface Survey {
+  question: string;
+  isFirstSurvey?: boolean
+  surveyOptions: SurveyOption[];
+}
+
+interface SurveyOption {
+  name: string;
+  value: string;
 }
 
 export const initialData: SeedData = {
@@ -463,13 +474,15 @@ export const initialData: SeedData = {
   achievements: [
     {
       name: 'Curioso',
-      description: 'Has respondido 10 preguntas. Sigue explorando y aprendiendo.',
+      description:
+        'Has respondido 10 preguntas. Sigue explorando y aprendiendo.',
       image: 'assets/images/achievement/respuestas-10.svg',
       code: AchievementCode.RESPONDER_10, // Usa el enum
     },
     {
       name: 'Persistente',
-      description: 'Has respondido 15 preguntas. Tú dedicación está dando frutos.',
+      description:
+        'Has respondido 15 preguntas. Tú dedicación está dando frutos.',
       image: 'assets/images/achievement/respuestas-15.svg',
       code: AchievementCode.RESPONDER_15, // Usa el enum
     },
@@ -499,39 +512,132 @@ export const initialData: SeedData = {
     },
     {
       name: 'Preciso',
-      description: 'Has respondido correctamente 5 preguntas. Tú precisión es impresionante.',
+      description:
+        'Has respondido correctamente 5 preguntas. Tú precisión es impresionante.',
       image: 'assets/images/achievement/icono-de-exito-5-preguntas.svg',
       code: AchievementCode.PRECISION_5, // Usa el enum
     },
     {
       name: 'Experto',
-      description: 'Has respondido correctamente 10 preguntas. Eres un verdadero experto.',
+      description:
+        'Has respondido correctamente 10 preguntas. Eres un verdadero experto.',
       image: 'assets/images/achievement/estrella-del-trofeo-10-preguntas.svg',
       code: AchievementCode.PRECISION_10, // Usa el enum
     },
     {
       name: 'Maestro',
-      description: 'Has respondido correctamente 15 preguntas. Tú conocimiento es profundo.',
-      image: 'assets/images/achievement/icono-de-trofeo-correcto-15-preguntas.svg',
+      description:
+        'Has respondido correctamente 15 preguntas. Tú conocimiento es profundo.',
+      image:
+        'assets/images/achievement/icono-de-trofeo-correcto-15-preguntas.svg',
       code: AchievementCode.PRECISION_15, // Usa el enum
     },
     {
       name: 'Perfeccionista',
-      description: 'Has obtenido el 100% de aciertos en una categoría usando al menos una pista. Tú atención al detalle es excepcional.',
+      description:
+        'Has obtenido el 100% de aciertos en una categoría usando al menos una pista. Tú atención al detalle es excepcional.',
       image: 'assets/images/achievement/copa-de-plata.svg',
       code: AchievementCode.PERFECCIONISTA, // Usa el enum
     },
     {
       name: 'Dios Terrenal',
-      description: 'Has obtenido el 100% de aciertos en una categoría. Eres un verdadero maestro.',
+      description:
+        'Has obtenido el 100% de aciertos en una categoría. Eres un verdadero maestro.',
       image: 'assets/images/achievement/trofeo.svg',
       code: AchievementCode.MAESTRO, // Usa el enum
     },
     {
       name: 'Coleccionista',
-      description: 'Has desbloqueado todos los logros. Eres un verdadero coleccionista de conocimientos.',
+      description:
+        'Has desbloqueado todos los logros. Eres un verdadero coleccionista de conocimientos.',
       image: 'assets/images/achievement/linea-de-meta.svg',
       code: AchievementCode.COLECCIONISTA, // Usa el enum
     },
-  ]
+  ],
+  surveys: [
+    {
+      question:
+        '¿Cuál es tu nivel de interés en la asignatura de Historia y Geografía antes de usar la herramienta gamificada?',
+      surveyOptions: [
+        { name: 'Muy bueno', value: '5' },
+        { name: 'Muy mal', value: '1' },
+      ],
+      isFirstSurvey: true,
+    },
+    {
+      question:
+        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
+      surveyOptions: [
+        { name: 'Muy bueno', value: '5' },
+        { name: 'Bueno', value: '4' },
+        { name: 'Ninguno', value: '3' },
+      ],
+      isFirstSurvey: true,
+    },
+    {
+      question:
+        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
+      surveyOptions: [
+        { name: 'Muy bueno', value: '5' },
+        { name: 'Bueno', value: '4' },
+        { name: 'Ninguno', value: '3' },
+      ],
+      isFirstSurvey: true,
+    },
+    {
+      question:
+        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
+      surveyOptions: [
+        { name: 'Muy bueno', value: '5' },
+        { name: 'Bueno', value: '4' },
+        { name: 'Ninguno', value: '3' },
+      ],
+      isFirstSurvey: true,
+    },
+    {
+      question:
+        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
+      surveyOptions: [
+        { name: 'Muy bueno', value: '5' },
+        { name: 'Bueno', value: '4' },
+        { name: 'Ninguno', value: '3' },
+      ],
+    },
+    {
+      question:
+        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
+      surveyOptions: [
+        { name: 'Muy bueno', value: '5' },
+        { name: 'Bueno', value: '4' },
+        { name: 'Ninguno', value: '3' },
+      ],
+    },
+    {
+      question:
+        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
+      surveyOptions: [
+        { name: 'Muy bueno', value: '5' },
+        { name: 'Bueno', value: '4' },
+        { name: 'Ninguno', value: '3' },
+      ],
+    },
+    {
+      question:
+        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
+      surveyOptions: [
+        { name: 'Muy bueno', value: '5' },
+        { name: 'Bueno', value: '4' },
+        { name: 'Ninguno', value: '3' },
+      ],
+    },
+    {
+      question:
+        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
+      surveyOptions: [
+        { name: 'Muy bueno', value: '5' },
+        { name: 'Bueno', value: '4' },
+        { name: 'Ninguno', value: '3' },
+      ],
+    },
+  ],
 };

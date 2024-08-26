@@ -1,5 +1,7 @@
+import { Survey } from 'src/quiz/entities/survey.entity';
 import { UserAchievement } from 'src/quiz/entities/userAchievement';
 import { UserQuiz } from 'src/quiz/entities/userQuiz.entity';
+import { UserSurvey } from '../../quiz/entities/userSurvey.entity';
 import {
   AfterUpdate,
   BeforeInsert,
@@ -45,17 +47,14 @@ export class User {
   })
   roles: string[];
 
-  @OneToMany(
-    () => UserQuiz,
-    (userQuiz) => userQuiz.user,
-  )
+  @OneToMany(() => UserQuiz, (userQuiz) => userQuiz.user)
   userQuiz: UserQuiz[];
 
-  @OneToMany(
-    () => UserAchievement,
-    (userAchievement) => userAchievement.user,
-  )
+  @OneToMany(() => UserAchievement, (userAchievement) => userAchievement.user)
   userAchievements: UserAchievement[];
+
+  @OneToMany(() => UserSurvey, (userSurvey) => userSurvey.user)
+  userSurveys: UserSurvey[];
 
   @BeforeInsert()
   toLowerCaseAndRemoveSpaceBefore() {

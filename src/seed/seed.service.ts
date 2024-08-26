@@ -12,6 +12,8 @@ import { Answer } from 'src/quiz/entities/answer.entity';
 import { UserQuiz } from 'src/quiz/entities/userQuiz.entity';
 import { Achievement } from 'src/quiz/entities/achievement.entity';
 import { UserAchievement } from 'src/quiz/entities/userAchievement';
+import { Survey } from 'src/quiz/entities/survey.entity';
+import { SurveyOption } from 'src/quiz/entities/surveyOption.entity';
 
 @Injectable()
 export class SeedService {
@@ -36,6 +38,12 @@ export class SeedService {
 
     @InjectRepository(UserAchievement)
     private readonly userAchievementRepository: Repository<UserAchievement>,
+
+    @InjectRepository(Survey)
+    private readonly surveyRepository: Repository<Survey>,
+
+    @InjectRepository(SurveyOption)
+    private readonly surveyOptionRepository: Repository<SurveyOption>,
   ) { }
 
   async runSedd() {
@@ -44,6 +52,7 @@ export class SeedService {
     await this.insertQuizzes();
     await this.instertUserQuizzes();
     await this.inserAchievements();
+    await this.insertSurveys()
     return 'SEED EXECUTED.';
   }
 
@@ -75,6 +84,14 @@ export class SeedService {
     //!User
     const queryBuilderUser = this.userRepository.createQueryBuilder();
     await queryBuilderUser.delete().where({}).execute();
+
+    //!SurveyOption
+    const queryBuilderSurveyOption = this.surveyOptionRepository.createQueryBuilder();
+    await queryBuilderSurveyOption.delete().where({}).execute();
+
+    //!Survey
+    const queryBuilderSurvey = this.surveyRepository.createQueryBuilder();
+    await queryBuilderSurvey.delete().where({}).execute();
   }
 
 
@@ -166,5 +183,36 @@ export class SeedService {
 
     await this.achievementRepository.save(achievements);
   }
+
+  private async insertSurveys() {
+    
+    const seedSurveys = initialData.surveys;
+  
+    for (const survey of seedSurveys) {
+      const currentSurvey = this.surveyRepository.create({
+        question: survey.question,
+        isFirstSurvey: survey?.isFirstSurvey
+      });
+      
+      // Guardar la encuesta primero
+      const dbSurvey = await this.surveyRepository.save(currentSurvey);
+  
+      if (survey.surveyOptions && survey.surveyOptions.length > 0) {
+        const surveyOptions = survey.surveyOptions.map(option => 
+          this.surveyOptionRepository.create({
+            name: option.name,
+            value: option.value,
+            survey: dbSurvey,  // Asociar la opción con la encuesta guardada
+          })
+        );
+       
+        // Guardar las opciones después de la encuesta
+        await this.surveyOptionRepository.save(surveyOptions);
+      }
+    }    
+  
+    return;
+  }
+
 
 }

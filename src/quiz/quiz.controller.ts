@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   ParseUUIDPipe,
+  Query,
 } from '@nestjs/common';
 
 import { QuizService } from './quiz.service';
@@ -16,10 +17,12 @@ import { Auth } from 'src/auth/decorators/auth.decorator';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { GetUser } from 'src/auth/decorators/get-user.decorator';
 import { User } from 'src/auth/entities/user.entity';
+import { CreateSurveyDto } from './dto/create-survey.dto';
+import { CreateUserSurveyDto } from './dto/create-user-survey.dto';
 
 @Controller('quiz')
 export class QuizController {
-  constructor(private readonly quizService: QuizService) { }
+  constructor(private readonly quizService: QuizService) {}
 
   @Post()
   @Auth()
@@ -49,6 +52,18 @@ export class QuizController {
   @Auth()
   getAchievements(@GetUser() user: User) {
     return this.quizService.achievementsByUser(user);
+  }
+
+  @Get('surveys')
+  @Auth()
+  getSurveys(@Query('isFirst') isFirst: boolean) {
+    return this.quizService.getSurveyList(isFirst);
+  }
+
+  @Get('config')
+  @Auth()
+  getConfigs() {
+    return this.quizService.getConfigs();
   }
 
   @Get(':id')
@@ -92,13 +107,24 @@ export class QuizController {
     return this.quizService.savePointsWinned(user, body);
   }
 
+  @Post('survey')
+  @Auth()
+  createUserSurvey(
+    @GetUser() user: User,
+    @Body() createUserSurveys: CreateUserSurveyDto[],
+  ) {
+    return this.quizService.createUserSurvey(user, createUserSurveys);
+  }
+
   @Post('achievements/save')
   @Auth()
-  savedAchievement(
-    @GetUser() user: User,
-    @Body() body: { code: string },
-  ) {
+  savedAchievement(@GetUser() user: User, @Body() body: { code: string }) {
     return this.quizService.saveAchievementsUser(user, body);
   }
 
+  @Post('survey/create')
+  @Auth()
+  createSurvey(@GetUser() user: User, @Body() surveys: CreateSurveyDto[]) {
+    return this.quizService.createSurvey(user, surveys);
+  }
 }
