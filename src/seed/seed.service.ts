@@ -14,6 +14,8 @@ import { Achievement } from 'src/quiz/entities/achievement.entity';
 import { UserAchievement } from 'src/quiz/entities/userAchievement';
 import { Survey } from 'src/quiz/entities/survey.entity';
 import { SurveyOption } from 'src/quiz/entities/surveyOption.entity';
+import { Config } from 'src/quiz/entities/config.entity';
+import { UserSurvey } from 'src/quiz/entities/userSurvey.entity';
 
 @Injectable()
 export class SeedService {
@@ -44,7 +46,13 @@ export class SeedService {
 
     @InjectRepository(SurveyOption)
     private readonly surveyOptionRepository: Repository<SurveyOption>,
-  ) { }
+
+    @InjectRepository(Config)
+    private readonly configRepository: Repository<Config>,
+
+    @InjectRepository(UserSurvey)
+    private readonly userSurveyRepository: Repository<UserSurvey>,
+  ) {}
 
   async runSedd() {
     await this.deleteTables();
@@ -52,21 +60,32 @@ export class SeedService {
     await this.insertQuizzes();
     await this.instertUserQuizzes();
     await this.inserAchievements();
-    await this.insertSurveys()
+    await this.insertSurveys();
+    await this.insertInitialConfigs();
     return 'SEED EXECUTED.';
   }
 
   private async deleteTables() {
+    //!Config
+    const queryBuilderConfig = this.configRepository.createQueryBuilder();
+    await queryBuilderConfig.delete().where({}).execute();
+
     //!UserAchievement
-    const queryBuilderUserAchievement = this.userAchievementRepository.createQueryBuilder();
+    const queryBuilderUserAchievement =
+      this.userAchievementRepository.createQueryBuilder();
     await queryBuilderUserAchievement.delete().where({}).execute();
 
     //!UserQuiz
     const queryBuilderUserQuiz = this.userQuizRepository.createQueryBuilder();
     await queryBuilderUserQuiz.delete().where({}).execute();
 
+    //!UserSurvey
+    const queryBuilderUserSurvey = this.userSurveyRepository.createQueryBuilder();
+    await queryBuilderUserSurvey.delete().where({}).execute();
+
     //!Achievement
-    const queryBuilderAchievement = this.achievementRepository.createQueryBuilder();
+    const queryBuilderAchievement =
+      this.achievementRepository.createQueryBuilder();
     await queryBuilderAchievement.delete().where({}).execute();
 
     //!Answer
@@ -81,19 +100,19 @@ export class SeedService {
     const queryBuilderQuiz = this.quizRepository.createQueryBuilder();
     await queryBuilderQuiz.delete().where({}).execute();
 
-    //!User
-    const queryBuilderUser = this.userRepository.createQueryBuilder();
-    await queryBuilderUser.delete().where({}).execute();
-
     //!SurveyOption
-    const queryBuilderSurveyOption = this.surveyOptionRepository.createQueryBuilder();
+    const queryBuilderSurveyOption =
+      this.surveyOptionRepository.createQueryBuilder();
     await queryBuilderSurveyOption.delete().where({}).execute();
 
     //!Survey
     const queryBuilderSurvey = this.surveyRepository.createQueryBuilder();
     await queryBuilderSurvey.delete().where({}).execute();
-  }
 
+    //!User
+    const queryBuilderUser = this.userRepository.createQueryBuilder();
+    await queryBuilderUser.delete().where({}).execute();
+  }
 
   private async insertUsers() {
     const seedUsers = initialData.users;
@@ -170,7 +189,6 @@ export class SeedService {
     const achievements = [];
 
     initialData.achievements.forEach((achievement) => {
-
       const newAchievement = this.achievementRepository.create({
         name: achievement.name,
         description: achievement.description,
@@ -185,34 +203,53 @@ export class SeedService {
   }
 
   private async insertSurveys() {
-    
     const seedSurveys = initialData.surveys;
-  
+
     for (const survey of seedSurveys) {
       const currentSurvey = this.surveyRepository.create({
         question: survey.question,
-        isFirstSurvey: survey?.isFirstSurvey
+        isFirstSurvey: survey?.isFirstSurvey,
       });
-      
+
       // Guardar la encuesta primero
       const dbSurvey = await this.surveyRepository.save(currentSurvey);
-  
+
       if (survey.surveyOptions && survey.surveyOptions.length > 0) {
-        const surveyOptions = survey.surveyOptions.map(option => 
+        const surveyOptions = survey.surveyOptions.map((option) =>
           this.surveyOptionRepository.create({
             name: option.name,
             value: option.value,
-            survey: dbSurvey,  // Asociar la opción con la encuesta guardada
-          })
+            survey: dbSurvey, // Asociar la opción con la encuesta guardada
+          }),
         );
-       
+
         // Guardar las opciones después de la encuesta
         await this.surveyOptionRepository.save(surveyOptions);
       }
-    }    
-  
+    }
+
     return;
   }
 
+  insertInitialConfigs() {
+    const { configs } = initialData;
 
+    // configs.map((config) => {
+    //   this.configRepository.create({
+    //     ...config,
+    //   });
+    // });
+
+    const newConfigs = [];
+
+    configs.forEach((config) => {
+      newConfigs.push(
+        this.configRepository.create({
+          ...config,
+        }),
+      );
+    });
+
+    this.configRepository.save(newConfigs);
+  }
 }

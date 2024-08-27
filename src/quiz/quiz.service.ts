@@ -290,6 +290,7 @@ export class QuizService {
   async createSurvey(user: User, surveys: CreateSurveyDto[]) {}
 
   async getSurveyList(firstSurvey: boolean) {
+        
     return this.surveyRepositoty.find({
       where: {
         isFirstSurvey: firstSurvey,
@@ -322,5 +323,24 @@ export class QuizService {
 
   async getConfigs() {
     return this.configRepository.find({});
+  }
+
+  async createOrEditGlobalConfig(config: { name: string; value: boolean }) {
+    const existingConfig = await this.configRepository.findOne({
+      where: {
+        name: config.name,
+      },
+    });
+
+    if (existingConfig) {
+      existingConfig.value = config.value;
+      return this.configRepository.save(existingConfig);
+    } else {
+      const newConfig = this.configRepository.create({
+        name: config.name,
+        value: config.value,
+      });
+      return this.configRepository.save(newConfig);
+    }
   }
 }

@@ -8,6 +8,7 @@ import {
   Delete,
   ParseUUIDPipe,
   Query,
+  Put,
 } from '@nestjs/common';
 
 import { QuizService } from './quiz.service';
@@ -114,6 +115,12 @@ export class QuizController {
     @Body() createUserSurveys: CreateUserSurveyDto[],
   ) {
     return this.quizService.createUserSurvey(user, createUserSurveys);
+  }
+
+  @Put('config')
+  @Auth()
+  createOrEditGlobalConfig(@Body() config: { name: string; value: boolean }) {
+    return this.quizService.createOrEditGlobalConfig(config);
   }
 
   @Post('achievements/save')

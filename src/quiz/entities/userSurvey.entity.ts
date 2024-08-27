@@ -5,7 +5,7 @@ import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 't
 @Entity('user-surveys')
 export class UserSurvey{
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column({

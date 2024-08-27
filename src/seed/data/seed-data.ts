@@ -63,22 +63,30 @@ interface Achievement {
   code: string;
 }
 
-interface SeedData {
-  users: SeedUser[];
-  quizzes: Quizz[];
-  achievements: Achievement[];
-  surveys: Survey[];
-}
 
 interface Survey {
   question: string;
-  isFirstSurvey?: boolean
+  isFirstSurvey?: boolean;
   surveyOptions: SurveyOption[];
 }
 
 interface SurveyOption {
   name: string;
   value: string;
+}
+
+interface Config {
+  name: string;
+  value: boolean;
+  description: string;
+}
+
+interface SeedData {
+  users: SeedUser[];
+  quizzes: Quizz[];
+  achievements: Achievement[];
+  surveys: Survey[];
+  configs: Config[];
 }
 
 export const initialData: SeedData = {
@@ -556,8 +564,7 @@ export const initialData: SeedData = {
   ],
   surveys: [
     {
-      question:
-        '¿Cuál es tu nivel de interés en la asignatura de Historia y Geografía antes de usar la herramienta gamificada?',
+      question: '¿Esto debe verse en la primera encuenta?',
       surveyOptions: [
         { name: 'Muy bueno', value: '5' },
         { name: 'Muy mal', value: '1' },
@@ -565,74 +572,7 @@ export const initialData: SeedData = {
       isFirstSurvey: true,
     },
     {
-      question:
-        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
-      surveyOptions: [
-        { name: 'Muy bueno', value: '5' },
-        { name: 'Bueno', value: '4' },
-        { name: 'Ninguno', value: '3' },
-      ],
-      isFirstSurvey: true,
-    },
-    {
-      question:
-        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
-      surveyOptions: [
-        { name: 'Muy bueno', value: '5' },
-        { name: 'Bueno', value: '4' },
-        { name: 'Ninguno', value: '3' },
-      ],
-      isFirstSurvey: true,
-    },
-    {
-      question:
-        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
-      surveyOptions: [
-        { name: 'Muy bueno', value: '5' },
-        { name: 'Bueno', value: '4' },
-        { name: 'Ninguno', value: '3' },
-      ],
-      isFirstSurvey: true,
-    },
-    {
-      question:
-        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
-      surveyOptions: [
-        { name: 'Muy bueno', value: '5' },
-        { name: 'Bueno', value: '4' },
-        { name: 'Ninguno', value: '3' },
-      ],
-    },
-    {
-      question:
-        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
-      surveyOptions: [
-        { name: 'Muy bueno', value: '5' },
-        { name: 'Bueno', value: '4' },
-        { name: 'Ninguno', value: '3' },
-      ],
-    },
-    {
-      question:
-        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
-      surveyOptions: [
-        { name: 'Muy bueno', value: '5' },
-        { name: 'Bueno', value: '4' },
-        { name: 'Ninguno', value: '3' },
-      ],
-    },
-    {
-      question:
-        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
-      surveyOptions: [
-        { name: 'Muy bueno', value: '5' },
-        { name: 'Bueno', value: '4' },
-        { name: 'Ninguno', value: '3' },
-      ],
-    },
-    {
-      question:
-        '¿Qué tan familiarizado(a) estás con el uso de videojuegos educativos antes de esta experiencia?',
+      question: 'SEGUNDA ENCUESTA',
       surveyOptions: [
         { name: 'Muy bueno', value: '5' },
         { name: 'Bueno', value: '4' },
@@ -640,4 +580,16 @@ export const initialData: SeedData = {
       ],
     },
   ],
+  configs:[
+    {
+      name: 'firstSurvey',
+      value: true,
+      description: 'Primera encuesta activada'
+    },
+    {
+      name: 'showSurveyInMenu',
+      value: true,
+      description: 'Mostrar "Encuestas" en el menú'
+    }
+  ]
 };
