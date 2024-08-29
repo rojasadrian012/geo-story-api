@@ -122,28 +122,6 @@ export const initialData: SeedData = {
       title: 'Curiosidades',
       questions: [
         {
-          title:
-            '¿Cuál es la principal actividad económica en el distrito de Lima?',
-          hint: 'La actividad se centra en la elaboración de un producto tradicional paraguayo.',
-          answers: [
-            { text: 'Agricultura', isCorrect: true },
-            { text: 'Ganadería', isCorrect: false },
-            { text: 'Minería', isCorrect: false },
-            { text: 'Avicultura', isCorrect: false },
-          ],
-        },
-        {
-          title:
-            '¿Qué río bordea toda la zona oeste del Departamento de San Pedro?',
-          hint: 'Este río lo separa de la Región Occidental.',
-          answers: [
-            { text: 'Río Paraguay', isCorrect: true },
-            { text: 'Río Pilcomayo', isCorrect: false },
-            { text: 'Río Paraná', isCorrect: false },
-            { text: 'Río Apa', isCorrect: false },
-          ],
-        },
-        {
           title: '¿Cuál es la capital del Departamento de San Pedro?',
           hint: 'Antiguamente conocida como Ycuamandy-yú.',
           answers: [
@@ -165,15 +143,24 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Cuál es un recurso hídrico importante del Departamento de San Pedro?',
-          hint: 'Es un afluente del río Paraguay.',
+          title: '¿Qué significa el nombre "Ycuamandiyú"?',
+          hint: 'Está relacionado con un pozo y algo blanco.',
           answers: [
-            { text: 'Río Jejuí', isCorrect: true },
-            { text: 'Río Paraná', isCorrect: false },
-            { text: 'Río Pilcomayo', isCorrect: false },
-            { text: 'Río Tebicuary', isCorrect: false },
-          ],
+            { text: 'Pozo de agua cristalina', isCorrect: false },
+            { text: 'Pozo de algodón', isCorrect: true },
+            { text: 'Pozo de piedras negras', isCorrect: false },
+            { text: 'Pozo de piedras rojas', isCorrect: false },
+          ]
+        },
+        {
+          title: '¿Cuál es la ciudad más poblada del Departamento de San Pedro',
+          hint: 'No es la capital departamental.',
+          answers: [
+            { text: 'San Pedro de Ycuamandiyú', isCorrect: false },
+            { text: 'San Estanislao', isCorrect: true },
+            { text: 'Villa del Rosario', isCorrect: false },
+            { text: 'Villa del Rosario', isCorrect: false },
+          ]
         },
       ],
       image: 'assets/images/options-images/curiosidades.svg',
@@ -184,7 +171,7 @@ export const initialData: SeedData = {
       questions: [
         {
           title: '¿En qué año se fundó la ciudad de San Pedro de Ycuamandiyú?',
-          hint: 'Fue durante el gobierno de Pedro Melo de Portugal.',
+          hint: 'Fue a finales del siglo XVII.',
           answers: [
             { text: '1786', isCorrect: true },
             { text: '1800', isCorrect: false },
@@ -295,6 +282,28 @@ export const initialData: SeedData = {
             { text: 'Arroyo Mbutuy', isCorrect: false },
           ],
         },
+        {
+          title:
+            '¿Qué río bordea toda la zona oeste del Departamento de San Pedro?',
+          hint: 'Este río lo separa de la Región Occidental.',
+          answers: [
+            { text: 'Río Paraguay', isCorrect: true },
+            { text: 'Río Pilcomayo', isCorrect: false },
+            { text: 'Río Paraná', isCorrect: false },
+            { text: 'Río Apa', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿Cuál es un recurso hídrico importante del Departamento de San Pedro?',
+          hint: 'Es un afluente del río Paraguay.',
+          answers: [
+            { text: 'Río Jejuí', isCorrect: true },
+            { text: 'Río Paraná', isCorrect: false },
+            { text: 'Río Pilcomayo', isCorrect: false },
+            { text: 'Río Tebicuary', isCorrect: false },
+          ],
+        },
       ],
       image: 'assets/images/options-images/geografia.svg',
     },
@@ -355,6 +364,17 @@ export const initialData: SeedData = {
             { text: 'Procesamiento de soja', isCorrect: false },
             { text: 'Procesamiento de trigo', isCorrect: false },
             { text: 'Procesamiento de yerba mate', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿Cuál es la principal actividad económica en el distrito de Lima?',
+          hint: 'La actividad se centra en la elaboración de un producto tradicional paraguayo.',
+          answers: [
+            { text: 'Agricultura', isCorrect: true },
+            { text: 'Ganadería', isCorrect: false },
+            { text: 'Minería', isCorrect: false },
+            { text: 'Avicultura', isCorrect: false },
           ],
         },
       ],
@@ -580,7 +600,7 @@ export const initialData: SeedData = {
       ],
     },
   ],
-  configs:[
+  configs: [
     {
       name: 'firstSurvey',
       value: true,
