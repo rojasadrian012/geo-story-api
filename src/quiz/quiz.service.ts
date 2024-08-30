@@ -5,12 +5,12 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+
+import { Repository } from 'typeorm';
 
 import { CreateQuizDto } from './dto/create-quiz.dto';
 import { UpdateQuizDto } from './dto/update-quiz.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Quiz } from './entities/quiz.entity';
-import { Repository } from 'typeorm';
 import { User } from 'src/auth/entities/user.entity';
 import { UserQuiz } from './entities/userQuiz.entity';
 import { MinPointsUnlock } from './interfaces/min-points-unlock';
@@ -18,10 +18,10 @@ import { UserAchievement } from './entities/userAchievement';
 import { Achievement } from './entities/achievement.entity';
 import { CreateSurveyDto } from './dto/create-survey.dto';
 import { Survey } from './entities/survey.entity';
-import { SurveyOption } from './entities/surveyOption.entity';
 import { CreateUserSurveyDto } from './dto/create-user-survey.dto';
 import { UserSurvey } from './entities/userSurvey.entity';
 import { Config } from './entities/config.entity';
+import { Quiz } from './entities/quiz.entity';
 
 @Injectable()
 export class QuizService {
@@ -92,26 +92,69 @@ export class QuizService {
     return this.quizRepository.delete(id);
   }
 
+  shuffleArray<T>(array: T[]): T[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   async findByIdUserQuiz(id: string) {
-    return this.userQuizRepository
-      .createQueryBuilder('userQuiz')
-      .leftJoinAndSelect('userQuiz.quiz', 'quiz')
-      .leftJoinAndSelect('quiz.questions', 'question')
-      .leftJoinAndSelect('question.answers', 'answer')
-      .where('userQuiz.id = :id', { id })
-      .andWhere((qb) => {
-        const subQuery = qb
-          .subQuery()
-          .select('question.id')
-          .from('questions', 'question')
-          .where('question.quizId = quiz.id')
-          .orderBy('RANDOM()')
-          .limit(5)
-          .getQuery();
-        return 'question.id IN ' + subQuery;
-      })
-      .addOrderBy('RANDOM()') // Desordenar las respuestas dentro de cada pregunta
-      .getOne();
+    const userQuiz = await this.userQuizRepository.findOne({
+      where: {
+        id: id,
+      },
+      relations: {
+        quiz: {
+          questions: {
+            answers: true,
+          },
+        },
+      },
+      select: {
+        id: true,
+        score: true,
+        dataScore: true,
+        unlockLevel: true,
+        quiz: {
+          id: true,
+          title: true,
+          description: true,
+          difficulty: true,
+          questions: {
+            id: true,
+            title: true,
+            hint: true,
+            answers: {
+              id: true,
+              text: true,
+              isCorrect: true,
+            },
+          },
+        },
+      },
+      cache: true,
+    });
+
+    // Filtrar preguntas que tengan exactamente 4 respuestas
+    const validQuestions = userQuiz.quiz.questions.filter(
+      (question) => question.answers.length === 4,
+    );
+
+    // Seleccionar aleatoriamente 5 preguntas
+    const selectedQuestions = this.shuffleArray(validQuestions).slice(0, 5);
+
+    // Desordenar las respuestas de cada pregunta
+    selectedQuestions.forEach((question) => {
+      question.answers = this.shuffleArray(question.answers);
+    });
+
+    // Asignar las preguntas seleccionadas de vuelta al quiz
+    userQuiz.quiz.questions = selectedQuestions;
+
+
+    return userQuiz;
   }
 
   async levelsByUser(user: User) {
@@ -290,7 +333,6 @@ export class QuizService {
   async createSurvey(user: User, surveys: CreateSurveyDto[]) {}
 
   async getSurveyList(firstSurvey: boolean) {
-        
     return this.surveyRepositoty.find({
       where: {
         isFirstSurvey: firstSurvey,
