@@ -63,7 +63,6 @@ interface Achievement {
   code: string;
 }
 
-
 interface Survey {
   question: string;
   isFirstSurvey?: boolean;
@@ -93,26 +92,200 @@ export const initialData: SeedData = {
   users: [
     {
       nickname: 'admin',
-      fullName: 'Adrian Rojas',
-      password: 'admin123',
+      fullName: 'User Admin',
+      password: 'admin123#',
       roles: [ValidRoles.admin],
     },
     {
-      nickname: 'luis',
-      fullName: 'Luis Acosta',
-      password: 'admin123',
-      roles: [ValidRoles.admin],
+      nickname: '7611058',
+      fullName: 'Alderete Gimenez Tobias Alexander',
+      password: '7611058',
+      roles: [ValidRoles.user],
     },
     {
-      nickname: 'adrian',
-      fullName: 'Adrian Portillo',
-      password: 'admin123',
-      roles: [ValidRoles.user, ValidRoles.admin],
+      nickname: '7488999',
+      fullName: 'Barreto Caballero Zulma Noemi',
+      password: '7488999',
+      roles: [ValidRoles.user],
     },
     {
-      nickname: 'osvaldo',
-      fullName: 'Osvaldo Gonzalez',
-      password: 'admin123',
+      nickname: '7230113',
+      fullName: 'Barreto Mendez Cristobal Gabriel',
+      password: '7230113',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7438035',
+      fullName: 'Barreto Ruiz Ezequiel',
+      password: '7438035',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7393866',
+      fullName: 'Britez Insfran Jeremias Benjamin',
+      password: '7393866',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7820840',
+      fullName: 'Cardozo Estigarribia Rodrigo Misael',
+      password: '7820840',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7597627',
+      fullName: 'Cardozo Portillo Angel David',
+      password: '7597627',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7215585',
+      fullName: 'Castro Florentin Leryn Aylen',
+      password: '7215585',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7454947',
+      fullName: 'Cespedes Villalba Ruth Guadalupe',
+      password: '7454947',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7285535',
+      fullName: 'Da Silva Felippe Lucas Benjamin',
+      password: '7285535',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7489603',
+      fullName: 'De Paula Gonzalez Mathias Jose',
+      password: '7489603',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7503236',
+      fullName: 'Duarte Enciso Jackelin Abigail',
+      password: '7503236',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7624069',
+      fullName: 'Falcon Escobar Samira Magali',
+      password: '7624069',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7865104',
+      fullName: 'Fariña Gimenez Luz Yamila',
+      password: '7865104',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '506IV795195',
+      fullName: 'Gaona Barrios Deisy Jazmin',
+      password: '506IV795195',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7174199',
+      fullName: 'Gauto Sosa Ciro Samir',
+      password: '7174199',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '8026230',
+      fullName: 'Goncalves De Oliveira Kemily Victoria',
+      password: '8026230',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7366851',
+      fullName: 'Jara Zaracho Jonathan David',
+      password: '7366851',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7425623',
+      fullName: 'Lezcano Avalos Matheo Agustin',
+      password: '7425623',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7450560',
+      fullName: 'Lezcano Vera Alejandra Anahi',
+      password: '7450560',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7501439',
+      fullName: 'Lopez Carmona Alan Gabriel',
+      password: '7501439',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '52701250',
+      fullName: 'Lopez Romero Elias',
+      password: '52701250',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7263887',
+      fullName: 'Martinez Caceres Lucas Ignacio',
+      password: '7263887',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '8179330',
+      fullName: 'Medina Espinola Naomi Anahir',
+      password: '8179330',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7432659',
+      fullName: 'Mendoza Cardozo Iker Josias',
+      password: '7432659',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '536I60186',
+      fullName: 'Noguera Solis Tamara Lujan',
+      password: '536I60186',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7516849',
+      fullName: 'Parra Franco Fiorella Jazmin',
+      password: '7516849',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7325044',
+      fullName: 'Pereira Romero Cristhian David',
+      password: '7325044',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '506VI90631',
+      fullName: 'Romero Vega Lucas Daniel',
+      password: '506VI90631',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7226422',
+      fullName: 'Vallejos Aguirre Juan Angel',
+      password: '7226422',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7414003',
+      fullName: 'Vargas Cristaldo Oscar Daniel',
+      password: '7414003',
+      roles: [ValidRoles.user],
+    },
+    {
+      nickname: '7489622',
+      fullName: 'Zamphiropolos Sanchez Ares Nahuel',
+      password: '7489622',
       roles: [ValidRoles.user],
     },
   ],
@@ -134,33 +307,56 @@ export const initialData: SeedData = {
         {
           title:
             '¿Qué planta le dio el nombre a la ciudad de San Pedro de Ycuamandiyú?',
-          hint: 'La planta está relacionada con un pozo.',
+          hint: 'Es algo de color blanco.',
           answers: [
             { text: 'Algodón', isCorrect: true },
             { text: 'Yerba mate', isCorrect: false },
-            { text: 'Tabaco', isCorrect: false },
-            { text: 'Soja', isCorrect: false },
+            { text: 'Sandias', isCorrect: false },
+            { text: 'Naranja', isCorrect: false },
           ],
         },
         {
-          title: '¿Qué significa el nombre "Ycuamandiyú"?',
-          hint: 'Está relacionado con un pozo y algo blanco.',
-          answers: [
-            { text: 'Pozo de agua cristalina', isCorrect: false },
-            { text: 'Pozo de algodón', isCorrect: true },
-            { text: 'Pozo de piedras negras', isCorrect: false },
-            { text: 'Pozo de piedras rojas', isCorrect: false },
-          ]
-        },
-        {
-          title: '¿Cuál es la ciudad más poblada del Departamento de San Pedro',
+          title:
+            '¿Cuál es la ciudad más poblada del Departamento de San Pedro?',
           hint: 'No es la capital departamental.',
           answers: [
             { text: 'San Pedro de Ycuamandiyú', isCorrect: false },
             { text: 'San Estanislao', isCorrect: true },
             { text: 'Villa del Rosario', isCorrect: false },
-            { text: 'Villa del Rosario', isCorrect: false },
-          ]
+            { text: 'Lima', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿Cuántos kilómetros separan Minga Guazú de la capital de San Pedro?',
+          hint: 'Un poco más de 400 km.',
+          answers: [
+            { text: '401 km', isCorrect: true },
+            { text: '308 km', isCorrect: false },
+            { text: '450 km', isCorrect: false },
+            { text: '100 km', isCorrect: false },
+          ],
+        },
+        {
+          title: '¿Qué especie vegetal está en vías de extinción en San Pedro?',
+          hint: 'Es una cuestión compleja, ya que varias especies nativas están en peligro.',
+          answers: [
+            { text: 'Todas son correctas.', isCorrect: true },
+            { text: 'Pino', isCorrect: false },
+            { text: 'Yvyra Pyta', isCorrect: false },
+            { text: 'Lapacho', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿Cuántos kilómetros separan Asunción de la capital de San Pedro?',
+          hint: 'Casi 300 km.',
+          answers: [
+            { text: '298 km', isCorrect: true },
+            { text: '400 km', isCorrect: false },
+            { text: '300 km', isCorrect: false },
+            { text: '200 km', isCorrect: false },
+          ],
         },
       ],
       image: 'assets/images/options-images/curiosidades.svg',
@@ -180,18 +376,19 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Cuál tribu indígena se sublevó en Arecayá en 1660?',
-          hint: 'Se rebelaron contra el sistema de encomiendas.',
+          title: '¿Cuál era el nombre antiguo de la ciudad de Antequera?',
+          hint: 'El nombre está relacionado con una cruz.',
           answers: [
-            { text: 'Mbayá', isCorrect: true },
-            { text: 'Guaraní', isCorrect: false },
-            { text: 'Toba', isCorrect: false },
-            { text: 'Payaguá', isCorrect: false },
+            { text: 'Curuzú-chica', isCorrect: true },
+            { text: 'Villa Rosario', isCorrect: false },
+            { text: 'San Antonio', isCorrect: false },
+            { text: 'Ycuamandyju', isCorrect: false },
           ],
         },
         {
-          title: '¿Qué ley creó el Departamento de San Pedro en 1906?',
-          hint: 'La ley también abarcaba territorios de otros departamentos.',
+          title:
+            '¿Qué ley determinó los limites actuales del departamento de San Pedro?',
+          hint: 'Es es ley con numeración más baja.',
           answers: [
             { text: 'Ley Nº 426', isCorrect: true },
             { text: 'Ley Nº 1786', isCorrect: false },
@@ -212,13 +409,24 @@ export const initialData: SeedData = {
         },
         {
           title:
-            '¿Cuál es una de las ciudades fundadas en 1786 en el Departamento de San Pedro?',
-          hint: 'Es conocida por su nombre en guaraní.',
+            '¿Cuál es la iglesia declarada monumento histórico en San Estanislao?',
+          hint: 'Es el mismo nombre de la ciudad.',
           answers: [
-            { text: 'Villa del Rosario', isCorrect: true },
+            { text: 'Iglesia de San Estanislao', isCorrect: true },
+            { text: 'Catedral de San Pedro', isCorrect: false },
+            { text: 'Iglesia de Villa del Rosario', isCorrect: false },
+            { text: 'Iglesia de Lima', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿Qué población fue fundada en 1799 bajo el nombre "Capilla de las Mercedes de los Guaná de Tacuatí"?',
+          hint: 'Es un lugar que empieza con ‘T’.',
+          answers: [
+            { text: 'Tacuatí', isCorrect: true },
             { text: 'Choré', isCorrect: false },
-            { text: 'Itacurubí del Rosario', isCorrect: false },
-            { text: 'San Estanislao', isCorrect: false },
+            { text: 'San Vicente Pancholo', isCorrect: false },
+            { text: 'Capiibary', isCorrect: false },
           ],
         },
       ],
@@ -230,62 +438,8 @@ export const initialData: SeedData = {
       questions: [
         {
           title:
-            '¿Qué río desemboca en el río Paraguay a 12 km de Puerto Antequera?',
-          hint: 'Es un importante recurso hídrico de la zona.',
-          answers: [
-            { text: 'Río Jejuí', isCorrect: true },
-            { text: 'Río Paraná', isCorrect: false },
-            { text: 'Río Tebicuary', isCorrect: false },
-            { text: 'Río Pilcomayo', isCorrect: false },
-          ],
-        },
-        {
-          title:
-            '¿Cuál es la elevación importante en el distrito de Capiibary?',
-          hint: 'Es conocido como Cerro Dos de Oro.',
-          answers: [
-            { text: 'Cerro Dos de Oro', isCorrect: true },
-            { text: 'Sierra de San Joaquín', isCorrect: false },
-            { text: 'Cerro Corá', isCorrect: false },
-            { text: 'Cerro León', isCorrect: false },
-          ],
-        },
-        {
-          title:
-            '¿Qué río riega una considerable extensión del territorio de San Pedro?',
-          hint: 'Es uno de los ríos más importantes del Paraguay.',
-          answers: [
-            { text: 'Río Paraguay', isCorrect: true },
-            { text: 'Río Paraná', isCorrect: false },
-            { text: 'Río Pilcomayo', isCorrect: false },
-            { text: 'Río Tebicuary', isCorrect: false },
-          ],
-        },
-        {
-          title:
-            '¿Cuál es el afluente del río Paraguay que desemboca a la altura de Puerto Rosario?',
-          hint: 'Es conocido localmente.',
-          answers: [
-            { text: 'Río Cuarepotí', isCorrect: true },
-            { text: 'Río Jejuí', isCorrect: false },
-            { text: 'Río Manduvirá', isCorrect: false },
-            { text: 'Río Ypané', isCorrect: false },
-          ],
-        },
-        {
-          title: '¿Qué arroyo es un punto de atracción en Choré?',
-          hint: 'Es conocido por su nombre local.',
-          answers: [
-            { text: 'Arroyo Choré', isCorrect: true },
-            { text: 'Arroyo Tapiracuai', isCorrect: false },
-            { text: 'Arroyo Aguaray', isCorrect: false },
-            { text: 'Arroyo Mbutuy', isCorrect: false },
-          ],
-        },
-        {
-          title:
             '¿Qué río bordea toda la zona oeste del Departamento de San Pedro?',
-          hint: 'Este río lo separa de la Región Occidental.',
+          hint: 'Este Río separa de la Región Occidental y Oriental del país.',
           answers: [
             { text: 'Río Paraguay', isCorrect: true },
             { text: 'Río Pilcomayo', isCorrect: false },
@@ -294,14 +448,53 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title:
-            '¿Cuál es un recurso hídrico importante del Departamento de San Pedro?',
-          hint: 'Es un afluente del río Paraguay.',
+          title: '¿En qué región de Paraguay se encuentra San Pedro?',
+          hint: 'No es la región Occidental.',
           answers: [
-            { text: 'Río Jejuí', isCorrect: true },
-            { text: 'Río Paraná', isCorrect: false },
-            { text: 'Río Pilcomayo', isCorrect: false },
-            { text: 'Río Tebicuary', isCorrect: false },
+            { text: 'Región Oriental', isCorrect: true },
+            { text: 'Región Occidental', isCorrect: false },
+            { text: 'Región Este', isCorrect: false },
+            { text: 'Región Norte', isCorrect: false },
+          ],
+        },
+        {
+          title: '¿Cuántos distritos conforman el Departamento de San Pedro?',
+          hint: 'Es más de 20.',
+          answers: [
+            { text: '19', isCorrect: false },
+            { text: '21', isCorrect: true },
+            { text: '23', isCorrect: false },
+            { text: '18', isCorrect: false },
+          ],
+        },
+        {
+          title: '¿Qué departamento limita al norte con San Pedro?',
+          hint: 'Es el primer departamento de Paraguay.',
+          answers: [
+            { text: 'Concepción', isCorrect: true },
+            { text: 'Amambay', isCorrect: false },
+            { text: 'Caaguazú', isCorrect: false },
+            { text: 'Cordillera', isCorrect: false },
+          ],
+        },
+        {
+          title: '¿Cuál es la elevación más importante en San Pedro?',
+          hint: 'Su nombre hacer referencia a una cruz.',
+          answers: [
+            { text: 'Cerro Curuzú', isCorrect: true },
+            { text: 'Cerro Tres Kandu', isCorrect: false },
+            { text: 'Cerro Lambaré', isCorrect: false },
+            { text: 'Cerro Ñemby', isCorrect: false },
+          ],
+        },
+        {
+          title: '¿Cuál es la temperatura media anual en San Pedro?',
+          hint: 'Es un clima templado, incluye el número 20.',
+          answers: [
+            { text: '22,5°C', isCorrect: true },
+            { text: '18,3°C', isCorrect: false },
+            { text: '31,6°C', isCorrect: false },
+            { text: '30,0°C', isCorrect: false },
           ],
         },
       ],
@@ -313,57 +506,57 @@ export const initialData: SeedData = {
       questions: [
         {
           title:
-            '¿Cuál es uno de los sectores industriales presentes en San Pedro?',
-          hint: 'Es un sector relacionado con productos lácteos.',
+            '¿Cuáles son las principales actividades económicas en el Departamento de San Pedro?',
+          hint: 'Son dos actividades.',
           answers: [
-            { text: 'Industrias lácteas', isCorrect: true },
-            { text: 'Industrias de aceite', isCorrect: false },
-            { text: 'Industrias textiles', isCorrect: false },
-            { text: 'Industrias mineras', isCorrect: false },
-          ],
-        },
-        {
-          title:
-            '¿Qué producto es común en la producción agrícola de Colonia Volendam?',
-          hint: 'Es un cultivo importante para la región.',
-          answers: [
-            { text: 'Trigo', isCorrect: true },
-            { text: 'Algodón', isCorrect: false },
-            { text: 'Soja', isCorrect: false },
-            { text: 'Maíz', isCorrect: false },
-          ],
-        },
-        {
-          title:
-            '¿Qué industria es notable en el distrito de Itacurubí del Rosario?',
-          hint: 'Es un vehículo tradicional y antiguo.',
-          answers: [
-            { text: 'Fabricación de cachapé', isCorrect: true },
-            { text: 'Industria de yerba mate', isCorrect: false },
-            { text: 'Industria textil', isCorrect: false },
-            { text: 'Industria del cuero', isCorrect: false },
-          ],
-        },
-        {
-          title:
-            '¿Cuál es una de las fuentes principales de ingreso en San Pedro?',
-          hint: 'Está relacionado con productos agrícolas.',
-          answers: [
-            { text: 'Agricultura y ganadería', isCorrect: true },
+            { text: 'Agricultura y Ganadería', isCorrect: true },
             { text: 'Minería', isCorrect: false },
-            { text: 'Pesca', isCorrect: false },
-            { text: 'Manufactura', isCorrect: false },
+            { text: 'Comercio', isCorrect: false },
+            { text: 'Turismo', isCorrect: false },
           ],
         },
         {
           title:
-            '¿Qué industria se destaca en el procesamiento de alimentos en San Pedro?',
-          hint: 'Se enfoca en un subproducto del coco.',
+            '¿Qué cultivo es significativo en la agricultura de San Pedro?',
+          hint: 'Es utilizado para hacer mate.',
           answers: [
-            { text: 'Procesamiento de aceite de coco', isCorrect: true },
-            { text: 'Procesamiento de soja', isCorrect: false },
-            { text: 'Procesamiento de trigo', isCorrect: false },
-            { text: 'Procesamiento de yerba mate', isCorrect: false },
+            { text: 'Soja', isCorrect: false },
+            { text: 'Algodón', isCorrect: false },
+            { text: 'Yerba Mate', isCorrect: true },
+            { text: 'Trigo', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿Cuál es el porcentaje de tierras en San Pedro aptas para la agricultura y ganaderia?',
+          hint: 'Es más de la mitad del territorio.',
+          answers: [
+            { text: '62%', isCorrect: true },
+            { text: '48%', isCorrect: false },
+            { text: '35%', isCorrect: false },
+            { text: '75%', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿En qué es considerado el primer productor del País San Pedro?',
+          hint: 'Materia prima de los cigarrillos.',
+          answers: [
+            { text: 'Tabaco', isCorrect: true },
+            { text: 'Pepino', isCorrect: false },
+            { text: 'Tomate', isCorrect: false },
+            { text: 'Zanahoria', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿Qué puerto de San Pedro era conocido por la exportación de madera?',
+          hint: 'Está situado sobre el río Paraguay.',
+          answers: [
+            { text: 'Puerto Rosario', isCorrect: true },
+            { text: 'Puerto Antequera', isCorrect: false },
+            { text: 'Puerto Milagro', isCorrect: false },
+            { text: 'Puerto Santa Rosa', isCorrect: false },
           ],
         },
         {
@@ -385,55 +578,65 @@ export const initialData: SeedData = {
       title: 'Cultura',
       questions: [
         {
-          title: '¿Dónde se encuentra el Museo Histórico en San Estanislao?',
-          hint: 'Fue el primer colegio jesuita.',
+          title: '¿Quién es un prócer paraguayo originario de San Pedro?',
+          hint: 'Participó en la independencia de Paraguay.',
           answers: [
-            { text: 'Casa de la Cultura', isCorrect: true },
-            { text: 'Catedral San Pedro Apóstol', isCorrect: false },
-            { text: 'Kurusu García', isCorrect: false },
-            { text: 'Plaza Gral. Marcial Samaniego', isCorrect: false },
+            { text: 'Vicente Ignacio Iturbe', isCorrect: true },
+            { text: 'Mario Abdo Benítez', isCorrect: false },
+            { text: 'Carlos Antonio López', isCorrect: false },
+            { text: 'Santiago Peña Palacios', isCorrect: false },
+          ],
+        },
+        {
+          title: '¿Qué músico nació en San Pedro?',
+          hint: 'Su hace referencia a una Rosa.',
+          answers: [
+            { text: 'Rosita Melo', isCorrect: true },
+            { text: 'Agustín Barrios', isCorrect: false },
+            { text: 'Félix Pérez Cardozo', isCorrect: false },
+            { text: 'José Asunción Flores', isCorrect: false },
           ],
         },
         {
           title:
-            '¿Qué patrimonio de imágenes se encuentra en la Catedral de San Pedro?',
-          hint: 'Son imágenes del siglo XVIII.',
-          answers: [
-            { text: 'Imágenes barrocas', isCorrect: true },
-            { text: 'Imágenes modernas', isCorrect: false },
-            { text: 'Imágenes coloniales', isCorrect: false },
-            { text: 'Imágenes góticas', isCorrect: false },
-          ],
-        },
-        {
-          title:
-            '¿Qué festival se celebra anualmente en Itacurubí del Rosario?',
-          hint: 'Reúne a artistas de música y danza.',
+            '¿Cuál es el festival anual que se realiza en Itacurubí del Rosario?',
+          hint: 'Su nombre incluye "Agujero de agua" en guarani.',
           answers: [
             { text: 'Festival Ycuá Salas', isCorrect: true },
-            { text: 'Festival de San Pedro', isCorrect: false },
-            { text: 'Festival de la Yerba Mate', isCorrect: false },
-            { text: 'Festival de la Mandioca', isCorrect: false },
+            { text: 'Festival del Lago Ypacaraí', isCorrect: false },
+            { text: 'Festival del Takuare’ê', isCorrect: false },
+            { text: 'Festival de la Tradición Misionera', isCorrect: false },
           ],
         },
         {
-          title: '¿Cuál es el principal atractivo cultural de Lima?',
-          hint: 'Es una iglesia construida en tiempos de la colonia.',
+          title: '¿Qué iglesia eregida en tiempos de colonia aún conserva Lima?',
+          hint: 'Es una iglesia.',
           answers: [
-            { text: 'Iglesia de adobe', isCorrect: true },
+            { text: 'Iglesia de Adobe', isCorrect: true },
             { text: 'Casa de la Cultura', isCorrect: false },
             { text: 'Museo Histórico', isCorrect: false },
-            { text: 'Plaza principal', isCorrect: false },
+            { text: 'Iglesia de Caacupé', isCorrect: false },
           ],
         },
         {
-          title: '¿Qué emisora de radio es conocida en San Pedro?',
-          hint: 'La emisora lleva el nombre de la ciudad.',
+          title: '¿De donde es originario Kamba’i Echeverría?',
+          hint: 'Fruta bastante agria.',
           answers: [
-            { text: 'Radio Ycuamandiyú', isCorrect: true },
-            { text: 'Radio San Pedro', isCorrect: false },
-            { text: 'Radio Jejuí', isCorrect: false },
-            { text: 'Radio Lima', isCorrect: false },
+            { text: 'Lima', isCorrect: true },
+            { text: 'Antequera', isCorrect: false },
+            { text: 'Choré', isCorrect: false },
+            { text: '25 de Diciembre', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿Qué iglesia en San Estanislao ha sido declarada monumento histórico?',
+          hint: 'Incluye el nombre de la ciudad más poblada.',
+          answers: [
+            { text: 'Iglesia de San Estanislao', isCorrect: true },
+            { text: 'Catedral de San Pedro', isCorrect: false },
+            { text: 'Iglesia de Villa del Rosario', isCorrect: false },
+            { text: 'Iglesia de Santa Rosa', isCorrect: false },
           ],
         },
       ],
@@ -444,13 +647,47 @@ export const initialData: SeedData = {
       title: 'Turismo',
       questions: [
         {
-          title: '¿Qué balneario es una atracción turística en Lima?',
-          hint: 'Es conocido por su playa.',
+          title:
+            '¿Qué ciudad en San Pedro es conocida por su festival anual Ycuá Salas?',
+          hint: 'Está situada al sur del departamento.',
           answers: [
-            { text: 'Balneario de Lima', isCorrect: true },
-            { text: 'Balneario de San Pedro', isCorrect: false },
-            { text: 'Balneario de Choré', isCorrect: false },
-            { text: 'Balneario de Itacurubí', isCorrect: false },
+            { text: 'Itacurubí del Rosario', isCorrect: true },
+            { text: 'San Estanislao', isCorrect: false },
+            { text: 'Santa Rosa del Aguaray', isCorrect: false },
+            { text: 'Villa del Rosario', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿Qué catedral en San Pedro, construida en 1854, es un atractivo turístico importante?',
+          hint: 'Está ubicada en la capital departamental.',
+          answers: [
+            { text: 'Catedral de San Pedro', isCorrect: true },
+            { text: 'Catedral de San Estanislao', isCorrect: false },
+            { text: 'Catedral de Villa del Rosario', isCorrect: false },
+            { text: 'Catedral de Santa Rosa', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿Qué cerro en San Pedro es una elevación importante en el distrito de Capiibary?',
+          hint: 'Incluye un número en el nombre.',
+          answers: [
+            { text: 'Cerro Dos de Oro', isCorrect: true },
+            { text: 'Cerro Curuzú', isCorrect: false },
+            { text: 'Cerro Lambaré', isCorrect: false },
+            { text: 'Cerro Ñemby', isCorrect: false },
+          ],
+        },
+        {
+          title:
+            '¿Qué distrito posee un hermoso balneario sobre el arroyo Mbutuy?',
+          hint: 'Su nombre es una fecha festiva importante.',
+          answers: [
+            { text: '25 de Diciembre', isCorrect: true },
+            { text: 'Tacuatí', isCorrect: false },
+            { text: 'Antequera', isCorrect: false },
+            { text: 'San Pablo', isCorrect: false },
           ],
         },
         {
@@ -465,34 +702,13 @@ export const initialData: SeedData = {
         },
         {
           title:
-            '¿Qué lugar en San Estanislao es conocido como un sitio histórico?',
-          hint: 'Es el lugar donde murió el explorador Alejo García.',
+            '¿Qué arroyo en San Estanislao es conocido por las leyendas que giran en torno a sus aguas?',
+          hint: 'Actualmente está muy contaminado por la urbanización.',
           answers: [
-            { text: 'Kurusu García', isCorrect: true },
-            { text: 'Plaza Libertad', isCorrect: false },
-            { text: 'Catedral San Pedro Apóstol', isCorrect: false },
-            { text: 'Ykua Kuéra', isCorrect: false },
-          ],
-        },
-        {
-          title:
-            '¿Qué sierra marca los límites con el departamento de Caaguazú?',
-          hint: 'Es una elevación importante en el horizonte.',
-          answers: [
-            { text: 'Sierra de San Joaquín', isCorrect: true },
-            { text: 'Cerro Dos de Oro', isCorrect: false },
-            { text: 'Cerro Corá', isCorrect: false },
-            { text: 'Cerro León', isCorrect: false },
-          ],
-        },
-        {
-          title: '¿Qué río en San Pedro es un afluente del río Paraguay?',
-          hint: 'Desemboca en el río Paraguay cerca de Puerto Rosario.',
-          answers: [
-            { text: 'Río Cuarepotí', isCorrect: true },
-            { text: 'Río Jejuí', isCorrect: false },
-            { text: 'Río Manduvirá', isCorrect: false },
-            { text: 'Río Ypané', isCorrect: false },
+            { text: 'Arroyo Tapiracuái', isCorrect: true },
+            { text: 'Arroyo Ybytyty', isCorrect: false },
+            { text: 'Arroyo Pytá', isCorrect: false },
+            { text: 'Arroyo Guazú', isCorrect: false },
           ],
         },
       ],
@@ -604,12 +820,12 @@ export const initialData: SeedData = {
     {
       name: 'firstSurvey',
       value: true,
-      description: 'Primera encuesta activada'
+      description: 'Primera encuesta activada',
     },
     {
       name: 'showSurveyInMenu',
       value: true,
-      description: 'Mostrar "Encuestas" en el menú'
-    }
-  ]
+      description: 'Mostrar "Encuestas" en el menú',
+    },
+  ],
 };
