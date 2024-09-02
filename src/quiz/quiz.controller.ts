@@ -20,6 +20,7 @@ import { GetUser } from 'src/auth/decorators/get-user.decorator';
 import { User } from 'src/auth/entities/user.entity';
 import { CreateSurveyDto } from './dto/create-survey.dto';
 import { CreateUserSurveyDto } from './dto/create-user-survey.dto';
+import { ValidRoles } from 'src/auth/interface/valid-roles';
 
 @Controller('quiz')
 export class QuizController {
@@ -65,6 +66,12 @@ export class QuizController {
   @Auth()
   getConfigs() {
     return this.quizService.getConfigs();
+  }
+
+  @Get('fisrt-second-survey')
+  @Auth(ValidRoles.admin)
+  getFirstAndSecondSurveys(){
+    return this.quizService.getSurveyCompletionStatus()
   }
 
   @Get(':id')

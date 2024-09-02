@@ -1,10 +1,13 @@
-import { IsString } from "class-validator"
+import { IsEnum, IsString } from 'class-validator';
+import { SurveyType } from '../entities/userSurvey.entity';
 
-export class CreateUserSurveyDto{
-    
-    @IsString()
-    response: string
+export class CreateUserSurveyDto {
+  @IsString()
+  response: string;
 
-    @IsString()
-    surveyId: string
+  @IsString()
+  surveyId: string;
+
+  @IsEnum(SurveyType)
+  type: SurveyType;
 }

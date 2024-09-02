@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { Repository } from 'typeorm';
+import { Not, Repository } from 'typeorm';
 
 import { CreateQuizDto } from './dto/create-quiz.dto';
 import { UpdateQuizDto } from './dto/update-quiz.dto';
@@ -19,7 +19,7 @@ import { Achievement } from './entities/achievement.entity';
 import { CreateSurveyDto } from './dto/create-survey.dto';
 import { Survey } from './entities/survey.entity';
 import { CreateUserSurveyDto } from './dto/create-user-survey.dto';
-import { UserSurvey } from './entities/userSurvey.entity';
+import { SurveyType, UserSurvey } from './entities/userSurvey.entity';
 import { Config } from './entities/config.entity';
 import { Quiz } from './entities/quiz.entity';
 
@@ -46,6 +46,9 @@ export class QuizService {
 
     @InjectRepository(Config)
     private readonly configRepository: Repository<Config>,
+
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
   private handleDataBaseExceptions(error: any) {
@@ -152,7 +155,6 @@ export class QuizService {
 
     // Asignar las preguntas seleccionadas de vuelta al quiz
     userQuiz.quiz.questions = selectedQuestions;
-
 
     return userQuiz;
   }
@@ -344,7 +346,24 @@ export class QuizService {
   }
 
   async createUserSurvey(user: User, createUserSurveys: CreateUserSurveyDto[]) {
-    console.log({ user, createUserSurveys });
+    const userInTable = await this.userSurveyRepository.findOne({
+      where: {
+        user: {
+          id: user.id,
+        },
+        type: createUserSurveys[0].type,
+      },
+    });
+
+    if (userInTable) {
+      if (userInTable) {
+        throw new ConflictException(
+          `${user.fullName} ya completaste la ${
+            createUserSurveys[0].type === 'first' ? 'primera' : 'segunda'
+          }  encuesta.`,
+        );
+      }
+    }
 
     const surveys = [];
 
@@ -356,6 +375,7 @@ export class QuizService {
           survey: {
             id: createUserSurvey.surveyId,
           },
+          type: createUserSurvey.type,
         }),
       );
     });
@@ -384,5 +404,91 @@ export class QuizService {
       });
       return this.configRepository.save(newConfig);
     }
+  }
+
+  async getSurveyCompletionStatus() {
+    // Obtener los usuarios que han completado la primera encuesta, excluyendo "admin"
+    const usersWithFirstSurvey = await this.userSurveyRepository.find({
+      relations: {
+        user: true,
+        survey: true,
+      },
+      where: {
+        type: SurveyType.FIRST,
+        user: {
+          nickname: Not('admin'),
+        },
+      },
+      select: {
+        user: {
+          id: true,
+          nickname: true,
+          fullName: true,
+        },
+      },
+    });
+
+    // Obtener los usuarios que han completado la segunda encuesta, excluyendo "admin"
+    const usersWithSecondSurvey = await this.userSurveyRepository.find({
+      relations: {
+        user: true,
+        survey: true,
+      },
+      where: {
+        type: SurveyType.SECOND,
+        user: {
+          nickname: Not('admin'),
+        },
+      },
+      select: {
+        user: {
+          id: true,
+          nickname: true,
+          fullName: true,
+        },
+      },
+    });
+
+    // Extraer los IDs de usuarios que han completado la primera y segunda encuesta
+    const userIdsWithFirstSurvey = usersWithFirstSurvey.map(
+      (userSurvey) => userSurvey.user.id,
+    );
+    const userIdsWithSecondSurvey = usersWithSecondSurvey.map(
+      (userSurvey) => userSurvey.user.id,
+    );
+
+    // Obtener todos los usuarios, excluyendo "admin"
+    const allUsers = await this.userRepository.find({
+      where: {
+        nickname: Not('admin'),
+      },
+      select: {
+        id: true,
+        fullName: true,
+        nickname: true,
+      },
+    });
+
+    // Filtrar los usuarios que no han completado la primera encuesta
+    const usersWithoutFirstSurvey = allUsers.filter(
+      (user) => !userIdsWithFirstSurvey.includes(user.id),
+    );
+
+    // Filtrar los usuarios que no han completado la segunda encuesta
+    const usersWithoutSecondSurvey = allUsers.filter(
+      (user) => !userIdsWithSecondSurvey.includes(user.id),
+    );
+
+    // Retornar los resultados
+    return {
+      firstSurvey: {
+        completed: usersWithFirstSurvey.map((us) => us.user),
+        notCompleted: usersWithoutFirstSurvey,
+      },
+      secondSurvey: {
+        completed: usersWithSecondSurvey.map((us) => us.user),
+        notCompleted: usersWithoutSecondSurvey,
+      },
+    };
   }
 }
