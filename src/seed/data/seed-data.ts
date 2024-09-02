@@ -609,7 +609,8 @@ export const initialData: SeedData = {
           ],
         },
         {
-          title: '¿Qué iglesia eregida en tiempos de colonia aún conserva Lima?',
+          title:
+            '¿Qué iglesia eregida en tiempos de colonia aún conserva Lima?',
           hint: 'Es una iglesia.',
           answers: [
             { text: 'Iglesia de Adobe', isCorrect: true },
@@ -799,23 +800,163 @@ export const initialData: SeedData = {
     },
   ],
   surveys: [
+    // Pre-encuesta
     {
-      question: '¿Esto debe verse en la primera encuenta?',
+      question:
+        '¿Qué tan familiarizado(a) estás con herramientas web educativas?',
       surveyOptions: [
-        { name: 'Muy bueno', value: '5' },
-        { name: 'Muy mal', value: '1' },
+        { name: 'Muy familiarizado(a)', value: '5' },
+        { name: 'Algo familiarizado(a)', value: '3' },
+        { name: 'Nada familiarizado(a)', value: '1' },
       ],
       isFirstSurvey: true,
     },
     {
-      question: 'SEGUNDA ENCUESTA',
+      question:
+        '¿Qué tanto sabes sobre la historia y geografía del Departamento de San Pedro?',
       surveyOptions: [
-        { name: 'Muy bueno', value: '5' },
-        { name: 'Bueno', value: '4' },
-        { name: 'Ninguno', value: '3' },
+        { name: 'Mucho', value: '5' },
+        { name: 'Poco', value: '3' },
+        { name: 'Nada', value: '1' },
+      ],
+      isFirstSurvey: true,
+    },
+    {
+      question:
+        '¿Qué tan importante crees que sea aprender sobre la historia y geografía de Paraguay en la actualidad?',
+      surveyOptions: [
+        { name: 'Muy importante', value: '5' },
+        { name: 'Algo importante', value: '3' },
+        { name: 'Poco importante', value: '1' },
+      ],
+      isFirstSurvey: true,
+    },
+    {
+      question:
+        '¿Qué tan interesado(a) estás en aprender sobre la historia y geografía de Paraguay?',
+      surveyOptions: [
+        { name: 'Muy interesado(a)', value: '5' },
+        { name: 'Algo interesado(a)', value: '3' },
+        { name: 'Nada interesado(a)', value: '1' },
+      ],
+      isFirstSurvey: true,
+    },
+    {
+      question:
+        '¿Cuánta experiencia tienes en el uso de plataformas web educativas?',
+      surveyOptions: [
+        { name: 'Mucha experiencia', value: '5' },
+        { name: 'Algo de experiencia', value: '3' },
+        { name: 'Ninguna experiencia', value: '1' },
+      ],
+      isFirstSurvey: true,
+    },
+    {
+      question:
+        '¿Tienes buenas expectativas sobre la herramienta web presentada?',
+      surveyOptions: [
+        { name: 'Altas expectativas', value: '5' },
+        { name: 'Expectativas moderadas', value: '3' },
+        { name: 'Bajas expectativas', value: '1' },
+      ],
+      isFirstSurvey: true,
+    },
+    {
+      question:
+        '¿Consideras que las herramientas web pueden ser una manera efectiva de aprender historia y geografía?',
+      surveyOptions: [
+        { name: 'Muy efectivo', value: '5' },
+        { name: 'Algo efectivo', value: '3' },
+        { name: 'Poco efectivo', value: '1' },
+      ],
+      isFirstSurvey: true,
+    },
+    {
+      question:
+        '¿Cuál es tu nivel de motivación para utilizar una herramienta web para el aprendizaje?',
+      surveyOptions: [
+        { name: 'Muy motivado(a)', value: '5' },
+        { name: 'Algo motivado(a)', value: '3' },
+        { name: 'Nada motivado(a)', value: '1' },
+      ],
+      isFirstSurvey: true,
+    },
+
+    // Post-encuesta
+    {
+      question:
+        '¿Cuál es tu nivel de satisfacción con la herramienta web de historia y geografía?',
+      surveyOptions: [
+        { name: 'Muy satisfecho(a)', value: '5' },
+        { name: 'Satisfecho(a)', value: '3' },
+        { name: 'Insatisfecho(a)', value: '1' },
+      ],
+    },
+    {
+      question:
+        '¿Crees que la herramienta web te ayudó a mejorar tu conocimiento sobre la historia y geografía?',
+      surveyOptions: [
+        { name: 'Sí, mejoré mucho', value: '5' },
+        { name: 'Mejoré algo', value: '3' },
+        { name: 'No mejoré', value: '1' },
+      ],
+    },
+    {
+      question:
+        '¿Te resultó entretenido utilizar la herramienta web para aprender sobre historia y geografía?',
+      surveyOptions: [
+        { name: 'Muy entretenido', value: '5' },
+        { name: 'Algo entretenido', value: '3' },
+        { name: 'Nada entretenido', value: '1' },
+      ],
+    },
+    {
+      question:
+        '¿Cómo calificarías la utilidad de la herramienta web para enseñar historia y geografía?',
+      surveyOptions: [
+        { name: 'Muy útil', value: '5' },
+        { name: 'Algo útil', value: '3' },
+        { name: 'Poco útil', value: '1' },
+      ],
+    },
+    {
+      question:
+        '¿Crees que la herramienta web despertó tu interés por la historia y geografía de Paraguay?',
+      surveyOptions: [
+        { name: 'Mucho', value: '5' },
+        { name: 'Algo', value: '3' },
+        { name: 'Nada', value: '1' },
+      ],
+    },
+    {
+      question:
+        '¿Crees que la herramienta web podría ser útil para enseñar historia y geografía a otras personas?',
+      surveyOptions: [
+        { name: 'Sí, muy útil', value: '5' },
+        { name: 'Algo útil', value: '3' },
+        { name: 'No útil', value: '1' },
+      ],
+    },
+    {
+      question:
+        '¿Cambió tu percepción sobre la importancia de aprender historia y geografía después de utilizar la herramienta web?',
+      surveyOptions: [
+        { name: 'Sí, mucho', value: '5' },
+        { name: 'Un poco', value: '3' },
+        { name: 'No cambió', value: '1' },
+      ],
+    },
+    {
+      question:
+        '¿Te sentiste motivado a seguir utilizando la herramienta web después de tu primera experiencia?',
+      surveyOptions: [
+        { name: 'Sí, muy motivado', value: '5' },
+        { name: 'Algo motivado', value: '3' },
+        { name: 'Nada motivado', value: '1' },
       ],
     },
   ],
+
   configs: [
     {
       name: 'firstSurvey',
