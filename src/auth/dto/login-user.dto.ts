@@ -10,9 +10,10 @@ export class LoginUserDto {
     @MinLength(6)
     @MaxLength(50)
     @Matches(
-        /(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-z]).*$/, {
-        message: 'La contraseña debe tener al menos una letra y un numero.'
+        /^(?=.*[a-zA-Z0-9]).*$/, {
+        message: 'La contraseña debe tener al menos una letra o un número.'
     })
+    
     password: string;
 
 }
