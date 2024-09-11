@@ -49,7 +49,7 @@ export class QuizService {
 
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-  ) {}
+  ) { }
 
   private handleDataBaseExceptions(error: any) {
     if (error.code === '23505')
@@ -332,7 +332,7 @@ export class QuizService {
     return achievement;
   }
 
-  async createSurvey(user: User, surveys: CreateSurveyDto[]) {}
+  async createSurvey(user: User, surveys: CreateSurveyDto[]) { }
 
   async getSurveyList(firstSurvey: boolean) {
     return this.surveyRepositoty.find({
@@ -358,8 +358,7 @@ export class QuizService {
     if (userInTable) {
       if (userInTable) {
         throw new ConflictException(
-          `${user.fullName} ya completaste la ${
-            createUserSurveys[0].type === 'first' ? 'primera' : 'segunda'
+          `${user.fullName} ya completaste la ${createUserSurveys[0].type === 'first' ? 'primera' : 'segunda'
           }  encuesta.`,
         );
       }
@@ -408,53 +407,37 @@ export class QuizService {
 
   async getSurveyCompletionStatus() {
     // Obtener los usuarios que han completado la primera encuesta, excluyendo "admin"
-    const usersWithFirstSurvey = await this.userSurveyRepository.find({
-      relations: {
-        user: true,
-        survey: true,
-      },
-      where: {
-        type: SurveyType.FIRST,
-        user: {
-          nickname: Not('admin'),
-        },
-      },
-      select: {
-        user: {
-          id: true,
-          nickname: true,
-          fullName: true,
-        },
-      },
-    });
+    const usersWithFirstSurvey = await this.userSurveyRepository
+      .createQueryBuilder('userSurvey')
+      .leftJoinAndSelect('userSurvey.user', 'user')
+      .leftJoinAndSelect('userSurvey.survey', 'survey')
+      .where('userSurvey.type = :type', { type: SurveyType.FIRST })
+      .andWhere('user.nickname != :admin', { admin: 'admin' })
+      .groupBy('user.id')  // Agrupamos solo por usuario
+      .select(['user.id as userId', 'user.nickname as nickname', 'user.fullName as fullName'])
+      .getRawMany();
+
+    console.log(usersWithFirstSurvey);
 
     // Obtener los usuarios que han completado la segunda encuesta, excluyendo "admin"
-    const usersWithSecondSurvey = await this.userSurveyRepository.find({
-      relations: {
-        user: true,
-        survey: true,
-      },
-      where: {
-        type: SurveyType.SECOND,
-        user: {
-          nickname: Not('admin'),
-        },
-      },
-      select: {
-        user: {
-          id: true,
-          nickname: true,
-          fullName: true,
-        },
-      },
-    });
+    const usersWithSecondSurvey = await this.userSurveyRepository
+      .createQueryBuilder('userSurvey')
+      .leftJoinAndSelect('userSurvey.user', 'user')
+      .leftJoinAndSelect('userSurvey.survey', 'survey')
+      .where('userSurvey.type = :type', { type: SurveyType.SECOND })
+      .andWhere('user.nickname != :admin', { admin: 'admin' })
+      .groupBy('user.id')  // Agrupamos solo por usuario
+      .select(['user.id as userId', 'user.nickname as nickname', 'user.fullName as fullName'])
+      .getRawMany();
+
+    console.log(usersWithSecondSurvey);
 
     // Extraer los IDs de usuarios que han completado la primera y segunda encuesta
     const userIdsWithFirstSurvey = usersWithFirstSurvey.map(
-      (userSurvey) => userSurvey.user.id,
+      (userSurvey) => userSurvey.userid  // Ajustamos para usar los campos devueltos por getRawMany()
     );
     const userIdsWithSecondSurvey = usersWithSecondSurvey.map(
-      (userSurvey) => userSurvey.user.id,
+      (userSurvey) => userSurvey.userid
     );
 
     // Obtener todos los usuarios, excluyendo "admin"
@@ -469,6 +452,9 @@ export class QuizService {
       },
     });
 
+    console.log(userIdsWithFirstSurvey);
+
+
     // Filtrar los usuarios que no han completado la primera encuesta
     const usersWithoutFirstSurvey = allUsers.filter(
       (user) => !userIdsWithFirstSurvey.includes(user.id),
@@ -482,13 +468,22 @@ export class QuizService {
     // Retornar los resultados
     return {
       firstSurvey: {
-        completed: usersWithFirstSurvey.map((us) => us.user),
+        completed: usersWithFirstSurvey.map((us) => ({
+          id: us.userid,
+          nickname: us.nickname,
+          fullName: us.fullname
+        })),
         notCompleted: usersWithoutFirstSurvey,
       },
       secondSurvey: {
-        completed: usersWithSecondSurvey.map((us) => us.user),
+        completed: usersWithSecondSurvey.map((us) => ({
+          id: us.userid,
+          nickname: us.nickname,
+          fullName: us.fullname
+        })),
         notCompleted: usersWithoutSecondSurvey,
       },
     };
   }
+
 }
