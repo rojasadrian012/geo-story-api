@@ -791,29 +791,28 @@ export const initialData: SeedData = {
       image: 'assets/images/achievement/trofeo.svg',
       code: AchievementCode.MAESTRO, // Usa el enum
     },
-    {
-      name: 'Coleccionista',
-      description:
-        'Has desbloqueado todos los logros. Eres un verdadero coleccionista de conocimientos.',
-      image: 'assets/images/achievement/linea-de-meta.svg',
-      code: AchievementCode.COLECCIONISTA, // Usa el enum
-    },
+    // {
+    //   name: 'Coleccionista',
+    //   description:
+    //     'Has desbloqueado todos los logros. Eres un verdadero coleccionista de conocimientos.',
+    //   image: 'assets/images/achievement/linea-de-meta.svg',
+    //   code: AchievementCode.COLECCIONISTA, // Usa el enum
+    // },
   ],
   surveys: [
     // Pre-encuesta
     {
       question:
-        '¿Qué tan familiarizado(a) estás con herramientas web educativas?',
+        '¿Qué tanto te gusta aprender sobre la historia y geografía del Departamento de San Pedro?',
       surveyOptions: [
-        { name: 'Muy familiarizado(a)', value: '5' },
-        { name: 'Algo familiarizado(a)', value: '3' },
-        { name: 'Nada familiarizado(a)', value: '1' },
+        { name: 'Me gusta mucho', value: '5' },
+        { name: 'Me gusta un poco', value: '3' },
+        { name: 'No me gusta', value: '1' },
       ],
       isFirstSurvey: true,
     },
     {
-      question:
-        '¿Qué tanto sabes sobre la historia y geografía del Departamento de San Pedro?',
+      question: '¿Qué tanto conoces las páginas web para aprender?',
       surveyOptions: [
         { name: 'Mucho', value: '5' },
         { name: 'Poco', value: '3' },
@@ -823,7 +822,17 @@ export const initialData: SeedData = {
     },
     {
       question:
-        '¿Qué tan importante crees que sea aprender sobre la historia y geografía de Paraguay en la actualidad?',
+        '¿Qué tanto sabes sobre la historia y geografía del Departamento de San Pedro?',
+      surveyOptions: [
+        { name: 'Sé mucho', value: '5' },
+        { name: 'Sé un poco', value: '3' },
+        { name: 'No sé nada', value: '1' },
+      ],
+      isFirstSurvey: true,
+    },
+    {
+      question:
+        '¿Qué tan importante es aprender sobre la historia y geografía de San Pedro?',
       surveyOptions: [
         { name: 'Muy importante', value: '5' },
         { name: 'Algo importante', value: '3' },
@@ -832,78 +841,45 @@ export const initialData: SeedData = {
       isFirstSurvey: true,
     },
     {
-      question:
-        '¿Qué tan interesado(a) estás en aprender sobre la historia y geografía de Paraguay?',
+      question: '¿Qué tanto te gustaría usar una página web para aprender?',
       surveyOptions: [
-        { name: 'Muy interesado(a)', value: '5' },
-        { name: 'Algo interesado(a)', value: '3' },
-        { name: 'Nada interesado(a)', value: '1' },
+        { name: 'Me gustaría mucho', value: '5' },
+        { name: 'Me gustaría un poco', value: '3' },
+        { name: 'No me gustaría', value: '1' },
       ],
       isFirstSurvey: true,
     },
     {
-      question:
-        '¿Cuánta experiencia tienes en el uso de plataformas web educativas?',
+      question: '¿Esperas que la página web que vamos a usar sea buena?',
       surveyOptions: [
-        { name: 'Mucha experiencia', value: '5' },
-        { name: 'Algo de experiencia', value: '3' },
-        { name: 'Ninguna experiencia', value: '1' },
+        { name: 'Espero que sea muy buena', value: '5' },
+        { name: 'Espero que sea buena', value: '3' },
+        { name: 'No espero mucho', value: '1' },
       ],
       isFirstSurvey: true,
     },
-    {
-      question:
-        '¿Tienes buenas expectativas sobre la herramienta web presentada?',
-      surveyOptions: [
-        { name: 'Altas expectativas', value: '5' },
-        { name: 'Expectativas moderadas', value: '3' },
-        { name: 'Bajas expectativas', value: '1' },
-      ],
-      isFirstSurvey: true,
-    },
-    {
-      question:
-        '¿Consideras que las herramientas web pueden ser una manera efectiva de aprender historia y geografía?',
-      surveyOptions: [
-        { name: 'Muy efectivo', value: '5' },
-        { name: 'Algo efectivo', value: '3' },
-        { name: 'Poco efectivo', value: '1' },
-      ],
-      isFirstSurvey: true,
-    },
-    {
-      question:
-        '¿Cuál es tu nivel de motivación para utilizar una herramienta web para el aprendizaje?',
-      surveyOptions: [
-        { name: 'Muy motivado(a)', value: '5' },
-        { name: 'Algo motivado(a)', value: '3' },
-        { name: 'Nada motivado(a)', value: '1' },
-      ],
-      isFirstSurvey: true,
-    },
-
     // Post-encuesta
     {
       question:
-        '¿Cuál es tu nivel de satisfacción con la herramienta web de historia y geografía?',
+        '¿Después de usar la página web, te gusta más aprender sobre la historia y geografía del Departamento de San Pedro?',
       surveyOptions: [
-        { name: 'Muy satisfecho(a)', value: '5' },
-        { name: 'Satisfecho(a)', value: '3' },
-        { name: 'Insatisfecho(a)', value: '1' },
+        { name: 'Me gusta mucho más', value: '5' },
+        { name: 'Me gusta un poco más', value: '3' },
+        { name: 'No me gusta más', value: '1' },
       ],
     },
     {
       question:
-        '¿Crees que la herramienta web te ayudó a mejorar tu conocimiento sobre la historia y geografía?',
+        '¿Qué tan contento(a) estás con la página web para aprender historia y geografía?',
       surveyOptions: [
-        { name: 'Sí, mejoré mucho', value: '5' },
-        { name: 'Mejoré algo', value: '3' },
-        { name: 'No mejoré', value: '1' },
+        { name: 'Muy contento(a)', value: '5' },
+        { name: 'Algo contento(a)', value: '3' },
+        { name: 'No contento(a)', value: '1' },
       ],
     },
     {
       question:
-        '¿Te resultó entretenido utilizar la herramienta web para aprender sobre historia y geografía?',
+        '¿Te resultó entretenido utilizar la página web para aprender sobre historia y geografía?',
       surveyOptions: [
         { name: 'Muy entretenido', value: '5' },
         { name: 'Algo entretenido', value: '3' },
@@ -912,7 +888,7 @@ export const initialData: SeedData = {
     },
     {
       question:
-        '¿Cómo calificarías la utilidad de la herramienta web para enseñar historia y geografía?',
+        '¿Qué tan útil fue la página web para aprender?',
       surveyOptions: [
         { name: 'Muy útil', value: '5' },
         { name: 'Algo útil', value: '3' },
@@ -921,28 +897,10 @@ export const initialData: SeedData = {
     },
     {
       question:
-        '¿Crees que la herramienta web despertó tu interés por la historia y geografía de Paraguay?',
+        '¿Te parece más importante aprender historia y geografía después de usar la página web?',
       surveyOptions: [
-        { name: 'Mucho', value: '5' },
-        { name: 'Algo', value: '3' },
-        { name: 'Nada', value: '1' },
-      ],
-    },
-    {
-      question:
-        '¿Crees que la herramienta web podría ser útil para enseñar historia y geografía a otras personas?',
-      surveyOptions: [
-        { name: 'Sí, muy útil', value: '5' },
-        { name: 'Algo útil', value: '3' },
-        { name: 'No útil', value: '1' },
-      ],
-    },
-    {
-      question:
-        '¿Cambió tu percepción sobre la importancia de aprender historia y geografía después de utilizar la herramienta web?',
-      surveyOptions: [
-        { name: 'Sí, mucho', value: '5' },
-        { name: 'Un poco', value: '3' },
+        { name: 'Sí, mucho más importante', value: '5' },
+        { name: 'Un poco más importante', value: '3' },
         { name: 'No cambió', value: '1' },
       ],
     },
@@ -956,7 +914,6 @@ export const initialData: SeedData = {
       ],
     },
   ],
-
   configs: [
     {
       name: 'firstSurvey',
