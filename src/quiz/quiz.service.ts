@@ -49,7 +49,7 @@ export class QuizService {
 
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-  ) { }
+  ) {}
 
   private handleDataBaseExceptions(error: any) {
     if (error.code === '23505')
@@ -332,7 +332,7 @@ export class QuizService {
     return achievement;
   }
 
-  async createSurvey(user: User, surveys: CreateSurveyDto[]) { }
+  async createSurvey(user: User, surveys: CreateSurveyDto[]) {}
 
   async getSurveyList(firstSurvey: boolean) {
     return this.surveyRepositoty.find({
@@ -358,7 +358,8 @@ export class QuizService {
     if (userInTable) {
       if (userInTable) {
         throw new ConflictException(
-          `${user.fullName} ya completaste la ${createUserSurveys[0].type === 'first' ? 'primera' : 'segunda'
+          `${user.fullName} ya completaste la ${
+            createUserSurveys[0].type === 'first' ? 'primera' : 'segunda'
           }  encuesta.`,
         );
       }
@@ -413,8 +414,12 @@ export class QuizService {
       .leftJoinAndSelect('userSurvey.survey', 'survey')
       .where('userSurvey.type = :type', { type: SurveyType.FIRST })
       .andWhere('user.nickname != :admin', { admin: 'admin' })
-      .groupBy('user.id')  // Agrupamos solo por usuario
-      .select(['user.id as userId', 'user.nickname as nickname', 'user.fullName as fullName'])
+      .groupBy('user.id') // Agrupamos solo por usuario
+      .select([
+        'user.id as userId',
+        'user.nickname as nickname',
+        'user.fullName as fullName',
+      ])
       .getRawMany();
 
     console.log(usersWithFirstSurvey);
@@ -426,18 +431,22 @@ export class QuizService {
       .leftJoinAndSelect('userSurvey.survey', 'survey')
       .where('userSurvey.type = :type', { type: SurveyType.SECOND })
       .andWhere('user.nickname != :admin', { admin: 'admin' })
-      .groupBy('user.id')  // Agrupamos solo por usuario
-      .select(['user.id as userId', 'user.nickname as nickname', 'user.fullName as fullName'])
+      .groupBy('user.id') // Agrupamos solo por usuario
+      .select([
+        'user.id as userId',
+        'user.nickname as nickname',
+        'user.fullName as fullName',
+      ])
       .getRawMany();
 
     console.log(usersWithSecondSurvey);
 
     // Extraer los IDs de usuarios que han completado la primera y segunda encuesta
     const userIdsWithFirstSurvey = usersWithFirstSurvey.map(
-      (userSurvey) => userSurvey.userid  // Ajustamos para usar los campos devueltos por getRawMany()
+      (userSurvey) => userSurvey.userid, // Ajustamos para usar los campos devueltos por getRawMany()
     );
     const userIdsWithSecondSurvey = usersWithSecondSurvey.map(
-      (userSurvey) => userSurvey.userid
+      (userSurvey) => userSurvey.userid,
     );
 
     // Obtener todos los usuarios, excluyendo "admin"
@@ -453,7 +462,6 @@ export class QuizService {
     });
 
     console.log(userIdsWithFirstSurvey);
-
 
     // Filtrar los usuarios que no han completado la primera encuesta
     const usersWithoutFirstSurvey = allUsers.filter(
@@ -471,7 +479,7 @@ export class QuizService {
         completed: usersWithFirstSurvey.map((us) => ({
           id: us.userid,
           nickname: us.nickname,
-          fullName: us.fullname
+          fullName: us.fullname,
         })),
         notCompleted: usersWithoutFirstSurvey,
       },
@@ -479,11 +487,86 @@ export class QuizService {
         completed: usersWithSecondSurvey.map((us) => ({
           id: us.userid,
           nickname: us.nickname,
-          fullName: us.fullname
+          fullName: us.fullname,
         })),
         notCompleted: usersWithoutSecondSurvey,
       },
     };
   }
 
+  async getResults() {
+    const data = await this.userSurveyRepository.find({
+      relations: {
+        survey: {
+          surveyOptions: true,
+        },
+        user: true,
+      },
+      select: {
+        id: true,
+        user: {
+          id: true,
+          fullName: true,
+          nickname: true,
+        },
+        survey: {
+          isFirstSurvey: true,
+          question: true,
+          surveyOptions: {
+            id: true,
+            name: true,
+            value: true,
+          },
+        },
+        response: true,
+        type: true,
+      },
+    });
+
+    console.log(data);
+
+    const groupedData = data.reduce((acc, current) => {
+      const userId = current.user.id;
+
+      // Buscar el texto que vio el usuario (name) en base a su respuesta (value)
+      const option = current.survey.surveyOptions.find(
+        (option) => option.value === current.response,
+      );
+      const optionName = option ? option.name : 'Opción no encontrada';
+
+      // Si el usuario no existe en el acumulador, lo inicializamos
+      if (!acc[userId]) {
+        acc[userId] = {
+          user: {
+            id: userId,
+            fullName: current.user.fullName,
+            nickname: current.user.nickname,
+          },
+          first: [],
+          second: [],
+        };
+      }
+
+      // Dividimos las respuestas entre first y second survey
+      const responseData = {
+        id: current.id,
+        response: current.response,
+        question: current.survey.question,
+        optionText: optionName, // El texto que el usuario vio
+      };
+
+      if (current.survey.isFirstSurvey) {
+        acc[userId].first.push(responseData);
+      } else {
+        acc[userId].second.push(responseData);
+      }
+
+      return acc;
+    }, {});
+
+    // Convertimos el objeto a un array para devolver en el formato esperado
+    const resultArray = Object.values(groupedData);
+
+    return resultArray;
+  }
 }

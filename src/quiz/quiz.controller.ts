@@ -38,6 +38,12 @@ export class QuizController {
     return this.quizService.findAll();
   }
 
+  @Get('results')
+  @Auth()
+  getResults() {
+    return this.quizService.getResults();
+  }
+
   @Get('levels-by-user')
   @Auth()
   getLevelsByUser(@GetUser() user: User) {
