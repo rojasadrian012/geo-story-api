@@ -422,8 +422,6 @@ export class QuizService {
       ])
       .getRawMany();
 
-    console.log(usersWithFirstSurvey);
-
     // Obtener los usuarios que han completado la segunda encuesta, excluyendo "admin"
     const usersWithSecondSurvey = await this.userSurveyRepository
       .createQueryBuilder('userSurvey')
@@ -438,8 +436,6 @@ export class QuizService {
         'user.fullName as fullName',
       ])
       .getRawMany();
-
-    console.log(usersWithSecondSurvey);
 
     // Extraer los IDs de usuarios que han completado la primera y segunda encuesta
     const userIdsWithFirstSurvey = usersWithFirstSurvey.map(
@@ -460,8 +456,6 @@ export class QuizService {
         nickname: true,
       },
     });
-
-    console.log(userIdsWithFirstSurvey);
 
     // Filtrar los usuarios que no han completado la primera encuesta
     const usersWithoutFirstSurvey = allUsers.filter(
@@ -522,8 +516,6 @@ export class QuizService {
         type: true,
       },
     });
-
-    console.log(data);
 
     const groupedData = data.reduce((acc, current) => {
       const userId = current.user.id;

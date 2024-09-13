@@ -174,8 +174,6 @@ export class AuthService {
       ],
     });
 
-    console.log(data);
-
     return data;
   }
 }
