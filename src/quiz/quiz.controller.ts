@@ -39,9 +39,15 @@ export class QuizController {
   }
 
   @Get('results')
-  @Auth()
+  @Auth(ValidRoles.admin)
   getResults() {
     return this.quizService.getResults();
+  }
+
+  @Get('graphics')
+  @Auth(ValidRoles.admin)
+  getDataGraphics() {
+    return this.quizService.getSurveyDataForChartArray();
   }
 
   @Get('levels-by-user')
@@ -76,8 +82,8 @@ export class QuizController {
 
   @Get('fisrt-second-survey')
   @Auth(ValidRoles.admin)
-  getFirstAndSecondSurveys(){
-    return this.quizService.getSurveyCompletionStatus()
+  getFirstAndSecondSurveys() {
+    return this.quizService.getSurveyCompletionStatus();
   }
 
   @Get(':id')
