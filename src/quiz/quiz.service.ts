@@ -561,4 +561,100 @@ export class QuizService {
 
     return resultArray;
   }
+
+  async getDataGraphics() {
+    const data = await this.userSurveyRepository.find({
+      relations: {
+        survey: {
+          surveyOptions: true,
+        },
+        user: true,
+      },
+      select: {
+        id: true,
+        survey: {
+          id: true,
+          question: true,
+          surveyOptions: {
+            id: true,
+            name: true,
+            value: true,
+          },
+        },
+        response: true,
+        user: {
+          id: true,
+          fullName: true,
+        },
+        type: true,
+      },
+    });
+
+    return data;
+  }
+
+  async getSurveyDataForChart() {
+    const surveys = await this.getDataGraphics();
+
+    // Agrupamos los datos por pregunta y tipo de encuesta
+    const groupedData = {};
+
+    surveys.forEach((surveyResponse) => {
+      const { survey, response, type } = surveyResponse;
+      const question = survey.question;
+
+      // Inicializar la estructura si aún no existe
+      if (!groupedData[type]) {
+        groupedData[type] = {};
+      }
+
+      if (!groupedData[type][question]) {
+        groupedData[type][question] = {
+          question: question,
+          surveyOptions: survey.surveyOptions.map((option) => ({
+            name: option.name,
+            count: 0, // Inicializamos el contador en 0
+          })),
+        };
+      }
+
+      // Sumar las respuestas a las opciones correspondientes
+      const optionIndex = survey.surveyOptions.findIndex(
+        (option) => option.value === response,
+      );
+
+      if (optionIndex !== -1) {
+        groupedData[type][question].surveyOptions[optionIndex].count += 1;
+      }
+    });
+
+    return groupedData;
+  }
+
+  async getSurveyDataForChartArray() {
+    const surveys = await this.getSurveyDataForChart();
+
+    const formattedData = [];
+
+    Object.entries(surveys).forEach(([surveyType, questions]) => {
+      Object.entries(questions).forEach(([questionText, questionData]) => {
+        formattedData.push({
+          surveyType: surveyType,
+          question: questionData.question,
+          data: {
+            labels: [questionData.surveyOptions.map((item) => item.name)],
+            datasets: [
+              {
+                data: questionData.surveyOptions.map((item) => item.count),
+                backgroundColor: [],
+                hoverBackgroundColor: [],
+              },
+            ],
+          },
+        });
+      });
+    });
+
+    return formattedData;
+  }
 }
