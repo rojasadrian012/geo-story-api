@@ -384,7 +384,15 @@ export class QuizService {
   }
 
   async getConfigs() {
-    return this.configRepository.find({});
+    try {
+      console.log('Buscando configs en BD');
+      const configs = await this.configRepository.find({});
+      console.log('Configs encontrados:', configs);
+      return configs;
+    } catch (error) {
+      console.error('Error en getConfigs service:', error);
+      throw error;
+    }
   }
 
   async createOrEditGlobalConfig(config: { name: string; value: boolean }) {
