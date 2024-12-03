@@ -384,7 +384,12 @@ export class QuizService {
   }
 
   async getConfigs() {
-    return this.configRepository.find({});
+    try {
+      const configs = await this.configRepository.find({});
+      return configs;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async createOrEditGlobalConfig(config: { name: string; value: boolean }) {

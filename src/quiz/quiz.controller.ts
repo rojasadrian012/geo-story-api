@@ -9,6 +9,7 @@ import {
   ParseUUIDPipe,
   Query,
   Put,
+  InternalServerErrorException,
 } from '@nestjs/common';
 
 import { QuizService } from './quiz.service';
@@ -76,8 +77,13 @@ export class QuizController {
 
   @Get('config')
   @Auth()
-  getConfigs() {
-    return this.quizService.getConfigs();
+  async getConfigs() {
+    try {
+      const configs = await this.quizService.getConfigs();
+      return configs;
+    } catch (error) {
+      throw new InternalServerErrorException(`Error obteniendo configs: ${error.message}`);
+    }
   }
 
   @Get('fisrt-second-survey')
